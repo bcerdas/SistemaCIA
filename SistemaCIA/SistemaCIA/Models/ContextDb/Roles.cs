@@ -13,7 +13,7 @@ namespace SistemaCIA.Models.ContextDb
         public int CodigoRol { get; set; }
         public int CodigoMinisterio { get; set; }
         public string Nombre { get; set; }
-        public string Descrpcion { get; set; }
+        public string Descripcion { get; set; }
 
         public Ministerios CodigoMinisterioNavigation { get; set; }
         public ICollection<Personasroles> Personasroles { get; set; }

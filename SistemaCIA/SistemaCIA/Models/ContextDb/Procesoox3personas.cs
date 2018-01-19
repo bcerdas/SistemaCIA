@@ -20,12 +20,12 @@ namespace SistemaCIA.Models.ContextDb
         public string Observaciones1 { get; set; }
         public string Observaciones2 { get; set; }
         public string Observaciones3 { get; set; }
-        public sbyte? ContactoUno1 { get; set; }
-        public sbyte? ContactoUno2 { get; set; }
-        public sbyte? ContactoUno3 { get; set; }
-        public sbyte? ContactoDos1 { get; set; }
-        public sbyte? ContactoDos2 { get; set; }
-        public sbyte? ContactoDos3 { get; set; }
+        public bool? ContactoUno1 { get; set; }
+        public bool? ContactoUno2 { get; set; }
+        public bool? ContactoUno3 { get; set; }
+        public bool? ContactoDos1 { get; set; }
+        public bool? ContactoDos2 { get; set; }
+        public bool? ContactoDos3 { get; set; }
         public DateTime? R5Fecha { get; set; }
         public string R5Lugar { get; set; }
         public string R5Direccion { get; set; }

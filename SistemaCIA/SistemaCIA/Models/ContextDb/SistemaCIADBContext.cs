@@ -38,14 +38,13 @@ namespace SistemaCIA.Models.ContextDb
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
 
-        //        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //        {
-        //            if (!optionsBuilder.IsConfigured)
-        //            {
-        //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-        //                optionsBuilder.UseMySql("server=localhost;User Id=UserCIA;password=cia1q2w3e4r;database=SistemaCIADB;");
-        //            }
-        //        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseMySql("server=localhost;User Id=UserCIA;password=cia1q2w3e4r;database=SistemaCIADB;");
+            }
+        }
 
         public SistemaCIADBContext(DbContextOptions<SistemaCIADBContext> options)
             : base(options)
@@ -279,6 +278,9 @@ namespace SistemaCIA.Models.ContextDb
                 entity.HasIndex(e => e.Asistente)
                     .HasName("asistente");
 
+                entity.HasIndex(e => e.CelulaRaiz)
+                    .HasName("celulaRaiz");
+
                 entity.HasIndex(e => e.Lider)
                     .HasName("lider");
 
@@ -326,6 +328,11 @@ namespace SistemaCIA.Models.ContextDb
                     .WithMany(p => p.CelulasAsistenteNavigation)
                     .HasForeignKey(d => d.Asistente)
                     .HasConstraintName("celulas_ibfk_2");
+
+                entity.HasOne(d => d.CelulaRaizNavigation)
+                    .WithMany(p => p.InverseCelulaRaizNavigation)
+                    .HasForeignKey(d => d.CelulaRaiz)
+                    .HasConstraintName("celulas_ibfk_3");
 
                 entity.HasOne(d => d.LiderNavigation)
                     .WithMany(p => p.CelulasLiderNavigation)
@@ -735,6 +742,12 @@ namespace SistemaCIA.Models.ContextDb
                     .HasColumnName("decoracion")
                     .HasMaxLength(15);
 
+                entity.Property(e => e.Estado)
+                    .IsRequired()
+                    .HasColumnName("estado")
+                    .HasMaxLength(40)
+                    .HasDefaultValueSql("'Disponible'");
+
                 entity.Property(e => e.FechaFinal)
                     .HasColumnName("fechaFinal")
                     .HasColumnType("datetime");
@@ -785,6 +798,10 @@ namespace SistemaCIA.Models.ContextDb
 
                 entity.Property(e => e.MontoLogistica)
                     .HasColumnName("montoLogistica")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.MontoOtros)
+                    .HasColumnName("montoOtros")
                     .HasColumnType("int(11)");
 
                 entity.Property(e => e.MontoServicio)
@@ -927,6 +944,12 @@ namespace SistemaCIA.Models.ContextDb
                     .HasColumnName("codigoPersona")
                     .HasMaxLength(15);
 
+                entity.Property(e => e.Estado)
+                    .IsRequired()
+                    .HasColumnName("estado")
+                    .HasMaxLength(40)
+                    .HasDefaultValueSql("'Prematriculado'");
+
                 entity.Property(e => e.Guia)
                     .IsRequired()
                     .HasColumnName("guia")
@@ -987,7 +1010,7 @@ namespace SistemaCIA.Models.ContextDb
 
                 entity.Property(e => e.SeRealizo)
                     .HasColumnName("seRealizo")
-                    .HasColumnType("tinyint(1)");
+                    .HasColumnType("bit(1)");
 
                 entity.Property(e => e.Visitas)
                     .HasColumnName("visitas")
@@ -1154,6 +1177,12 @@ namespace SistemaCIA.Models.ContextDb
                 entity.HasIndex(e => e.CodigoMinisterio)
                     .HasName("codigoMinisterio");
 
+                entity.HasIndex(e => e.Lider)
+                    .HasName("lider");
+
+                entity.HasIndex(e => e.NivelAcademias)
+                    .HasName("nivelAcademias");
+
                 entity.Property(e => e.CodigoPersona)
                     .HasColumnName("codigoPersona")
                     .HasMaxLength(15);
@@ -1178,11 +1207,11 @@ namespace SistemaCIA.Models.ContextDb
 
                 entity.Property(e => e.CumbreLideres)
                     .HasColumnName("cumbreLideres")
-                    .HasColumnType("tinyint(1)");
+                    .HasColumnType("bit(1)");
 
                 entity.Property(e => e.CumbreTimoteos)
                     .HasColumnName("cumbreTimoteos")
-                    .HasColumnType("tinyint(1)");
+                    .HasColumnType("bit(1)");
 
                 entity.Property(e => e.Direccion)
                     .HasColumnName("direccion")
@@ -1196,10 +1225,13 @@ namespace SistemaCIA.Models.ContextDb
                     .HasColumnName("fechaIngreso")
                     .HasColumnType("datetime");
 
-                entity.Property(e => e.NivelAcademias)
-                    .IsRequired()
-                    .HasColumnName("nivelAcademias")
+                entity.Property(e => e.Lider)
+                    .HasColumnName("lider")
                     .HasMaxLength(15);
+
+                entity.Property(e => e.NivelAcademias)
+                    .HasColumnName("nivelAcademias")
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()
@@ -1254,14 +1286,22 @@ namespace SistemaCIA.Models.ContextDb
                 entity.HasOne(d => d.CodigoAreaNavigation)
                     .WithMany(p => p.Personas)
                     .HasForeignKey(d => d.CodigoArea)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("personas_ibfk_2");
 
                 entity.HasOne(d => d.CodigoMinisterioNavigation)
                     .WithMany(p => p.Personas)
                     .HasForeignKey(d => d.CodigoMinisterio)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("personas_ibfk_1");
+
+                entity.HasOne(d => d.LiderNavigation)
+                    .WithMany(p => p.InverseLiderNavigation)
+                    .HasForeignKey(d => d.Lider)
+                    .HasConstraintName("personas_ibfk_4");
+
+                entity.HasOne(d => d.NivelAcademiasNavigation)
+                    .WithMany(p => p.Personas)
+                    .HasForeignKey(d => d.NivelAcademias)
+                    .HasConstraintName("personas_ibfk_3");
             });
 
             modelBuilder.Entity<Personasroles>(entity =>
@@ -1443,27 +1483,27 @@ namespace SistemaCIA.Models.ContextDb
 
                 entity.Property(e => e.ContactoDos1)
                     .HasColumnName("contactoDos1")
-                    .HasColumnType("tinyint(1)");
+                    .HasColumnType("bit(1)");
 
                 entity.Property(e => e.ContactoDos2)
                     .HasColumnName("contactoDos2")
-                    .HasColumnType("tinyint(1)");
+                    .HasColumnType("bit(1)");
 
                 entity.Property(e => e.ContactoDos3)
                     .HasColumnName("contactoDos3")
-                    .HasColumnType("tinyint(1)");
+                    .HasColumnType("bit(1)");
 
                 entity.Property(e => e.ContactoUno1)
                     .HasColumnName("contactoUno1")
-                    .HasColumnType("tinyint(1)");
+                    .HasColumnType("bit(1)");
 
                 entity.Property(e => e.ContactoUno2)
                     .HasColumnName("contactoUno2")
-                    .HasColumnType("tinyint(1)");
+                    .HasColumnType("bit(1)");
 
                 entity.Property(e => e.ContactoUno3)
                     .HasColumnName("contactoUno3")
-                    .HasColumnType("tinyint(1)");
+                    .HasColumnType("bit(1)");
 
                 entity.Property(e => e.Nombre1)
                     .IsRequired()
@@ -1681,8 +1721,8 @@ namespace SistemaCIA.Models.ContextDb
                     .HasColumnName("codigoMinisterio")
                     .HasColumnType("int(11)");
 
-                entity.Property(e => e.Descrpcion)
-                    .HasColumnName("descrpcion")
+                entity.Property(e => e.Descripcion)
+                    .HasColumnName("descripcion")
                     .HasMaxLength(500);
 
                 entity.Property(e => e.Nombre)
@@ -1713,7 +1753,7 @@ namespace SistemaCIA.Models.ContextDb
                 entity.Property(e => e.Clave)
                     .IsRequired()
                     .HasColumnName("clave")
-                    .HasMaxLength(20);
+                    .HasMaxLength(500);
 
                 entity.Property(e => e.CodigoPersona)
                     .IsRequired()

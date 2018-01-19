@@ -1,0 +1,68 @@
+﻿@model SistemaCIA.Models.ContextDb.Encuentros
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+<h4>Encuentros</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AgregarFinanzas">
+            <input type="hidden" asp-for="CodigoEncuentro" />
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                @Html.DisplayFor(model => model.Nombre)<br />
+                @Html.DisplayFor(model => model.FechaInicio) - @Html.DisplayFor(model => model.FechaFinal)
+            </div>
+            <div class="form-group">
+                @Html.DisplayFor(model => model.TotalDinero)
+            </div>
+            <div class="form-group">
+                <label asp-for="MontoDecoracion" class="control-label"></label>
+                <input asp-for="MontoDecoracion" class="form-control" />
+                <span asp-validation-for="MontoDecoracion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MontoLogistica" class="control-label"></label>
+                <input asp-for="MontoLogistica" class="form-control" />
+                <span asp-validation-for="MontoLogistica" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MontoComida" class="control-label"></label>
+                <input asp-for="MontoComida" class="form-control" />
+                <span asp-validation-for="MontoComida" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MontoServicio" class="control-label"></label>
+                <input asp-for="MontoServicio" class="form-control" />
+                <span asp-validation-for="MontoServicio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MontoTransporte" class="control-label"></label>
+                <input asp-for="MontoTransporte" class="form-control" />
+                <span asp-validation-for="MontoTransporte" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MontoOtros" class="control-label"></label>
+                <input asp-for="MontoOtros" class="form-control" />
+                <span asp-validation-for="MontoOtros" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="GestionarEncuentros">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

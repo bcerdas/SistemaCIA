@@ -1,0 +1,92 @@
+﻿@model IEnumerable<SistemaCIA.Models.ContextDb.Encuentros>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Index</h2>
+<p>
+    <a asp-action="CrearEncuentro">Create New</a>
+</p>
+@if(Model.Count() == 0){
+<h1>Mostrar un mensaje que diga que en este omento no hay un encuentro disponible para poder insertar encuentristas</h1>
+}else{
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lema)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Objetivo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaInicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaFinal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Asistencia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalDinero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalInvertido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalRestante)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lema)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Objetivo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaFinal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Asistencia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalDinero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalInvertido)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalRestante)
+            </td>
+
+            
+            <td>
+                <a asp-action="#" asp-route-id="@item.CodigoEncuentro">Agregar encuentrista</a> |
+                <a asp-action="#" asp-route-id="@item.CodigoEncuentro">Encuentristas</a>
+            </td>
+
+        </tr>
+}
+    </tbody>
+</table>
+            }
+
+

@@ -1,0 +1,190 @@
+﻿@model SistemaCIA.Models.ContextDb.Encuentros
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Encuentros</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Lema)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Lema)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Objetivo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Objetivo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaInicio)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FechaInicio)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaFinal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FechaFinal)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Asistencia)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Asistencia)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalDinero)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalDinero)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalInvertido)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalInvertido)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MontoDecoracion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MontoDecoracion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MontoLogistica)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MontoLogistica)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MontoComida)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MontoComida)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MontoServicio)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MontoServicio)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MontoTransporte)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MontoTransporte)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalRestante)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalRestante)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AsistenteCocinaNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AsistenteCocinaNavigation.CodigoPersona)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AsistenteNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AsistenteNavigation.CodigoPersona)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CocinaNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CocinaNavigation.CodigoPersona)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CoordinadorNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CoordinadorNavigation.CodigoPersona)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DecoracionNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DecoracionNavigation.CodigoPersona)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FinanzasNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FinanzasNavigation.CodigoPersona)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GuiaH1Navigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GuiaH1Navigation.CodigoPersona)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GuiaH2Navigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GuiaH2Navigation.CodigoPersona)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GuiaM1Navigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GuiaM1Navigation.CodigoPersona)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GuiaM2Navigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GuiaM2Navigation.CodigoPersona)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GuiaNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GuiaNavigation.CodigoPersona)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LogisticaNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LogisticaNavigation.CodigoPersona)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MusicaNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MusicaNavigation.CodigoPersona)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ServidorNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ServidorNavigation.CodigoPersona)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="CodigoEncuentro" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

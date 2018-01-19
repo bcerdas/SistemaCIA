@@ -39,6 +39,8 @@ namespace SistemaCIA.Models.ContextDb
         public int? MontoServicio { get; set; }
         public int? MontoTransporte { get; set; }
         public int? TotalRestante { get; set; }
+        public int? MontoOtros { get; set; }
+        public string Estado { get; set; }
 
         public Personas AsistenteCocinaNavigation { get; set; }
         public Personas AsistenteNavigation { get; set; }

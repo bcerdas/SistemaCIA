@@ -9,6 +9,7 @@ namespace SistemaCIA.Models.ContextDb
         {
             Boletasconsolidacion = new HashSet<Boletasconsolidacion>();
             Celulaspersonas = new HashSet<Celulaspersonas>();
+            InverseCelulaRaizNavigation = new HashSet<Celulas>();
         }
 
         public string CodigoCelula { get; set; }
@@ -22,8 +23,10 @@ namespace SistemaCIA.Models.ContextDb
         public int PromedioPersonas { get; set; }
 
         public Personas AsistenteNavigation { get; set; }
+        public Celulas CelulaRaizNavigation { get; set; }
         public Personas LiderNavigation { get; set; }
         public ICollection<Boletasconsolidacion> Boletasconsolidacion { get; set; }
         public ICollection<Celulaspersonas> Celulaspersonas { get; set; }
+        public ICollection<Celulas> InverseCelulaRaizNavigation { get; set; }
     }
 }

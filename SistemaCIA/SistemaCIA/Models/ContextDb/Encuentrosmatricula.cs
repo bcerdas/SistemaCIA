@@ -17,6 +17,7 @@ namespace SistemaCIA.Models.ContextDb
         public int Saldo { get; set; }
         public int Abono { get; set; }
         public string Observaciones { get; set; }
+        public string Estado { get; set; }
 
         public Encuentros CodigoEncuentroNavigation { get; set; }
         public Personas CodigoPersonaNavigation { get; set; }

@@ -9,6 +9,7 @@ namespace SistemaCIA.Models.ContextDb
         {
             Academiasniveles = new HashSet<Academiasniveles>();
             Matriculaenlinea = new HashSet<Matriculaenlinea>();
+            Personas = new HashSet<Personas>();
         }
 
         public int CodigoNivel { get; set; }
@@ -18,5 +19,6 @@ namespace SistemaCIA.Models.ContextDb
 
         public ICollection<Academiasniveles> Academiasniveles { get; set; }
         public ICollection<Matriculaenlinea> Matriculaenlinea { get; set; }
+        public ICollection<Personas> Personas { get; set; }
     }
 }

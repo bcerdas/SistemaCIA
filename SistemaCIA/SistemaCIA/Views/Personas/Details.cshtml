@@ -1,0 +1,151 @@
+﻿@model SistemaCIA.Models.ContextDb.Personas
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Personas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Apellido1)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Apellido1)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Apellido2)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Apellido2)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreCompletoMadre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NombreCompletoMadre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TelefonoMadre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TelefonoMadre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreCompletoPadre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NombreCompletoPadre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TelefonoPadre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TelefonoPadre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreCompletoConyuge)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NombreCompletoConyuge)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TelefonoConyuge)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TelefonoConyuge)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreCompletoEncargado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NombreCompletoEncargado)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TelefonoEncargado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TelefonoEncargado)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ParentescoEncargado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ParentescoEncargado)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Direccion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaIngreso)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FechaIngreso)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaDeNacimiento)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FechaDeNacimiento)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CumbreTimoteos)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CumbreTimoteos)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CumbreLideres)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CumbreLideres)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sexo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sexo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CodigoAreaNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CodigoAreaNavigation.Nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CodigoMinisterioNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CodigoMinisterioNavigation.Nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NivelAcademiasNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NivelAcademiasNavigation.Nombre)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.CodigoPersona">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

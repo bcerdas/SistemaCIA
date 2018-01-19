@@ -5,8 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MailKit" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
+    <PackageReference Include="MimeKit" Version="2.0.1" />
     <PackageReference Include="MySql.Data" Version="6.10.5" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.0.1" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql.Design" Version="1.1.2" />
@@ -17,6 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Models\Consolidation\" />
+    <Folder Include="Models\Cells\" />
+    <Folder Include="Models\CellsSupervision\" />
+    <Folder Include="Models\PrayerX3\" />
     <Folder Include="Views\Site\" />
   </ItemGroup>
 

@@ -8,6 +8,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SistemaCIA.Models.ContextDb;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Session;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
+using SistemaCIA.Models.Session;
 
 namespace SistemaCIA
 {
@@ -24,6 +28,17 @@ namespace SistemaCIA
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            //Session
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(5);
+            });
+
+            //Cookie
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 
             services.AddDbContext<SistemaCIADBContext>(options => options.UseMySql(
             Configuration.GetConnectionString("DefaultConnection")));
@@ -44,12 +59,22 @@ namespace SistemaCIA
 
             app.UseStaticFiles();
 
+            //Session
+            app.UseSession();
+
+            //Cookie
+            app.UseAuthentication();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Login}/{action=Index}/{id?}");
             });
+
+            //Session
+            SessionHelper.Configure(app.ApplicationServices.GetRequiredService<IHttpContextAccessor>());
+
         }
     }
 }

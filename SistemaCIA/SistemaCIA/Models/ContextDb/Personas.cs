@@ -33,6 +33,7 @@ namespace SistemaCIA.Models.ContextDb
             EncuentrosServidorNavigation = new HashSet<Encuentros>();
             EncuentrosmatriculaCodigoPersonaNavigation = new HashSet<Encuentrosmatricula>();
             EncuentrosmatriculaGuiaNavigation = new HashSet<Encuentrosmatricula>();
+            InverseLiderNavigation = new HashSet<Personas>();
             Matriculaenlinea = new HashSet<Matriculaenlinea>();
             Matriculaenlineaalumnos = new HashSet<Matriculaenlineaalumnos>();
             Personasroles = new HashSet<Personasroles>();
@@ -43,8 +44,9 @@ namespace SistemaCIA.Models.ContextDb
         }
 
         public string CodigoPersona { get; set; }
-        public int CodigoMinisterio { get; set; }
-        public int CodigoArea { get; set; }
+        public int? CodigoMinisterio { get; set; }
+        public int? CodigoArea { get; set; }
+        public string Lider { get; set; }
         public string Nombre { get; set; }
         public string Apellido1 { get; set; }
         public string Apellido2 { get; set; }
@@ -60,14 +62,16 @@ namespace SistemaCIA.Models.ContextDb
         public string Telefono { get; set; }
         public string Direccion { get; set; }
         public DateTime? FechaIngreso { get; set; }
-        public string NivelAcademias { get; set; }
+        public int NivelAcademias { get; set; }
         public DateTime? FechaDeNacimiento { get; set; }
-        public sbyte CumbreTimoteos { get; set; }
-        public sbyte CumbreLideres { get; set; }
+        public bool CumbreTimoteos { get; set; }
+        public bool CumbreLideres { get; set; }
         public string Sexo { get; set; }
 
         public Areasdeministerio CodigoAreaNavigation { get; set; }
         public Ministerios CodigoMinisterioNavigation { get; set; }
+        public Personas LiderNavigation { get; set; }
+        public Niveles NivelAcademiasNavigation { get; set; }
         public ICollection<Boletasconsolidacion> BoletasconsolidacionLlenadoPorNavigation { get; set; }
         public ICollection<Boletasconsolidacion> BoletasconsolidacionPersonaAsignadaNavigation { get; set; }
         public ICollection<Celulas> CelulasAsistenteNavigation { get; set; }
@@ -94,6 +98,7 @@ namespace SistemaCIA.Models.ContextDb
         public ICollection<Encuentros> EncuentrosServidorNavigation { get; set; }
         public ICollection<Encuentrosmatricula> EncuentrosmatriculaCodigoPersonaNavigation { get; set; }
         public ICollection<Encuentrosmatricula> EncuentrosmatriculaGuiaNavigation { get; set; }
+        public ICollection<Personas> InverseLiderNavigation { get; set; }
         public ICollection<Matriculaenlinea> Matriculaenlinea { get; set; }
         public ICollection<Matriculaenlineaalumnos> Matriculaenlineaalumnos { get; set; }
         public ICollection<Personasroles> Personasroles { get; set; }

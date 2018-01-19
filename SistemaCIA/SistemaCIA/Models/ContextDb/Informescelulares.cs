@@ -11,6 +11,6 @@ namespace SistemaCIA.Models.ContextDb
         public int Visitas { get; set; }
         public int Ofrenda { get; set; }
         public string Observaciones { get; set; }
-        public sbyte SeRealizo { get; set; }
+        public bool SeRealizo { get; set; }
     }
 }
