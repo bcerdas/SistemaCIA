@@ -69,7 +69,7 @@ namespace SistemaCIA
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Login}/{action=Index}/{id?}");
+                    template: "{controller=Site}/{action=Index}/{id?}");
             });
 
             //Session

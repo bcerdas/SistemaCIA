@@ -20,3 +20,14 @@ C:\Users\limak\Desktop\SistemaCIA\SistemaCIA\SistemaCIA\obj\Debug\netcoreapp2.0\
 C:\Users\limak\Desktop\SistemaCIA\SistemaCIA\SistemaCIA\obj\Debug\netcoreapp2.0\SistemaCIA.AssemblyInfo.cs
 C:\Users\limak\Desktop\SistemaCIA\SistemaCIA\SistemaCIA\obj\Debug\netcoreapp2.0\SistemaCIA.dll
 C:\Users\limak\Desktop\SistemaCIA\SistemaCIA\SistemaCIA\obj\Debug\netcoreapp2.0\SistemaCIA.pdb
+C:\Users\ANDRE\Desktop\SistemaCIA\SistemaCIA\SistemaCIA\bin\Debug\netcoreapp2.0\SistemaCIA.deps.json
+C:\Users\ANDRE\Desktop\SistemaCIA\SistemaCIA\SistemaCIA\bin\Debug\netcoreapp2.0\SistemaCIA.runtimeconfig.json
+C:\Users\ANDRE\Desktop\SistemaCIA\SistemaCIA\SistemaCIA\bin\Debug\netcoreapp2.0\SistemaCIA.runtimeconfig.dev.json
+C:\Users\ANDRE\Desktop\SistemaCIA\SistemaCIA\SistemaCIA\bin\Debug\netcoreapp2.0\SistemaCIA.dll
+C:\Users\ANDRE\Desktop\SistemaCIA\SistemaCIA\SistemaCIA\bin\Debug\netcoreapp2.0\SistemaCIA.pdb
+C:\Users\ANDRE\Desktop\SistemaCIA\SistemaCIA\SistemaCIA\obj\Debug\netcoreapp2.0\SistemaCIA.csprojResolveAssemblyReference.cache
+C:\Users\ANDRE\Desktop\SistemaCIA\SistemaCIA\SistemaCIA\obj\Debug\netcoreapp2.0\SistemaCIA.csproj.CoreCompileInputs.cache
+C:\Users\ANDRE\Desktop\SistemaCIA\SistemaCIA\SistemaCIA\obj\Debug\netcoreapp2.0\SistemaCIA.AssemblyInfoInputs.cache
+C:\Users\ANDRE\Desktop\SistemaCIA\SistemaCIA\SistemaCIA\obj\Debug\netcoreapp2.0\SistemaCIA.AssemblyInfo.cs
+C:\Users\ANDRE\Desktop\SistemaCIA\SistemaCIA\SistemaCIA\obj\Debug\netcoreapp2.0\SistemaCIA.dll
+C:\Users\ANDRE\Desktop\SistemaCIA\SistemaCIA\SistemaCIA\obj\Debug\netcoreapp2.0\SistemaCIA.pdb

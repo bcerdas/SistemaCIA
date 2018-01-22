@@ -1,0 +1,201 @@
+﻿@{
+    ViewData["Title"] = "Ministerios";
+    Layout = "~/Views/Shared/_Site.cshtml";
+}
+
+<div class="container-fluid ministerios">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <center>
+                <div class="cover">
+                    <p>Nuestros Ministerios</p>
+                </div>
+            </center>
+        </div>
+    </div>
+
+</div>
+
+<div class="container content">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="thumbnail">
+                    <h3 id="azul" class="MT">Alcance</h3>
+                    <a asp-area="" asp-controller="Site" asp-action="MAlcance"><img width="400" src="~/images/libro.png" alt="Ministerio de alcance"></a>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="thumbnail">
+                    <h3 id="azul" class="MT">Capacitación</h3>
+                    <a asp-area="" asp-controller="Site" asp-action="MCapacitacion"><img width="400" src="~/images/libro.png" alt="Ministerio de capacitación"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid content min">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="thumbnail">
+                        <h3 id="verde" class="MT">CIA Kids</h3>
+                        <a asp-area="" asp-controller="Site" asp-action="MKids"><img width="400" src="~/images/libro.png" alt="Ministerio CIA Kids"></a>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="thumbnail">
+                        <h3 id="verde" class="MT">Anfitriones</h3>
+                        <a asp-area="" asp-controller="Site" asp-action="MAnfitriones"><img width="400" src="~/images/libro.png" alt="Ministerio de Anfitriones"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container content">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="thumbnail">
+                    <h3 id="naranja" class="MT">Finanzas</h3>
+                    <a asp-area="" asp-controller="Site" asp-action="MFinanzas"><img width="400" src="~/images/libro.png" alt="Ministerio de Finanzas"></a>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="thumbnail">
+                    <h3 id="naranja" class="MT">Misiones</h3>
+                    <a asp-area="" asp-controller="Site" asp-action="MMisiones"><img width="400" src="~/images/libro.png" alt="Ministerio de Misiones"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid content min">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="thumbnail">
+                        <h3 id="morado" class="MT">Social</h3>
+                        <a asp-area="" asp-controller="Site" asp-action="MSocial"><img width="400" src="~/images/libro.png" alt="Ministerio Social"></a>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="thumbnail">
+                        <h3 id="morado" class="MT">Comunicación y Tecnología</h3>
+                        <a asp-area="" asp-controller="Site" asp-action="MComTec"><img width="400" src="~/images/libro.png" alt="Ministerio de Comunicación y Tecnología"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container content">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="thumbnail">
+                    <h3 id="amarillo" class="MT">Intercesión</h3>
+                    <a asp-area="" asp-controller="Site" asp-action="MIntersecion"><img width="400" src="~/images/libro.png" alt="Ministerio de Intercesión"></a>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="thumbnail">
+                    <h3 id="amarillo" class="MT">Alabanza</h3>
+                    <a asp-area="" asp-controller="Site" asp-action="MAlabanza"><img width="400" src="~/images/libro.png" alt="Ministerio de Alabanza"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+@*<div class="container content">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="thumbnail">
+                <h3 id="azul" class="MT">Alcance</h3>
+                <a asp-area="" asp-controller="Site" asp-action="MAlcance"><img width="400" src="~/images/libro.png" alt="Ministerio de alcance"></a>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="thumbnail">
+                <h3 id="azul" class="MT">Capacitación</h3>
+                <a asp-area="" asp-controller="Site" asp-action="MCapacitacion"><img width="400" src="~/images/libro.png" alt="Ministerio de capacitación"></a>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="thumbnail">
+                <h3 id="azul" class="MT">CIA Kids</h3>
+                <a asp-area="" asp-controller="Site" asp-action="MKids"><img width="400" src="~/images/libro.png" alt="Ministerio CIA Kids"></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid content min">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="thumbnail">
+                    <h3 id="verde" class="MT">Anfitriones</h3>
+                    <a asp-area="" asp-controller="Site" asp-action="MAnfitriones"><img width="400" src="~/images/libro.png" alt="Ministerio de Anfitriones"></a>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="thumbnail">
+                    <h3 id="verde" class="MT">Finanzas</h3>
+                    <a asp-area="" asp-controller="Site" asp-action="MFinanzas"><img width="400" src="~/images/libro.png" alt="Ministerio de Finanzas"></a>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="thumbnail">
+                    <h3 id="verde" class="MT">Misiones</h3>
+                    <a asp-area="" asp-controller="Site" asp-action="MMisiones"><img width="400" src="~/images/libro.png" alt="Ministerio de Misiones"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container content">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="thumbnail">
+                <h3 id="naranja" class="MT">Social</h3>
+                <a asp-area="" asp-controller="Site" asp-action="MSocial"><img width="400" src="~/images/libro.png" alt="Ministerio Social"></a>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="thumbnail">
+                <h3 id="naranja" class="MT">Comunicación y Tecnología</h3>
+                <a asp-area="" asp-controller="Site" asp-action="MComTec"><img width="400" src="~/images/libro.png" alt="Ministerio de Comunicación y Tecnología"></a>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="thumbnail">
+                <h3 id="naranja" class="MT">Intercesión</h3>
+                <a asp-area="" asp-controller="Site" asp-action="MIntercesion"><img width="400" src="~/images/libro.png" alt="Ministerio de Intercesión"></a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+
+        </div>
+        <div class="col-sm-4">
+            <div class="thumbnail">
+                <h3 id="amarillo" class="MT">Alabanza</h3>
+                <a asp-area="" asp-controller="Site" asp-action="MAlabanza"><img width="400" src="~/images/libro.png" alt="Ministerio de Alabanza"></a>
+            </div>
+        </div>
+        <div class="col-sm-4">
+
+        </div>
+    </div>
+</div>*@
+
+
+
+

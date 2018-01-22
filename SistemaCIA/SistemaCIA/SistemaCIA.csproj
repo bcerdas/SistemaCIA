@@ -25,7 +25,6 @@
     <Folder Include="Models\Cells\" />
     <Folder Include="Models\CellsSupervision\" />
     <Folder Include="Models\PrayerX3\" />
-    <Folder Include="Views\Site\" />
   </ItemGroup>
 
 </Project>
