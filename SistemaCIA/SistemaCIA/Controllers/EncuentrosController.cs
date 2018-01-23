@@ -6,10 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SistemaCIA.Models.ContextDb;
+using SistemaCIA.Models.Encounters;
 using SistemaCIA.Models.Login;
+using SistemaCIA.Models.Session;
 
 namespace SistemaCIA.Controllers
 {
+
     public class EncuentrosController : Controller
     {
         private readonly SistemaCIADBContext _context;
@@ -19,7 +22,8 @@ namespace SistemaCIA.Controllers
             _context = context;
         }
 
-        // GET: Encuentros
+        // GET: GestionarEncuentros
+        [PermisoAttribute(Permiso = RolesPermisos.Consolidacion)]
         public async Task<IActionResult> GestionarEncuentros()
         {
             var sistemaCIADBContext = _context.Encuentros.Include(e => e.AsistenteCocinaNavigation).Include(e => e.AsistenteNavigation).Include(e => e.CocinaNavigation).Include(e => e.CoordinadorNavigation).Include(e => e.DecoracionNavigation).Include(e => e.FinanzasNavigation).Include(e => e.GuiaH1Navigation).Include(e => e.GuiaH2Navigation).Include(e => e.GuiaM1Navigation).Include(e => e.GuiaM2Navigation).Include(e => e.GuiaNavigation).Include(e => e.LogisticaNavigation).Include(e => e.MusicaNavigation).Include(e => e.ServidorNavigation);
@@ -27,6 +31,7 @@ namespace SistemaCIA.Controllers
         }
 
         // GET: Encuentros
+        [PermisoAttribute(Permiso = RolesPermisos.LiderDeCelula)]
         public async Task<IActionResult> Encuentros()
         {
             var sistemaCIADBContext = _context.Encuentros.Include(e => e.AsistenteCocinaNavigation).Include(e => e.AsistenteNavigation).Include(e => e.CocinaNavigation).Include(e => e.CoordinadorNavigation).Include(e => e.DecoracionNavigation).Include(e => e.FinanzasNavigation).Include(e => e.GuiaH1Navigation).Include(e => e.GuiaH2Navigation).Include(e => e.GuiaM1Navigation).Include(e => e.GuiaM2Navigation).Include(e => e.GuiaNavigation).Include(e => e.LogisticaNavigation).Include(e => e.MusicaNavigation).Include(e => e.ServidorNavigation);
@@ -34,6 +39,7 @@ namespace SistemaCIA.Controllers
         }
 
         // GET: Encuentros/Details/5
+        [PermisoAttribute(Permiso = RolesPermisos.Consolidacion)]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -66,8 +72,9 @@ namespace SistemaCIA.Controllers
         }
 
         // GET: Encuentros/Create
+        [PermisoAttribute(Permiso = RolesPermisos.LiderDeCelula)]
         public IActionResult CrearEncuentro()
-        {          
+        {
             return View();
         }
 
@@ -82,11 +89,11 @@ namespace SistemaCIA.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(GestionarEncuentros));
             }
-            
+
             return View(encuentros);
         }
 
-
+        [PermisoAttribute(Permiso = RolesPermisos.Consolidacion)]
         public IActionResult AgregarEquipoEnc(int? id)
         {
             if (id == null)
@@ -117,8 +124,8 @@ namespace SistemaCIA.Controllers
 
             return View(encuentro);
 
-        //    [DataType(DataType.Date)]
-        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)
+            //    [DataType(DataType.Date)]
+            //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)
         }
 
         // POST: Encuentros/Create
@@ -170,7 +177,7 @@ namespace SistemaCIA.Controllers
             return View();
         }
 
-
+        [PermisoAttribute(Permiso = RolesPermisos.Consolidacion)]
         public IActionResult AgregarFinanzas(int? id)
         {
             if (id == null)
@@ -210,7 +217,7 @@ namespace SistemaCIA.Controllers
 
                     encuentro.TotalInvertido = sumaGastos;
                     encuentro.TotalRestante = encuentro.TotalDinero - sumaGastos;
-                    
+
                     _context.Encuentros.Update(encuentro);
                     await _context.SaveChangesAsync();
                 }
@@ -233,30 +240,43 @@ namespace SistemaCIA.Controllers
 
 
         // GET: Personas/Create
-        public IActionResult AgregarEncuentrista()
+        [PermisoAttribute(Permiso = RolesPermisos.LiderDeCelula)]
+        public IActionResult AgregarEncuentrista(int? id)
         {
-
-
             ViewData["Lider"] = new SelectList(_context.Personas.Join(_context.Personasroles, p => p.CodigoPersona, r => r.CodigoPersona,
                 (p, r) => new { Nombre = p.Nombre, CodigoRol = r.CodigoRol, CodigoPersona = p.CodigoPersona })
                 .Where(x => x.CodigoRol == 2), "CodigoPersona", "Nombre");
             return View();
         }
 
-        // POST: Personas/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AgregarEncuentrista(Personas personas)
+        public async Task<IActionResult> AgregarEncuentrista(int? id, Personas personas)
         {
             if (ModelState.IsValid)
             {
+                if (id == null)
+                {
+                    return NotFound();
+                }
+
                 personas.FechaIngreso = DateTime.Now.Date;
                 personas.NivelAcademias = 14;
                 personas.CumbreTimoteos = false;
                 personas.CumbreLideres = false;
+                personas.Lider = SessionHelper.ObtenerCodigoPersona;
                 _context.Add(personas);
+
+                Encuentrosmatricula matricula = new Encuentrosmatricula()
+                {
+                    CodigoEncuentro = (int)id,
+                    CodigoPersona = personas.CodigoPersona,
+                    Abono = 0,
+                    Saldo = 35000
+                };
+
+                _context.Add(matricula);
+
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Encuentros));
             }
@@ -269,6 +289,7 @@ namespace SistemaCIA.Controllers
         }
 
         // GET: Encuentros/Edit/5
+        [PermisoAttribute(Permiso = RolesPermisos.Consolidacion)]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -297,6 +318,150 @@ namespace SistemaCIA.Controllers
             ViewData["Servidor"] = new SelectList(_context.Personas, "CodigoPersona", "CodigoPersona", encuentros.Servidor);
             return View(encuentros);
         }
+
+        public IActionResult Encuentristas(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var lider = SessionHelper.ObtenerCodigoPersona;
+            var personas = _context.Personas.Include(p => p.CodigoAreaNavigation).Include(p => p.CodigoMinisterioNavigation).Include(p => p.NivelAcademiasNavigation).Where(x => x.Lider == lider).ToList();
+
+            var matriculaEncuentro = _context.Encuentrosmatricula.Include(e => e.CodigoEncuentroNavigation).Where(x => x.CodigoEncuentro == id).ToList();
+            List<EncuentristasModel> encuentristas = new List<EncuentristasModel>();
+
+            foreach (var item in matriculaEncuentro)
+            {
+                foreach (var item2 in personas)
+                {
+                    if (item.CodigoPersona == item2.CodigoPersona)
+                    {
+                        var nuevoEncuentrista = new EncuentristasModel()
+                        {
+                            CodigoEncuentro = item.CodigoEncuentro,
+                            CodigoPersona = item2.CodigoPersona,
+                            Nombre = item2.Nombre,
+                            Apellido1 = item2.Apellido1,
+                            Apellido2 = item2.Apellido2,
+                            NombreCompletoMadre = item2.NombreCompletoMadre,
+                            NombreCompletoPadre = item2.NombreCompletoPadre,
+                            NombreCompletoConyuge = item2.NombreCompletoConyuge,
+                            NombreCompletoEncargado = item2.NombreCompletoEncargado,
+                            NombreEncuentro = item.CodigoEncuentroNavigation.Nombre,
+                            Telefono = item2.Telefono,
+                            TelefonoPadre = item2.TelefonoPadre,
+                            TelefonoMadre = item2.TelefonoMadre,
+                            TelefonoConyuge = item2.TelefonoConyuge,
+                            TelefonoEncargado = item2.TelefonoEncargado,
+                            Direccion = item2.Direccion,
+                            FechaDeNacimiento = item2.FechaDeNacimiento,
+                            ParentescoEncargado = item2.ParentescoEncargado,
+                            Sexo = item2.Sexo,
+                            Lider = item2.Lider,
+                            FechaFinal = item.CodigoEncuentroNavigation.FechaFinal,
+                            FechaInicio = item.CodigoEncuentroNavigation.FechaInicio
+                        };
+
+                        encuentristas.Add(nuevoEncuentrista);
+                    }
+                }
+            }
+
+            return View(encuentristas);
+        }
+
+        public IActionResult GestionarEncuentristas(int? id)
+        {
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var matriculaEncuentro = _context.Encuentrosmatricula.Where(x => x.CodigoEncuentro == id);
+            var personas = _context.Personas.Where(x => x.NivelAcademias == 14);
+
+            List<ConsolidacionEncuentristasModel> encuentristas = new List<ConsolidacionEncuentristasModel>();
+
+            foreach (var item in matriculaEncuentro)
+            {
+                foreach (var item2 in personas)
+                {
+                    if (item.CodigoPersona == item2.CodigoPersona)
+                    {
+                        var nuevoEncuentrista = new ConsolidacionEncuentristasModel()
+                        {
+                            CodigoPersona = item2.CodigoPersona,
+                            Nombre = item2.Nombre,
+                            Apellido1 = item2.Apellido1,
+                            Apellido2 = item2.Apellido2,
+                            Estado = item.Estado,
+                            Observaciones = item.Observaciones,
+                            Saldo = item.Saldo,
+                            Abono = item.Abono,
+                            Lider = item2.Lider,
+                            Sexo = item2.Sexo,
+                            Telefono = item2.Telefono,
+                            FechaDeNacimiento = item2.FechaDeNacimiento
+                        };
+
+                        encuentristas.Add(nuevoEncuentrista);
+                    }
+                }
+            }
+
+            List<SelectListItem> guias = new List<SelectListItem>();
+
+            guias.Add(new SelectListItem() { Text = "Gestion", Value = "1" });
+            guias.Add(new SelectListItem() { Text = "Colegio", Value = "2" });
+            guias.Add(new SelectListItem() { Text = "Estado", Value = "3" });
+            guias.Add(new SelectListItem() { Text = "Pais", Value = "4" });
+
+            ViewBag.Guias = guias;
+
+            return View(encuentristas);
+        }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> GestionarEncuentristas(int? id, ConsolidacionEncuentristasModel encuentristas)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        if (id == null)
+        //        {
+        //            return NotFound();
+        //        }
+
+        //        personas.FechaIngreso = DateTime.Now.Date;
+        //        personas.NivelAcademias = 14;
+        //        personas.CumbreTimoteos = false;
+        //        personas.CumbreLideres = false;
+        //        personas.Lider = SessionHelper.ObtenerCodigoPersona;
+        //        _context.Add(personas);
+
+        //        Encuentrosmatricula matricula = new Encuentrosmatricula()
+        //        {
+        //            CodigoEncuentro = (int)id,
+        //            CodigoPersona = personas.CodigoPersona,
+        //            Abono = 0,
+        //            Saldo = 35000
+        //        };
+
+        //        _context.Add(matricula);
+
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(Encuentros));
+        //    }
+
+        //    ViewData["Lider"] = new SelectList(_context.Personas.Join(_context.Personasroles, p => p.CodigoPersona, r => r.CodigoPersona,
+        //        (p, r) => new { Nombre = p.Nombre, CodigoRol = r.CodigoRol, CodigoPersona = p.CodigoPersona })
+        //        .Where(x => x.CodigoRol == 2), "CodigoPersona", "Nombre", personas.Lider);
+
+        //    return View(personas);
+        //}
 
         // POST: Encuentros/Edit/5
         [HttpPost]
@@ -345,48 +510,7 @@ namespace SistemaCIA.Controllers
             return View(encuentros);
         }
 
-        // GET: Encuentros/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var encuentros = await _context.Encuentros
-                .Include(e => e.AsistenteCocinaNavigation)
-                .Include(e => e.AsistenteNavigation)
-                .Include(e => e.CocinaNavigation)
-                .Include(e => e.CoordinadorNavigation)
-                .Include(e => e.DecoracionNavigation)
-                .Include(e => e.FinanzasNavigation)
-                .Include(e => e.GuiaH1Navigation)
-                .Include(e => e.GuiaH2Navigation)
-                .Include(e => e.GuiaM1Navigation)
-                .Include(e => e.GuiaM2Navigation)
-                .Include(e => e.GuiaNavigation)
-                .Include(e => e.LogisticaNavigation)
-                .Include(e => e.MusicaNavigation)
-                .Include(e => e.ServidorNavigation)
-                .SingleOrDefaultAsync(m => m.CodigoEncuentro == id);
-            if (encuentros == null)
-            {
-                return NotFound();
-            }
-
-            return View(encuentros);
-        }
-
-        // POST: Encuentros/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var encuentros = await _context.Encuentros.SingleOrDefaultAsync(m => m.CodigoEncuentro == id);
-            _context.Encuentros.Remove(encuentros);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(GestionarEncuentros));
-        }
 
         private bool EncuentrosExists(int id)
         {

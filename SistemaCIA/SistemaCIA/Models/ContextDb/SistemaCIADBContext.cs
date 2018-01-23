@@ -50,6 +50,7 @@ namespace SistemaCIA.Models.ContextDb
             : base(options)
         { }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Academias>(entity =>
@@ -951,7 +952,6 @@ namespace SistemaCIA.Models.ContextDb
                     .HasDefaultValueSql("'Prematriculado'");
 
                 entity.Property(e => e.Guia)
-                    .IsRequired()
                     .HasColumnName("guia")
                     .HasMaxLength(15);
 
@@ -978,7 +978,6 @@ namespace SistemaCIA.Models.ContextDb
                 entity.HasOne(d => d.GuiaNavigation)
                     .WithMany(p => p.EncuentrosmatriculaGuiaNavigation)
                     .HasForeignKey(d => d.Guia)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("encuentrosmatricula_ibfk_3");
             });
 

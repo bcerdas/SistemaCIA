@@ -1,0 +1,120 @@
+﻿@model IEnumerable<SistemaCIA.Models.Encounters.EncuentristasModel>
+
+@{
+    ViewData["Title"] = "Encuentristas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NombreCompletoMadre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TelefonoMadre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NombreCompletoPadre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TelefonoPadre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NombreCompletoConyuge)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TelefonoConyuge)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NombreCompletoEncargado)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TelefonoEncargado)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ParentescoEncargado)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Telefono)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Direccion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FechaDeNacimiento)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Sexo)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            
+            
+                @Html.DisplayFor(modelItem => item.Apellido1)
+            
+           
+                @Html.DisplayFor(modelItem => item.Apellido2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCompletoMadre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TelefonoMadre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCompletoPadre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TelefonoPadre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCompletoConyuge)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TelefonoConyuge)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCompletoEncargado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TelefonoEncargado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParentescoEncargado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeNacimiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sexo)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CodigoPersona">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.CodigoPersona">Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.CodigoPersona">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

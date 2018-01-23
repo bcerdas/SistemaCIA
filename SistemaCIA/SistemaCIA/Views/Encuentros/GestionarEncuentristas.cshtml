@@ -1,0 +1,82 @@
+﻿@model IEnumerable<SistemaCIA.Models.Encounters.ConsolidacionEncuentristasModel>
+
+@{
+    ViewData["Title"] = "Encuentristas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<form asp-action="GestionarEncuentristas">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FechaDeNacimiento)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Telefono)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Sexo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Estado)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Lider)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Guia)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+
+                        @Html.DisplayFor(modelItem => item.Apellido1)
+
+                        @Html.DisplayFor(modelItem => item.Apellido2)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaDeNacimiento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Telefono)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sexo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Estado)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Lider)
+                    </td>
+                    <td>
+                        <select asp-for="@item.Guia" class="form-control" asp-items="ViewBag.Guias"></select>
+                        <span asp-validation-for="@item.Guia" class="text-danger"></span>
+                    </td>
+
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.CodigoPersona">Editar</a> |
+                        <a asp-action="Details" asp-route-id="@item.CodigoPersona">Detalles</a> |
+                        <a asp-action="Delete" asp-route-id="@item.CodigoPersona">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>

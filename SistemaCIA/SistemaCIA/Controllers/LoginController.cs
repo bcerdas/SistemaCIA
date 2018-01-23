@@ -18,14 +18,14 @@ namespace SistemaCIA.Controllers
 
         // GET: Login
         [NoLoginAttribute]
-        public ActionResult Index()
+        public ActionResult Login()
         {
             return View();
         }
 
         // POST: Login
         [HttpPost]
-        public ActionResult Index(LoginModel login)
+        public ActionResult Login(LoginModel login)
         {
             if (ModelState.IsValid)
             {
@@ -47,7 +47,7 @@ namespace SistemaCIA.Controllers
         public ActionResult CerrarSesion()
         {
             SessionHelper.EliminarSesion();
-            return RedirectToAction("Index", "Login");
+            return RedirectToAction(nameof(Login));
         }
     }
 }

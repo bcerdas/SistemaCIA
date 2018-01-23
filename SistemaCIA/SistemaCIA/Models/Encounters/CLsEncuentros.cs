@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SistemaCIA.Models.Encounters
 {
-    public class Encuentros
+    public class ClsEncuentros
     {
     }
 }

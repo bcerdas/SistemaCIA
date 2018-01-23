@@ -18,7 +18,7 @@ namespace SistemaCIA.Models.Login
                 filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new
                 {
                     controller = "Login",
-                    action = "Index"
+                    action = "Login"
                 }));
             }
         }
@@ -30,13 +30,13 @@ namespace SistemaCIA.Models.Login
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
-            
+
             if (!SessionHelper.ExisteUsuarioEnSesion())
             {
                 filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new
                 {
                     controller = "Login",
-                    action = "Index"
+                    action = "Login"
                 }));
             }
         }

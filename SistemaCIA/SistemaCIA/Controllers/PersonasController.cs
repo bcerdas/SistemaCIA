@@ -56,8 +56,7 @@ namespace SistemaCIA.Controllers
         }
 
         // POST: Personas/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CodigoPersona,CodigoMinisterio,CodigoArea,Nombre,Apellido1,Apellido2,NombreCompletoMadre,TelefonoMadre,NombreCompletoPadre,TelefonoPadre,NombreCompletoConyuge,TelefonoConyuge,NombreCompletoEncargado,TelefonoEncargado,ParentescoEncargado,Telefono,Direccion,FechaIngreso,NivelAcademias,FechaDeNacimiento,CumbreTimoteos,CumbreLideres,Sexo")] Personas personas)

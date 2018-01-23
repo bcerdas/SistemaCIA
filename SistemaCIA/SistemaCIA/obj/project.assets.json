@@ -13993,7 +13993,8 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ANDRE\\.nuget\\packages\\": {},
+    "C:\\Users\\limak\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -14002,18 +14003,20 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\ANDRE\\Desktop\\SistemaCIA\\SistemaCIA\\SistemaCIA\\SistemaCIA.csproj",
+      "projectUniqueName": "C:\\Users\\limak\\Desktop\\Andres-CIA\\SistemaCIA\\SistemaCIA\\SistemaCIA\\SistemaCIA.csproj",
       "projectName": "SistemaCIA",
-      "projectPath": "C:\\Users\\ANDRE\\Desktop\\SistemaCIA\\SistemaCIA\\SistemaCIA\\SistemaCIA.csproj",
-      "packagesPath": "C:\\Users\\ANDRE\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ANDRE\\Desktop\\SistemaCIA\\SistemaCIA\\SistemaCIA\\obj\\",
+      "projectPath": "C:\\Users\\limak\\Desktop\\Andres-CIA\\SistemaCIA\\SistemaCIA\\SistemaCIA\\SistemaCIA.csproj",
+      "packagesPath": "C:\\Users\\limak\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\limak\\Desktop\\Andres-CIA\\SistemaCIA\\SistemaCIA\\SistemaCIA\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\ANDRE\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\limak\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
@@ -14036,46 +14039,46 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
-          "MimeKit": {
-            "target": "Package",
-            "version": "2.0.1"
-          },
-          "Pomelo.EntityFrameworkCore.MySql": {
-            "target": "Package",
-            "version": "2.0.1"
-          },
           "MailKit": {
             "target": "Package",
-            "version": "2.0.1"
-          },
-          "Microsoft.AspNetCore.Authentication.Cookies": {
-            "target": "Package",
-            "version": "2.0.1"
-          },
-          "MySql.Data": {
-            "target": "Package",
-            "version": "6.10.5"
-          },
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
-            "target": "Package",
-            "version": "2.0.0"
-          },
-          "Microsoft.NETCore.App": {
-            "target": "Package",
-            "version": "2.0.0",
-            "autoReferenced": true
+            "version": "[2.0.1, )"
           },
           "Microsoft.AspNetCore.All": {
             "target": "Package",
-            "version": "2.0.0"
+            "version": "[2.0.0, )"
+          },
+          "Microsoft.AspNetCore.Authentication.Cookies": {
+            "target": "Package",
+            "version": "[2.0.1, )"
           },
           "Microsoft.AspNetCore.Session": {
             "target": "Package",
-            "version": "2.0.1"
+            "version": "[2.0.1, )"
+          },
+          "Microsoft.NETCore.App": {
+            "target": "Package",
+            "version": "[2.0.0, )",
+            "autoReferenced": true
+          },
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+            "target": "Package",
+            "version": "[2.0.0, )"
+          },
+          "MimeKit": {
+            "target": "Package",
+            "version": "[2.0.1, )"
+          },
+          "MySql.Data": {
+            "target": "Package",
+            "version": "[6.10.5, )"
+          },
+          "Pomelo.EntityFrameworkCore.MySql": {
+            "target": "Package",
+            "version": "[2.0.1, )"
           },
           "Pomelo.EntityFrameworkCore.MySql.Design": {
             "target": "Package",
-            "version": "1.1.2"
+            "version": "[1.1.2, )"
           }
         },
         "imports": [

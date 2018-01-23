@@ -36,7 +36,7 @@
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 <li>
-                    <a href="#" data-placement="bottom" data-toggle="tooltip" href="#" data-original-title="Stats">
+                    <a href="#" data-placement="bottom" data-toggle="tooltip"  data-original-title="Stats">
                         <i class="fa fa-calendar"></i>
                     </a>
                 </li>
@@ -46,7 +46,7 @@
                         <li><a href="#"><i class="fa fa-fw fa-user"></i> Editar Perfil</a></li>
                         <li><a href="#"><i class="fa fa-fw fa-cog"></i> Cambiar Contraseña</a></li>
                         <li class="divider"></li>
-                        <li><a href="#"><i class="fa fa-fw fa-power-off"></i> Salir</a></li>
+                        <li><a asp-area="" asp-controller="Login" asp-action="CerrarSesion"><i class="fa fa-fw fa-power-off"></i>Salir</a></li>
                     </ul>
                 </li>
             </ul>
@@ -86,7 +86,8 @@
                     <li>
                         <a href="#" data-toggle="collapse" data-target="#submenu-5"><i class="fa fa-fw fa-thumb-tack"></i>  Actividades <i class="fa fa-fw fa-angle-down pull-right"></i></a>
                         <ul id="submenu-5" class="collapse">
-                            <li><a asp-area="" asp-controller="Site" asp-action="Index"><i class="fa fa-angle-double-right"></i> Encuentros </a></li>
+                            <li><a asp-area="" asp-controller="Encuentros" asp-action="GestionarEncuentros"><i class="fa fa-angle-double-right"></i>Gestionar encuentros</a></li>
+                            <li><a asp-area="" asp-controller="Encuentros" asp-action="Encuentros"><i class="fa fa-angle-double-right"></i> Encuentros</a></li>
                             <li><a asp-area="" asp-controller="Site" asp-action="Index"><i class="fa fa-angle-double-right"></i> Reencuentros </a></li>
                             <li><a asp-area="" asp-controller="Site" asp-action="Index"><i class="fa fa-angle-double-right"></i> Cumbres </a></li>
                         </ul>
