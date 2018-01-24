@@ -240,12 +240,12 @@ namespace SistemaCIA.Controllers
 
 
         // GET: Personas/Create
-        [PermisoAttribute(Permiso = RolesPermisos.LiderDeCelula)]
+        //[PermisoAttribute(Permiso = RolesPermisos.LiderDeCelula)]
         public IActionResult AgregarEncuentrista(int? id)
         {
-            ViewData["Lider"] = new SelectList(_context.Personas.Join(_context.Personasroles, p => p.CodigoPersona, r => r.CodigoPersona,
-                (p, r) => new { Nombre = p.Nombre, CodigoRol = r.CodigoRol, CodigoPersona = p.CodigoPersona })
-                .Where(x => x.CodigoRol == 2), "CodigoPersona", "Nombre");
+            //ViewData["Lider"] = new SelectList(_context.Personas.Join(_context.Personasroles, p => p.CodigoPersona, r => r.CodigoPersona,
+            //    (p, r) => new { Nombre = p.Nombre, CodigoRol = r.CodigoRol, CodigoPersona = p.CodigoPersona })
+            //    .Where(x => x.CodigoRol == 2), "CodigoPersona", "Nombre");
             return View();
         }
 

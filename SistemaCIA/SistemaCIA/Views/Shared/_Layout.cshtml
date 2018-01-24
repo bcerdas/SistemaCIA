@@ -6,9 +6,11 @@
     <title>@ViewData["Title"] - SistemaCIA</title>
     
     <environment include="Development">
+        <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Vollkorn" rel="stylesheet">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/layout.css" />
         <script src="~/js/layout.js"></script>
+        
     </environment>
 </head>
 <body>    
@@ -54,7 +56,7 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="#" data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-fw fa-leaf"></i> Oración x3 <i class="fa fa-fw fa-angle-down pull-right"></i></a>
+                        <a href="#" data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-fw fa-group"></i> Oración x3 <i class="fa fa-fw fa-angle-down pull-right"></i></a>
                         <ul id="submenu-1" class="collapse">
                             <li><a asp-area="" asp-controller="Site" asp-action="Index"><i class="fa fa-angle-double-right"></i> Crear nuevo</a></li>
                             <li><a asp-area="" asp-controller="Site" asp-action="Index"><i class="fa fa-angle-double-right"></i> Proceso actual</a></li>
@@ -62,14 +64,14 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-fire"></i> Consolidación <i class="fa fa-fw fa-angle-down pull-right"></i></a>
+                        <a href="#" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-cubes"></i> Consolidación <i class="fa fa-fw fa-angle-down pull-right"></i></a>
                         <ul id="submenu-2" class="collapse">
                             <li><a asp-area="" asp-controller="Site" asp-action="Index"><i class="fa fa-angle-double-right"></i> Agregar boletas</a></li>
                             <li><a asp-area="" asp-controller="Site" asp-action="Index"><i class="fa fa-angle-double-right"></i> Historiales </a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#" data-toggle="collapse" data-target="#submenu-3"><i class="fa fa-fw fa-group"></i> Células <i class="fa fa-fw fa-angle-down pull-right"></i></a>
+                        <a href="#" data-toggle="collapse" data-target="#submenu-3"><i class="fa fa-fw fa-street-view"></i> Células <i class="fa fa-fw fa-angle-down pull-right"></i></a>
                         <ul id="submenu-3" class="collapse">
                             <li><a asp-area="" asp-controller="Site" asp-action="Index"><i class="fa fa-angle-double-right"></i> Informes </a></li>
                             <li><a asp-area="" asp-controller="Site" asp-action="Index"><i class="fa fa-angle-double-right"></i> Historiales </a></li>
@@ -102,12 +104,7 @@
 
         <div id="page-wrapper">
             <div class="container-fluid">
-                <!-- Page Heading -->
-                <div class="row" id="main">
-                    <div class="col-sm-12 col-md-12 well" id="content">
-                        <h1>Bienvenido Admin!</h1>
-                    </div>
-                </div>
+                
                 @RenderBody()
                 <hr />
                 <footer>
