@@ -31,7 +31,7 @@ p {
 
 .fondo {
     text-align: center;
-    opacity: 0.7;
+    opacity: 0.9;
     width: 100%;
     padding-top: 413px;
     padding-bottom: 413px;
@@ -43,7 +43,7 @@ p {
 
 .pastor {
     text-align: center;
-    opacity: 0.7;
+    opacity: 0.9;
     width: 100%;
     padding-top: 413px;
     padding-bottom: 413px;
@@ -73,7 +73,7 @@ p {
 
 /*-------------------------------------------------------------------------------------*/
 .ministerios {
-    opacity: 0.8;
+    opacity: 0.9;
     text-align: center;
     width: 100%;
     font-size: 60px;
@@ -85,7 +85,7 @@ p {
 }
 
 .Mfondo {
-    opacity: 0.8;
+    opacity: 0.9;
     text-align: center;
     width: 100%;
     font-size: 60px;
@@ -228,7 +228,7 @@ p {
     }
 
     .ministerios {
-        opacity: 0.6;
+        opacity: 0.9;
         font-family: 'Bree Serif', serif;
         text-align: center;
         width: 100%;
@@ -309,3 +309,42 @@ p {
 #amarillo {
     background-color: #C3BD0B;
 }
+
+.login {
+    border-radius: 3px;
+    -webkit-box-shadow: 1px 1px 6px 2px rgba(0,0,0,1);
+    -moz-box-shadow: 1px 1px 6px 2px rgba(0,0,0,1);
+    box-shadow: 1px 1px 6px 2px rgba(0,0,0,1);
+}
+
+.loginheader {
+    font-family: 'Merriweather', serif;
+    background-color: #fa9213;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.loginbody {
+    padding:15px 10px;
+}
+
+.btn-login {
+    border: none;
+    background: #f78246;
+    color: #fff;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 5px;
+    position: relative;
+    box-sizing: border-box;
+    transition: all 200ms ease;
+   
+}
+    .btn-login:hover {
+        text-decoration: none;
+        background: #fff;
+        color: #f78246;
+        box-shadow: inset 0 0 0 3px #f78246;
+    }
+

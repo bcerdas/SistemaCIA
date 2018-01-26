@@ -1,39 +1,66 @@
 ﻿@model SistemaCIA.Models.Login.LoginModel
 @{
     ViewData["Title"] = "Ingreso";
-    Layout = null;
-}
-<h2>Ingrese al sistema</h2>
-
-@if (!string.IsNullOrEmpty(ViewBag.msj))
-{
-<div class="alert alert-danger alert-dismissable">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <strong>Error:</strong> @ViewBag.msj
-</div>
+    Layout = "";
 }
 
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Login">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Usuario" class="control-label"></label>
-                <input asp-for="Usuario" class="form-control" />
-                <span asp-validation-for="Usuario" class="text-danger"></span>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login V15</title>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Vollkorn|Merriweather" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/style.css"/>
+</head>
+<body>
+
+    @if (!string.IsNullOrEmpty(ViewBag.msj))
+    {
+        <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Error:</strong> @ViewBag.msj
+        </div>
+    }
+    <hr />
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-4">
+
+            <div class="login">
+                <div class="loginheader">
+                    <h3>Inicio de sesión</h3>
+                </div>
+                <div class="loginbody">
+                    <form asp-action="Login">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Usuario" class="control-label"></label>
+                            <input asp-for="Usuario" placeholder="Usuario" class="form-control" required/>
+                            <span asp-validation-for="Usuario" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Clave" class="control-label">Contraseña</label>
+                            <input asp-for="Clave" placeholder="Contraseña" class="form-control" type="password" required/>
+                            <span asp-validation-for="Clave" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Iniciar Sesión" class="btn-login" />
+                        </div>
+                    </form>
+                </div>
+                
             </div>
-            <div class="form-group">
-                <label asp-for="Clave" class="control-label"></label>
-                <input asp-for="Clave" class="form-control" type="password" />
-                <span asp-validation-for="Clave" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Iniciar Sesión" class="btn btn-default" />
-            </div>
-        </form>
+            
+        </div>
     </div>
-</div>
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+
+
+</body>
+</html>
+
+
+    
