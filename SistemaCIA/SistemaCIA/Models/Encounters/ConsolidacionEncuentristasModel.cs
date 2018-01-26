@@ -7,9 +7,10 @@ namespace SistemaCIA.Models.Encounters
 {
     public class ConsolidacionEncuentristasModel
     {
+        public string CodigoPersona { get; set; }
+        public int CodigoEncuentro { get; set; }
         public string Guia { get; set; }
         public string Lider { get; set; }
-        public string CodigoPersona { get; set; }
         public string Nombre { get; set; }
         public string Apellido1 { get; set; }
         public string Apellido2 { get; set; }

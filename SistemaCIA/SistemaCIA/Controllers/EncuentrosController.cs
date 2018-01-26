@@ -111,11 +111,21 @@ namespace SistemaCIA.Controllers
             ViewData["Coordinador"] = new SelectList(_context.Personas, "CodigoPersona", "CodigoPersona", encuentro.Coordinador);
             ViewData["Decoracion"] = new SelectList(_context.Personas, "CodigoPersona", "CodigoPersona", encuentro.Decoracion);
             ViewData["Finanzas"] = new SelectList(_context.Personas, "CodigoPersona", "CodigoPersona", encuentro.Finanzas);
-            ViewData["GuiaH1"] = new SelectList(_context.Personas, "CodigoPersona", "CodigoPersona", encuentro.GuiaH1);
-            ViewData["GuiaH2"] = new SelectList(_context.Personas, "CodigoPersona", "CodigoPersona", encuentro.GuiaH2);
-            ViewData["GuiaM1"] = new SelectList(_context.Personas, "CodigoPersona", "CodigoPersona", encuentro.GuiaM1);
-            ViewData["GuiaM2"] = new SelectList(_context.Personas, "CodigoPersona", "CodigoPersona", encuentro.GuiaM2);
-            ViewData["Guia"] = new SelectList(_context.Personas, "CodigoPersona", "CodigoPersona", encuentro.Guia);
+            ViewData["GuiaH1"] = new SelectList(_context.Personas.Join(_context.Personasroles, p => p.CodigoPersona, r => r.CodigoPersona,
+                (p, r) => new { Nombre = p.Nombre, CodigoRol = r.CodigoRol, CodigoPersona = p.CodigoPersona })
+                .Where(x => x.CodigoRol == 2), "CodigoPersona", "CodigoPersona", encuentro.GuiaH1);
+            ViewData["GuiaH2"] = new SelectList(_context.Personas.Join(_context.Personasroles, p => p.CodigoPersona, r => r.CodigoPersona,
+                (p, r) => new { Nombre = p.Nombre, CodigoRol = r.CodigoRol, CodigoPersona = p.CodigoPersona })
+                .Where(x => x.CodigoRol == 2), "CodigoPersona", "CodigoPersona", encuentro.GuiaH2);
+            ViewData["GuiaM1"] = new SelectList(_context.Personas.Join(_context.Personasroles, p => p.CodigoPersona, r => r.CodigoPersona,
+                (p, r) => new { Nombre = p.Nombre, CodigoRol = r.CodigoRol, CodigoPersona = p.CodigoPersona })
+                .Where(x => x.CodigoRol == 2), "CodigoPersona", "CodigoPersona", encuentro.GuiaM1);
+            ViewData["GuiaM2"] = new SelectList(_context.Personas.Join(_context.Personasroles, p => p.CodigoPersona, r => r.CodigoPersona,
+                (p, r) => new { Nombre = p.Nombre, CodigoRol = r.CodigoRol, CodigoPersona = p.CodigoPersona })
+                .Where(x => x.CodigoRol == 2), "CodigoPersona", "CodigoPersona", encuentro.GuiaM2);
+            ViewData["Guia"] = new SelectList(_context.Personas.Join(_context.Personasroles, p => p.CodigoPersona, r => r.CodigoPersona,
+                (p, r) => new { Nombre = p.Nombre, CodigoRol = r.CodigoRol, CodigoPersona = p.CodigoPersona })
+                .Where(x => x.CodigoRol == 2), "CodigoPersona", "CodigoPersona", encuentro.Guia);
             ViewData["Logistica"] = new SelectList(_context.Personas, "CodigoPersona", "CodigoPersona", encuentro.Logistica);
             ViewData["Musica"] = new SelectList(_context.Personas.Join(_context.Personasroles, p => p.CodigoPersona, r => r.CodigoPersona,
                 (p, r) => new { Nombre = p.Nombre, CodigoRol = r.CodigoRol, CodigoPersona = p.CodigoPersona })
@@ -394,6 +404,7 @@ namespace SistemaCIA.Controllers
                         var nuevoEncuentrista = new ConsolidacionEncuentristasModel()
                         {
                             CodigoPersona = item2.CodigoPersona,
+                            CodigoEncuentro = item.CodigoEncuentro,
                             Nombre = item2.Nombre,
                             Apellido1 = item2.Apellido1,
                             Apellido2 = item2.Apellido2,
@@ -404,7 +415,8 @@ namespace SistemaCIA.Controllers
                             Lider = item2.Lider,
                             Sexo = item2.Sexo,
                             Telefono = item2.Telefono,
-                            FechaDeNacimiento = item2.FechaDeNacimiento
+                            FechaDeNacimiento = item2.FechaDeNacimiento,
+                            Guia = item.Guia
                         };
 
                         encuentristas.Add(nuevoEncuentrista);
@@ -414,54 +426,55 @@ namespace SistemaCIA.Controllers
 
             List<SelectListItem> guias = new List<SelectListItem>();
 
-            guias.Add(new SelectListItem() { Text = "Gestion", Value = "1" });
-            guias.Add(new SelectListItem() { Text = "Colegio", Value = "2" });
-            guias.Add(new SelectListItem() { Text = "Estado", Value = "3" });
-            guias.Add(new SelectListItem() { Text = "Pais", Value = "4" });
+            var encuentro = _context.Encuentros.Include(e => e.GuiaH1Navigation).Include(e => e.GuiaH2Navigation)
+                .Include(e => e.GuiaM1Navigation).Include(e => e.GuiaM2Navigation).Include(e => e.GuiaNavigation).
+                FirstOrDefault(x => x.CodigoEncuentro == id);
 
+            guias.Add(new SelectListItem() { Text = "Asignar", Value = null });
+            guias.Add(new SelectListItem() { Text = encuentro.GuiaH1Navigation.Nombre, Value = encuentro.GuiaH1 });
+            guias.Add(new SelectListItem() { Text = encuentro.GuiaH2Navigation.Nombre, Value = encuentro.GuiaH2 });
+            guias.Add(new SelectListItem() { Text = encuentro.GuiaM1Navigation.Nombre, Value = encuentro.GuiaM1 });
+            guias.Add(new SelectListItem() { Text = encuentro.GuiaM2Navigation.Nombre, Value = encuentro.GuiaM2 });
             ViewBag.Guias = guias;
+
 
             return View(encuentristas);
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> GestionarEncuentristas(int? id, ConsolidacionEncuentristasModel encuentristas)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        if (id == null)
-        //        {
-        //            return NotFound();
-        //        }
 
-        //        personas.FechaIngreso = DateTime.Now.Date;
-        //        personas.NivelAcademias = 14;
-        //        personas.CumbreTimoteos = false;
-        //        personas.CumbreLideres = false;
-        //        personas.Lider = SessionHelper.ObtenerCodigoPersona;
-        //        _context.Add(personas);
+        public ActionResult AsignarGuia(string cod)
+        {
 
-        //        Encuentrosmatricula matricula = new Encuentrosmatricula()
-        //        {
-        //            CodigoEncuentro = (int)id,
-        //            CodigoPersona = personas.CodigoPersona,
-        //            Abono = 0,
-        //            Saldo = 35000
-        //        };
+            if (string.IsNullOrEmpty(cod))
+            {
+                return NotFound();
+            }
 
-        //        _context.Add(matricula);
+            string[] separadas;
 
-        //        await _context.SaveChangesAsync();
-        //        return RedirectToAction(nameof(Encuentros));
-        //    }
+            separadas = cod.Split('/');
 
-        //    ViewData["Lider"] = new SelectList(_context.Personas.Join(_context.Personasroles, p => p.CodigoPersona, r => r.CodigoPersona,
-        //        (p, r) => new { Nombre = p.Nombre, CodigoRol = r.CodigoRol, CodigoPersona = p.CodigoPersona })
-        //        .Where(x => x.CodigoRol == 2), "CodigoPersona", "Nombre", personas.Lider);
+            var codigoGuia = separadas[0];
+            var codigoPersona = separadas[1];
+            var codigoEncuentro = Convert.ToInt32(separadas[2]);
 
-        //    return View(personas);
-        //}
+            if (codigoGuia == "Asignar")
+            {
+                return RedirectToAction(nameof(GestionarEncuentristas));
+                Response.Redirect("~/Views/Encuentros/GestionarEncuentristas.cshtml");
+            }
+
+            var nuevoAsignado = _context.Encuentrosmatricula.SingleOrDefault(x => x.CodigoEncuentro == codigoEncuentro && x.CodigoPersona == codigoPersona);
+            nuevoAsignado.Guia = codigoGuia;
+            _context.Encuentrosmatricula.Update(nuevoAsignado);
+            var result = _context.SaveChanges();
+            if (result > 0)
+            {
+                return RedirectToAction("GestionarEncuentristas");
+            }
+
+            return View();
+        }
 
         // POST: Encuentros/Edit/5
         [HttpPost]

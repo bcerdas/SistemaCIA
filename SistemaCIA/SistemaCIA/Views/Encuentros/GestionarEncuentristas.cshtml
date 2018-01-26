@@ -12,71 +12,113 @@
 </p>
 <form asp-action="GestionarEncuentristas">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <table class="table">
+    <table class="table" id="table">
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Nombre)
+                    @Html.DisplayName("Nombre")
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.FechaDeNacimiento)
+                    @Html.DisplayName("Nacimiento")
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Telefono)
+                    @Html.DisplayName("Telefono")
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Sexo)
+                    @Html.DisplayName("Sexo")
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Estado)
+                    @Html.DisplayName("Estado")
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Lider)
+                    @Html.DisplayName("Lider")
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Guia)
+                    @Html.DisplayName("Guia")
                 </th>
+                
                 <th></th>
             </tr>
         </thead>
         <tbody>
+            @{
+                int c = 0;
+                int p = 0;
+                int e = 0;
+             }
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Nombre)
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
 
-                        @Html.DisplayFor(modelItem => item.Apellido1)
+                    @Html.DisplayFor(modelItem => item.Apellido1)
 
-                        @Html.DisplayFor(modelItem => item.Apellido2)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FechaDeNacimiento)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Telefono)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Sexo)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Estado)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Lider)
-                    </td>
-                    <td>
-                        <select asp-for="@item.Guia" class="form-control" asp-items="ViewBag.Guias"></select>
-                        <span asp-validation-for="@item.Guia" class="text-danger"></span>
-                    </td>
+                    @Html.DisplayFor(modelItem => item.Apellido2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaDeNacimiento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefono)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sexo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lider)
+                </td>
+                <td>
 
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.CodigoPersona">Editar</a> |
-                        <a asp-action="Details" asp-route-id="@item.CodigoPersona">Detalles</a> |
-                        <a asp-action="Delete" asp-route-id="@item.CodigoPersona">Eliminar</a>
-                    </td>
-                </tr>
+
+                    <select asp-for="@item.Guia" id="@c" class="form-control"  asp-items="ViewBag.Guias"></select>
+                    <span asp-validation-for="@item.Guia" class="text-danger"></span>
+
+                    <input type="hidden" id="p_@p" asp-for="@item.CodigoPersona" />
+                    <input type="hidden" id="e_@e" asp-for="@item.CodigoEncuentro" />
+               
+                    <script>
+
+                        $(document).ready(function () {
+                                var indice = document.getElementById('@c').selectedIndex;
+                                $("#@c").change(function (event) {
+                                    var valor = $(this).val();
+
+                                    if (valor != "Asignar") {
+                                        indice = document.getElementById('@c').selectedIndex;
+                                        var url = "@Url.Action("AsignarGuia", "Encuentros", new { cod = "param-1" })";
+
+                                        var codPer2 = document.getElementById('p_' + '@p').value;
+                                        var codEnc2 = document.getElementById('e_' + '@e').value;
+
+                                        url = url.replace("param-1", valor + '/' + codPer2 + '/' + codEnc2);
+
+                                        $("#table").load(url);
+                                    } else {
+                                        document.getElementById('@c').selectedIndex = indice;
+                                    }
+
+                                });
+                            });
+
+                    </script>
+                </td>              
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CodigoPersona">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.CodigoPersona">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.CodigoPersona">Eliminar</a>
+                </td>
+            </tr>
+
+                c++;
+                e++;
+                p++;
             }
         </tbody>
     </table>
+    <input type="submit" value="Guardar" class="btn btn-default" />
 </form>

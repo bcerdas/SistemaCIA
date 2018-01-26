@@ -4,18 +4,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - SistemaCIA</title>
-    
-    <environment include="Development">
-        <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Vollkorn" rel="stylesheet">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/layout.css" />
-        <script src="~/js/layout.js"></script>
-        <script src="https://code.jquery.com/jquery-1.12.1.min.js"
-                integrity="sha256-I1nTg78tSrZev3kjvfdM5A5Ak/blglGzlaZANLPDl3I="
-                crossorigin="anonymous"></script>
-    </environment>
+
+
+    <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Vollkorn" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/layout.css" />
+    <script src="~/js/layout.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.1.min.js"
+            integrity="sha256-I1nTg78tSrZev3kjvfdM5A5Ak/blglGzlaZANLPDl3I="
+            crossorigin="anonymous"></script>
 </head>
-<body>    
+<body>
     <div id="throbber" style="display:none; min-height:120px;"></div>
     <div id="noty-holder"></div>
     <div id="wrapper">
@@ -35,20 +34,20 @@
                 <a class="navbar-brand" href="http://cijulenlinea.ucr.ac.cr/dev-users/">
                     <img width="200" src="~/images/logo.jpg" alt="LOGO">
                 </a>
-                
+
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 <li>
-                    <a href="#" data-placement="bottom" data-toggle="tooltip"  data-original-title="Stats">
+                    <a data-placement="bottom" data-toggle="tooltip" data-original-title="Stats">
                         <i class="fa fa-calendar"></i>
                     </a>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sistema CIA <b class="fa fa-angle-down"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#"><i class="fa fa-fw fa-user"></i> Editar Perfil</a></li>
-                        <li><a href="#"><i class="fa fa-fw fa-cog"></i> Cambiar Contraseña</a></li>
+                        <li><a><i class="fa fa-fw fa-user"></i> Editar Perfil</a></li>
+                        <li><a><i class="fa fa-fw fa-cog"></i> Cambiar Contraseña</a></li>
                         <li class="divider"></li>
                         <li><a asp-area="" asp-controller="Login" asp-action="CerrarSesion"><i class="fa fa-fw fa-power-off"></i>Salir</a></li>
                     </ul>
@@ -58,7 +57,7 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="#" data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-fw fa-group"></i> Oración x3 <i class="fa fa-fw fa-angle-down pull-right"></i></a>
+                        <a data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-fw fa-group"></i> Oración x3 <i class="fa fa-fw fa-angle-down pull-right"></i></a>
                         <ul id="submenu-1" class="collapse">
                             <li><a asp-area="" asp-controller="Site" asp-action="Index"><i class="fa fa-angle-double-right"></i> Crear nuevo</a></li>
                             <li><a asp-area="" asp-controller="Site" asp-action="Index"><i class="fa fa-angle-double-right"></i> Proceso actual</a></li>
@@ -66,14 +65,14 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-cubes"></i> Consolidación <i class="fa fa-fw fa-angle-down pull-right"></i></a>
+                        <a data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-cubes"></i> Consolidación <i class="fa fa-fw fa-angle-down pull-right"></i></a>
                         <ul id="submenu-2" class="collapse">
                             <li><a asp-area="" asp-controller="Site" asp-action="Index"><i class="fa fa-angle-double-right"></i> Agregar boletas</a></li>
                             <li><a asp-area="" asp-controller="Site" asp-action="Index"><i class="fa fa-angle-double-right"></i> Historiales </a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#" data-toggle="collapse" data-target="#submenu-3"><i class="fa fa-fw fa-street-view"></i> Células <i class="fa fa-fw fa-angle-down pull-right"></i></a>
+                        <a data-toggle="collapse" data-target="#submenu-3"><i class="fa fa-fw fa-street-view"></i> Células <i class="fa fa-fw fa-angle-down pull-right"></i></a>
                         <ul id="submenu-3" class="collapse">
                             <li><a asp-area="" asp-controller="Site" asp-action="Index"><i class="fa fa-angle-double-right"></i> Informes </a></li>
                             <li><a asp-area="" asp-controller="Site" asp-action="Index"><i class="fa fa-angle-double-right"></i> Historiales </a></li>
@@ -81,14 +80,14 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#" data-toggle="collapse" data-target="#submenu-4"><i class="fa fa-fw fa-university"></i>  Academias <i class="fa fa-fw fa-angle-down pull-right"></i></a>
+                        <a data-toggle="collapse" data-target="#submenu-4"><i class="fa fa-fw fa-university"></i>  Academias <i class="fa fa-fw fa-angle-down pull-right"></i></a>
                         <ul id="submenu-4" class="collapse">
                             <li><a asp-area="" asp-controller="Site" asp-action="Index"><i class="fa fa-angle-double-right"></i> Crear nuevo </a></li>
                             <li><a asp-area="" asp-controller="Site" asp-action="Index"><i class="fa fa-angle-double-right"></i> Historiales </a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#" data-toggle="collapse" data-target="#submenu-5"><i class="fa fa-fw fa-thumb-tack"></i>  Actividades <i class="fa fa-fw fa-angle-down pull-right"></i></a>
+                        <a data-toggle="collapse" data-target="#submenu-5"><i class="fa fa-fw fa-thumb-tack"></i>  Actividades <i class="fa fa-fw fa-angle-down pull-right"></i></a>
                         <ul id="submenu-5" class="collapse">
                             <li><a asp-area="" asp-controller="Encuentros" asp-action="GestionarEncuentros"><i class="fa fa-angle-double-right"></i>Gestionar encuentros</a></li>
                             <li><a asp-area="" asp-controller="Encuentros" asp-action="Encuentros"><i class="fa fa-angle-double-right"></i> Encuentros</a></li>
@@ -106,7 +105,7 @@
 
         <div id="page-wrapper">
             <div class="container-fluid">
-                
+
                 @RenderBody()
                 <hr />
                 <footer>
@@ -118,7 +117,7 @@
         </div>
         <!-- /#page-wrapper -->
     </div><!-- /#wrapper -->
- 
+
     <environment include="Development">
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
