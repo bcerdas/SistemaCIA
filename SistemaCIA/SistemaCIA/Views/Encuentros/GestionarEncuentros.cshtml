@@ -4,97 +4,107 @@
     ViewData["Title"] = "Gestionar Encuentros";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="contenido">
+    <h3>Encuentros</h3>
+    <script>
+        function mostrarOpciones(id) {
+            if (id == 'down') {
+                document.getElementById('opciones').style.display = 'block';
+                document.getElementById('opciones').className = 'animated fadeIn';
+                document.getElementById('up').style.display = 'block';
+                document.getElementById('down').style.display = 'none';
+            } else {
+                document.getElementById('opciones').style.display = 'none'
+                document.getElementById('down').style.display = 'block';
+                document.getElementById('up').style.display = 'none';
+            }
 
-<h2>Index</h2>
-
-<p>
-    <a asp-action="CrearEncuentro">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Lema)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Objetivo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaInicio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaFinal)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Asistencia)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TotalDinero)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TotalInvertido)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TotalRestante)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Lema)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Objetivo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FechaInicio)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FechaFinal)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Asistencia)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TotalDinero)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TotalInvertido)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.TotalRestante)
-                </td>
-
-                @if (item.Estado == "Disponible")
-                {
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.CodigoEncuentro">Editar</a> |
-                        <a asp-action="Details" asp-route-id="@item.CodigoEncuentro">Ver en detalle</a> |
-                        <a asp-action="AgregarEquipoEnc" asp-route-id="@item.CodigoEncuentro">Agregar equipo de trabajo</a> |
-                        <a asp-action="AgregarFinanzas" asp-route-id="@item.CodigoEncuentro">Agregar reporte de finanzas</a> |
-                        <a asp-action="GestionarEncuentristas" asp-route-id="@item.CodigoEncuentro">Gestionar Encuentristas</a>
-                    </td>
-
-                }
-                else
-                {
-                    <td>
-                        <a asp-action="Details" asp-route-id="@item.CodigoEncuentro">Ver en detalle</a>
-                    </td>
-                }
-
-            </tr>
         }
-    </tbody>
-</table>
+    </script>
+    @foreach (var item in Model)
+    {
+        @if (item.Estado == "Disponible")
+        {
+            <div id="activo">
+                <div class="row">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h3>@Html.DisplayFor(modelItem => item.Nombre)</h3>
+                            </div>
+                            <div style="background-color:white;" class="panel-body">
+                                <br />
+                                Lema:@Html.DisplayFor(modelItem => item.Lema)<br />
+                                Objetivo:@Html.DisplayFor(modelItem => item.Objetivo)<br />
+                                Fecha de Inicio:@Html.DisplayFor(modelItem => item.FechaInicio)Fecha Final @Html.DisplayFor(modelItem => item.FechaFinal)<br />
+                                Asistencia:@Html.DisplayFor(modelItem => item.Asistencia)<br />
+                                <div class="jumbotron">
+                                    Dinero disponible:@Html.DisplayFor(modelItem => item.TotalDinero)<br />
+                                    Gastos realizados:@Html.DisplayFor(modelItem => item.TotalInvertido)<br />
+                                    Restante:@Html.DisplayFor(modelItem => item.TotalRestante)
+                                </div>
+                                <center>
+                                    <a id="down" style="color:black; font-size:50px;" onclick="mostrarOpciones(id)"><i class="fa fa-angle-double-down"></i></a>
+                                    <a id="up" style="display:none;color:black; font-size:40px;" onclick="mostrarOpciones(id)"><i class="fa fa-angle-double-up"></i></a>
+                                </center>
+
+                                <div style="display:none;" id="opciones">
+                                    <hr />
+                                    <div class="row">
+                                        <div class="col-md-4 col-xs-6">
+                                            <a asp-action="Edit" asp-route-id="@item.CodigoEncuentro"><i class="fa fa-fw fa-edit"></i>Editar</a>
+                                        </div>
+                                        <div class="col-md-4 col-xs-6">
+                                            <a asp-action="Details" asp-route-id="@item.CodigoEncuentro"><i class="fa fa-fw fa-plus"></i>Ver en detalle</a>
+                                        </div>
+                                        <div class="col-md-4 col-xs-6">
+                                            <a asp-action="AgregarEquipoEnc" asp-route-id="@item.CodigoEncuentro"><i class="fa fa-fw fa-id-badge"></i>Agregar equipo de trabajo</a>
+                                        </div>
+                                        <div class="col-md-4 col-xs-6">
+                                            <a asp-action="AgregarFinanzas" asp-route-id="@item.CodigoEncuentro"><i class="fa fa-fw fa-money"></i>Agregar reporte de finanzas</a>
+                                        </div>
+                                        <div class="col-md-4 col-xs-6">
+                                            <a asp-action="GestionarEncuentristas" asp-route-id="@item.CodigoEncuentro"><i class="fa fa-fw fa-cog"></i>Gestionar Encuentristas</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+            </div>
+
+        }
+        else
+        {
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3>@Html.DisplayFor(modelItem => item.Nombre)</h3>
+                        </div>
+                        <div class="panel-body">
+                            Lema:@Html.DisplayFor(modelItem => item.Lema)<br />
+                            Objetivo:@Html.DisplayFor(modelItem => item.Objetivo)<br />
+                            Fecha de Inicio:@Html.DisplayFor(modelItem => item.FechaInicio) Fecha Final @Html.DisplayFor(modelItem => item.FechaFinal)<br />
+                            Asistencia:@Html.DisplayFor(modelItem => item.Asistencia)<br />
+                            <div class="jumbotron">
+                                Dinero disponible:@Html.DisplayFor(modelItem => item.TotalDinero)<br />
+                                Gastos realizados:@Html.DisplayFor(modelItem => item.TotalInvertido)<br />
+                                Restante:@Html.DisplayFor(modelItem => item.TotalRestante)
+                            </div>
+                            <a asp-action="Details" asp-route-id="@item.CodigoEncuentro">Ver en detalle</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3"></div>
+            </div>
+        }
+
+
+    }
+</div>
+
