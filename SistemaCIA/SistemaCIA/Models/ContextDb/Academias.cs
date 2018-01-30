@@ -7,6 +7,8 @@ namespace SistemaCIA.Models.ContextDb
     {
         public Academias()
         {
+            Academiaslecciones = new HashSet<Academiaslecciones>();
+            Academiasmatriculas = new HashSet<Academiasmatriculas>();
             Academiasniveles = new HashSet<Academiasniveles>();
         }
 
@@ -18,6 +20,8 @@ namespace SistemaCIA.Models.ContextDb
         public int? MontoSalida { get; set; }
         public int? Total { get; set; }
 
+        public ICollection<Academiaslecciones> Academiaslecciones { get; set; }
+        public ICollection<Academiasmatriculas> Academiasmatriculas { get; set; }
         public ICollection<Academiasniveles> Academiasniveles { get; set; }
     }
 }

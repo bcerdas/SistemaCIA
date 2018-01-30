@@ -405,6 +405,7 @@ namespace SistemaCIA.Controllers
                         {
                             CodigoPersona = item2.CodigoPersona,
                             CodigoEncuentro = item.CodigoEncuentro,
+                            CodigoMatriculaEncuentro = item.CodigoEncMatricula,
                             Nombre = item2.Nombre,
                             Apellido1 = item2.Apellido1,
                             Apellido2 = item2.Apellido2,
@@ -441,28 +442,42 @@ namespace SistemaCIA.Controllers
             return View(encuentristas);
         }
 
+        [HttpPost]
+        public ActionResult GestionarEncuentristas(int? id, string observacion)
+        {
+            if (string.IsNullOrEmpty(observacion) || id == null)
+            {
+                return NotFound();
+            }
 
-        public ActionResult AsignarGuia(string cod)
+            var matriculaEnc = _context.Encuentrosmatricula.SingleOrDefault(x => x.CodigoEncMatricula == id);
+            matriculaEnc.Observaciones = observacion;
+            _context.Encuentrosmatricula.Update(matriculaEnc);
+            var result = _context.SaveChanges();
+
+            if (result > 0)
+            {
+                return RedirectToAction("GestionarEncuentristas", new { id = matriculaEnc.CodigoEncuentro });
+            }
+
+            return View();
+        }
+
+        public ActionResult AsignarGuia(string parametros)
         {
 
-            if (string.IsNullOrEmpty(cod))
+            if (string.IsNullOrEmpty(parametros))
             {
                 return NotFound();
             }
 
             string[] separadas;
 
-            separadas = cod.Split('/');
+            separadas = parametros.Split('/');
 
             var codigoGuia = separadas[0];
             var codigoPersona = separadas[1];
             var codigoEncuentro = Convert.ToInt32(separadas[2]);
-
-            if (codigoGuia == "Asignar")
-            {
-                return RedirectToAction(nameof(GestionarEncuentristas));
-                Response.Redirect("~/Views/Encuentros/GestionarEncuentristas.cshtml");
-            }
 
             var nuevoAsignado = _context.Encuentrosmatricula.SingleOrDefault(x => x.CodigoEncuentro == codigoEncuentro && x.CodigoPersona == codigoPersona);
             nuevoAsignado.Guia = codigoGuia;

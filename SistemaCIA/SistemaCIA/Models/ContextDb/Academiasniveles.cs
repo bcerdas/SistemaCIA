@@ -8,6 +8,7 @@ namespace SistemaCIA.Models.ContextDb
         public int CodigoAcademiasNiveles { get; set; }
         public int CodigoAcademias { get; set; }
         public int CodigoNivel { get; set; }
+        public int? Cantidad { get; set; }
 
         public Academias CodigoAcademiasNavigation { get; set; }
         public Niveles CodigoNivelNavigation { get; set; }

@@ -7,6 +7,9 @@ namespace SistemaCIA.Models.ContextDb
     public partial class SistemaCIADBContext : DbContext
     {
         public virtual DbSet<Academias> Academias { get; set; }
+        public virtual DbSet<Academiasabono> Academiasabono { get; set; }
+        public virtual DbSet<Academiaslecciones> Academiaslecciones { get; set; }
+        public virtual DbSet<Academiasmatriculas> Academiasmatriculas { get; set; }
         public virtual DbSet<Academiasniveles> Academiasniveles { get; set; }
         public virtual DbSet<Areasdeministerio> Areasdeministerio { get; set; }
         public virtual DbSet<Boletasconsolidacion> Boletasconsolidacion { get; set; }
@@ -26,6 +29,7 @@ namespace SistemaCIA.Models.ContextDb
         public virtual DbSet<Matriculaenlineaalumnos> Matriculaenlineaalumnos { get; set; }
         public virtual DbSet<Ministerios> Ministerios { get; set; }
         public virtual DbSet<Niveles> Niveles { get; set; }
+        public virtual DbSet<Niveleslecciones> Niveleslecciones { get; set; }
         public virtual DbSet<Personas> Personas { get; set; }
         public virtual DbSet<Personasroles> Personasroles { get; set; }
         public virtual DbSet<Procesoox3> Procesoox3 { get; set; }
@@ -49,8 +53,6 @@ namespace SistemaCIA.Models.ContextDb
         public SistemaCIADBContext(DbContextOptions<SistemaCIADBContext> options)
             : base(options)
         { }
-
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Academias>(entity =>
@@ -88,6 +90,143 @@ namespace SistemaCIA.Models.ContextDb
                     .HasColumnType("int(11)");
             });
 
+            modelBuilder.Entity<Academiasabono>(entity =>
+            {
+                entity.HasKey(e => e.CodigoAcademiaAbono);
+
+                entity.ToTable("academiasabono");
+
+                entity.HasIndex(e => e.CodigoAcademiasMatricula)
+                    .HasName("codigoAcademiasMatricula");
+
+                entity.Property(e => e.CodigoAcademiaAbono)
+                    .HasColumnName("codigoAcademiaAbono")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Abono)
+                    .HasColumnName("abono")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.CodigoAcademiasMatricula)
+                    .HasColumnName("codigoAcademiasMatricula")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Fecha)
+                    .HasColumnName("fecha")
+                    .HasColumnType("datetime");
+
+                entity.HasOne(d => d.CodigoAcademiasMatriculaNavigation)
+                    .WithMany(p => p.Academiasabono)
+                    .HasForeignKey(d => d.CodigoAcademiasMatricula)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("academiasabono_ibfk_1");
+            });
+
+            modelBuilder.Entity<Academiaslecciones>(entity =>
+            {
+                entity.HasKey(e => e.CodigoAcademiaLeccion);
+
+                entity.ToTable("academiaslecciones");
+
+                entity.HasIndex(e => e.CodigoAcademias)
+                    .HasName("codigoAcademias");
+
+                entity.HasIndex(e => e.CodigoLeccion)
+                    .HasName("codigoLeccion");
+
+                entity.HasIndex(e => e.CodigoMaestro)
+                    .HasName("codigoMaestro");
+
+                entity.Property(e => e.CodigoAcademiaLeccion)
+                    .HasColumnName("codigoAcademiaLeccion")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.CodigoAcademias)
+                    .HasColumnName("codigoAcademias")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.CodigoLeccion)
+                    .HasColumnName("codigoLeccion")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.CodigoMaestro)
+                    .IsRequired()
+                    .HasColumnName("codigoMaestro")
+                    .HasMaxLength(15);
+
+                entity.HasOne(d => d.CodigoAcademiasNavigation)
+                    .WithMany(p => p.Academiaslecciones)
+                    .HasForeignKey(d => d.CodigoAcademias)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("academiaslecciones_ibfk_1");
+
+                entity.HasOne(d => d.CodigoLeccionNavigation)
+                    .WithMany(p => p.Academiaslecciones)
+                    .HasForeignKey(d => d.CodigoLeccion)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("academiaslecciones_ibfk_3");
+
+                entity.HasOne(d => d.CodigoMaestroNavigation)
+                    .WithMany(p => p.Academiaslecciones)
+                    .HasForeignKey(d => d.CodigoMaestro)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("academiaslecciones_ibfk_2");
+            });
+
+            modelBuilder.Entity<Academiasmatriculas>(entity =>
+            {
+                entity.HasKey(e => e.CodigoAcademiaMatricula);
+
+                entity.ToTable("academiasmatriculas");
+
+                entity.HasIndex(e => e.CodigoAcademias)
+                    .HasName("codigoAcademias");
+
+                entity.HasIndex(e => e.CodigoPersona)
+                    .HasName("codigoPersona");
+
+                entity.Property(e => e.CodigoAcademiaMatricula)
+                    .HasColumnName("codigoAcademiaMatricula")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Abono)
+                    .HasColumnName("abono")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Becado)
+                    .HasColumnName("becado")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.CodigoAcademias)
+                    .HasColumnName("codigoAcademias")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.CodigoPersona)
+                    .IsRequired()
+                    .HasColumnName("codigoPersona")
+                    .HasMaxLength(15);
+
+                entity.Property(e => e.Observaciones)
+                    .HasColumnName("observaciones")
+                    .HasMaxLength(500);
+
+                entity.Property(e => e.Saldo)
+                    .HasColumnName("saldo")
+                    .HasColumnType("int(11)");
+
+                entity.HasOne(d => d.CodigoAcademiasNavigation)
+                    .WithMany(p => p.Academiasmatriculas)
+                    .HasForeignKey(d => d.CodigoAcademias)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("academiasmatriculas_ibfk_1");
+
+                entity.HasOne(d => d.CodigoPersonaNavigation)
+                    .WithMany(p => p.Academiasmatriculas)
+                    .HasForeignKey(d => d.CodigoPersona)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("academiasmatriculas_ibfk_2");
+            });
+
             modelBuilder.Entity<Academiasniveles>(entity =>
             {
                 entity.HasKey(e => e.CodigoAcademiasNiveles);
@@ -102,6 +241,10 @@ namespace SistemaCIA.Models.ContextDb
 
                 entity.Property(e => e.CodigoAcademiasNiveles)
                     .HasColumnName("codigoAcademiasNiveles")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Cantidad)
+                    .HasColumnName("cantidad")
                     .HasColumnType("int(11)");
 
                 entity.Property(e => e.CodigoAcademias)
@@ -1162,6 +1305,43 @@ namespace SistemaCIA.Models.ContextDb
                     .IsRequired()
                     .HasColumnName("tema")
                     .HasMaxLength(250);
+            });
+
+            modelBuilder.Entity<Niveleslecciones>(entity =>
+            {
+                entity.HasKey(e => e.CodigoNivelLeccion);
+
+                entity.ToTable("niveleslecciones");
+
+                entity.HasIndex(e => e.CodigoNivel)
+                    .HasName("codigoNivel");
+
+                entity.Property(e => e.CodigoNivelLeccion)
+                    .HasColumnName("codigoNivelLeccion")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.CodigoNivel)
+                    .HasColumnName("codigoNivel")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Descripcion)
+                    .HasColumnName("descripcion")
+                    .HasMaxLength(500);
+
+                entity.Property(e => e.Nombre)
+                    .IsRequired()
+                    .HasColumnName("nombre")
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.NumeroLeccion)
+                    .HasColumnName("numeroLeccion")
+                    .HasColumnType("int(11)");
+
+                entity.HasOne(d => d.CodigoNivelNavigation)
+                    .WithMany(p => p.Niveleslecciones)
+                    .HasForeignKey(d => d.CodigoNivel)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("niveleslecciones_ibfk_1");
             });
 
             modelBuilder.Entity<Personas>(entity =>

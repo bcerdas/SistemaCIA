@@ -7,6 +7,8 @@ namespace SistemaCIA.Models.ContextDb
     {
         public Personas()
         {
+            Academiaslecciones = new HashSet<Academiaslecciones>();
+            Academiasmatriculas = new HashSet<Academiasmatriculas>();
             BoletasconsolidacionLlenadoPorNavigation = new HashSet<Boletasconsolidacion>();
             BoletasconsolidacionPersonaAsignadaNavigation = new HashSet<Boletasconsolidacion>();
             CelulasAsistenteNavigation = new HashSet<Celulas>();
@@ -72,6 +74,8 @@ namespace SistemaCIA.Models.ContextDb
         public Ministerios CodigoMinisterioNavigation { get; set; }
         public Personas LiderNavigation { get; set; }
         public Niveles NivelAcademiasNavigation { get; set; }
+        public ICollection<Academiaslecciones> Academiaslecciones { get; set; }
+        public ICollection<Academiasmatriculas> Academiasmatriculas { get; set; }
         public ICollection<Boletasconsolidacion> BoletasconsolidacionLlenadoPorNavigation { get; set; }
         public ICollection<Boletasconsolidacion> BoletasconsolidacionPersonaAsignadaNavigation { get; set; }
         public ICollection<Celulas> CelulasAsistenteNavigation { get; set; }
