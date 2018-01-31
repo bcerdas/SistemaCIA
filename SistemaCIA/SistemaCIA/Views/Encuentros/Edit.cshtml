@@ -5,166 +5,381 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
+<script type="text/javascript" src="~/js/formToWizard.js"></script>
+<script type="text/javascript">
+        $(document).ready(function(){
+            $("#editarEncuentro").formToWizard({ submitButton: 'editar' })
+        });
+</script>
+<script type="text/javascript">
+    var cont = 0;
 
-<h4>Encuentros</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="CodigoEncuentro" />
-            <div class="form-group">
-                <label asp-for="Nombre" class="control-label"></label>
-                <input asp-for="Nombre" class="form-control" />
-                <span asp-validation-for="Nombre" class="text-danger"></span>
+    function llenaBarra() {
+        cont += 1;
+        if (cont == 1) {
+            document.getElementById('barra').style.width = '49%';
+        }
+
+        if (cont == 2) {
+            document.getElementById('barra').style.width = '70%';
+        }
+
+        if (cont == 3) {
+            document.getElementById('barra').style.width = '100%';
+        }
+    }
+
+    function vaciaBarra() {
+        cont = cont - 1;
+        if (cont == 0)
+            document.getElementById('barra').style.width = '29%';
+        if (cont == 1)
+            document.getElementById('barra').style.width = '49%';
+        if (cont == 2)
+            document.getElementById('barra').style.width = '70%';
+    }
+</script>
+
+
+
+<div class="container contenido">
+    <h2>Editar</h2>
+    <hr />
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-7">
+            <div class="caja">
+                <form asp-action="Edit" id="editarEncuentro">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="progress progress-striped active">
+                        <div id="barra" class="progress-bar progress-bar-warning" role="progressbar"
+                             aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+                             style="width:29%">
+                        </div>
+                    </div>
+                    <input type="hidden" asp-for="CodigoEncuentro" />
+                    <fieldset>
+                        <legend style="display:none;"><i style="position:center;" class="fa fa-info fa-2x"></i><br />Detalles Encuentro</legend>
+                        <h3>Detalles Encuentro</h3>
+                        <hr />
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label asp-for="Nombre" class="control-label"></label>
+                                    <input asp-for="Nombre" class="form-control" />
+                                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label asp-for="Asistencia" class="control-label"></label>
+                                    <input asp-for="Asistencia" class="form-control" />
+                                    <span asp-validation-for="Asistencia" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Lema" class="control-label"></label>
+                            <textarea asp-for="Lema" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="Lema" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Objetivo" class="control-label"></label>
+                            <textarea asp-for="Objetivo" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="Objetivo" class="text-danger"></span>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label asp-for="FechaInicio" class="control-label">Fecha Inicio</label>
+                                    <input type="date" asp-for="FechaInicio" class="form-control" />
+                                    <span asp-validation-for="FechaInicio" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label asp-for="FechaFinal" class="control-label">Fecha Final</label>
+                                    <input type="date" asp-for="FechaFinal" class="form-control" />
+                                    <span asp-validation-for="FechaFinal" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                    </fieldset>
+                    <fieldset>
+                        <legend style="display:none;"><i style="position:center;" class="fa fa-user fa-2x"></i><br />Personal</legend>
+                        <h3>Personal</h3>
+                        <hr />
+
+                        <div class="row">
+                            <div class="col-sm-6">Coordinador</div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <select asp-for="Coordinador" class="form-control" asp-items="ViewBag.Coordinador"></select>
+                                    <span asp-validation-for="Coordinador" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">Asistente</div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <select asp-for="Asistente" class="form-control" asp-items="ViewBag.Asistente"></select>
+                                    <span asp-validation-for="Asistente" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">Logistica</div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <select asp-for="Logistica" class="form-control" asp-items="ViewBag.Logistica"></select>
+                                    <span asp-validation-for="Logistica" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">Servidor</div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <select asp-for="Servidor" class="form-control" asp-items="ViewBag.Servidor"></select>
+                                    <span asp-validation-for="Servidor" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">Cocina</div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <select asp-for="Cocina" class="form-control" asp-items="ViewBag.Cocina"></select>
+                                    <span asp-validation-for="Cocina" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">Asistente Cocina</div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <select asp-for="AsistenteCocina" class="form-control" asp-items="ViewBag.AsistenteCocina"></select>
+                                    <span asp-validation-for="AsistenteCocina" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">Música</div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <select asp-for="Musica" class="form-control" asp-items="ViewBag.Musica"></select>
+                                    <span asp-validation-for="Musica" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">Guia H1</div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <select asp-for="GuiaH1" class="form-control" asp-items="ViewBag.GuiaH1"></select>
+                                    <span asp-validation-for="GuiaH1" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">Guia H2</div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <select asp-for="GuiaH2" class="form-control" asp-items="ViewBag.GuiaH2"></select>
+                                    <span asp-validation-for="GuiaH2" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">Guia M1</div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <select asp-for="GuiaM1" class="form-control" asp-items="ViewBag.GuiaM1"></select>
+                                    <span asp-validation-for="GuiaM1" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">Guia M2</div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <select asp-for="GuiaM2" class="form-control" asp-items="ViewBag.GuiaM2"></select>
+                                    <span asp-validation-for="GuiaM2" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">Guia</div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <select asp-for="Guia" class="form-control" asp-items="ViewBag.Guia"></select>
+                                    <span asp-validation-for="Guia" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>    
+                    </fieldset>
+                    <fieldset>
+                        <legend style="display:none;"><i style="position:center;" class="fa fa-money fa-2x"></i><br />Finanzas</legend>
+                        <h3>Finanzas</h3>
+                        <hr />
+
+                        <div class="table-responsive">
+                            <table class="table table-hover table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Rubro</th>
+                                        <th>Monto</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Finanzas</td>
+                                        <td>
+                                            <div class="form-group">
+                                                <select asp-for="Finanzas" readonly class="form-control" asp-items="ViewBag.Finanzas"></select>
+                                                <span asp-validation-for="Finanzas" class="text-danger"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Decoración</td>
+                                        <td>
+                                            <div class="form-group">
+                                                <select asp-for="Decoracion" class="form-control" asp-items="ViewBag.Decoracion"></select>
+                                                <span asp-validation-for="Decoracion" class="text-danger"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total del Dinero</td>
+                                        <td>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">₡</span>
+                                                    <input type="text" asp-for="TotalDinero" class="form-control" readonly />
+                                                    <span asp-validation-for="TotalDinero" class="text-danger"></span>
+                                                </div> 
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Invertido</td>
+                                        <td>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">₡</span>
+                                                    <input type="text" asp-for="TotalInvertido" class="form-control" readonly />
+                                                    <span asp-validation-for="TotalInvertido" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Monto Decoración</td>
+                                        <td>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">₡</span>
+                                                    <input type="text" asp-for="MontoDecoracion" class="form-control" readonly />
+                                                    <span asp-validation-for="MontoDecoracion" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Monto Logística</td>
+                                        <td>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">₡</span>
+                                                    <input type="text" asp-for="MontoLogistica" class="form-control" readonly />
+                                                    <span asp-validation-for="MontoLogistica" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Monto Comida</td>
+                                        <td>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">₡</span>
+                                                    <input type="text" asp-for="MontoComida" class="form-control" readonly />
+                                                    <span asp-validation-for="MontoComida" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Monto Servicio</td>
+                                        <td>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">₡</span>
+                                                    <input type="text" asp-for="MontoServicio" class="form-control" readonly />
+                                                    <span asp-validation-for="MontoServicio" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Monto Transporte</td>
+                                        <td>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">₡</span>
+                                                    <input type="text" asp-for="MontoTransporte" class="form-control" readonly />
+                                                    <span asp-validation-for="MontoTransporte" class="text-danger"></span>
+                                                </div>
+                                                
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Restante</td>
+                                        <td>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">₡</span>
+                                                    <input type="text" asp-for="TotalRestante" class="form-control" readonly />
+                                                    <span asp-validation-for="TotalRestante" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+
+                    </fieldset>
+                        
+                        
+                    
+                    <fieldset>
+                        <legend style="display:none;"><i class="fa fa-check fa-3x"></i></legend>
+                        <center>
+                            <h3 style="color:#f78246;">Has terminado<br /><i class="fa fa-check fa-3x"></i></h3>
+                            <div class="form-group">
+                                <input id="editar" type="submit" value="Guardar cambios" class="btn-next" />
+                            </div>
+                        </center>
+                    </fieldset>
+                    
+                    
+                    
+                    
+                </form>
             </div>
-            <div class="form-group">
-                <label asp-for="Lema" class="control-label"></label>
-                <input asp-for="Lema" class="form-control" />
-                <span asp-validation-for="Lema" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Objetivo" class="control-label"></label>
-                <input asp-for="Objetivo" class="form-control" />
-                <span asp-validation-for="Objetivo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FechaInicio" class="control-label"></label>
-                <input asp-for="FechaInicio" class="form-control" />
-                <span asp-validation-for="FechaInicio" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FechaFinal" class="control-label"></label>
-                <input asp-for="FechaFinal" class="form-control" />
-                <span asp-validation-for="FechaFinal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Asistencia" class="control-label"></label>
-                <input asp-for="Asistencia" class="form-control" />
-                <span asp-validation-for="Asistencia" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Coordinador" class="control-label"></label>
-                <select asp-for="Coordinador" class="form-control" asp-items="ViewBag.Coordinador"></select>
-                <span asp-validation-for="Coordinador" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Asistente" class="control-label"></label>
-                <select asp-for="Asistente" class="form-control" asp-items="ViewBag.Asistente"></select>
-                <span asp-validation-for="Asistente" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Logistica" class="control-label"></label>
-                <select asp-for="Logistica" class="form-control" asp-items="ViewBag.Logistica"></select>
-                <span asp-validation-for="Logistica" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Servidor" class="control-label"></label>
-                <select asp-for="Servidor" class="form-control" asp-items="ViewBag.Servidor"></select>
-                <span asp-validation-for="Servidor" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Cocina" class="control-label"></label>
-                <select asp-for="Cocina" class="form-control" asp-items="ViewBag.Cocina"></select>
-                <span asp-validation-for="Cocina" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AsistenteCocina" class="control-label"></label>
-                <select asp-for="AsistenteCocina" class="form-control" asp-items="ViewBag.AsistenteCocina"></select>
-                <span asp-validation-for="AsistenteCocina" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Musica" class="control-label"></label>
-                <select asp-for="Musica" class="form-control" asp-items="ViewBag.Musica"></select>
-                <span asp-validation-for="Musica" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="GuiaH1" class="control-label"></label>
-                <select asp-for="GuiaH1" class="form-control" asp-items="ViewBag.GuiaH1"></select>
-                <span asp-validation-for="GuiaH1" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="GuiaH2" class="control-label"></label>
-                <select asp-for="GuiaH2" class="form-control" asp-items="ViewBag.GuiaH2"></select>
-                <span asp-validation-for="GuiaH2" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="GuiaM1" class="control-label"></label>
-                <select asp-for="GuiaM1" class="form-control" asp-items="ViewBag.GuiaM1"></select>
-                <span asp-validation-for="GuiaM1" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="GuiaM2" class="control-label"></label>
-                <select asp-for="GuiaM2" class="form-control" asp-items="ViewBag.GuiaM2"></select>
-                <span asp-validation-for="GuiaM2" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Guia" class="control-label"></label>
-                <select asp-for="Guia" class="form-control" asp-items="ViewBag.Guia"></select>
-                <span asp-validation-for="Guia" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Finanzas" class="control-label"></label>
-                <select asp-for="Finanzas" class="form-control" asp-items="ViewBag.Finanzas"></select>
-                <span asp-validation-for="Finanzas" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Decoracion" class="control-label"></label>
-                <select asp-for="Decoracion" class="form-control" asp-items="ViewBag.Decoracion"></select>
-                <span asp-validation-for="Decoracion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TotalDinero" class="control-label"></label>
-                <input asp-for="TotalDinero" class="form-control" />
-                <span asp-validation-for="TotalDinero" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TotalInvertido" class="control-label"></label>
-                <input asp-for="TotalInvertido" class="form-control" />
-                <span asp-validation-for="TotalInvertido" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MontoDecoracion" class="control-label"></label>
-                <input asp-for="MontoDecoracion" class="form-control" />
-                <span asp-validation-for="MontoDecoracion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MontoLogistica" class="control-label"></label>
-                <input asp-for="MontoLogistica" class="form-control" />
-                <span asp-validation-for="MontoLogistica" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MontoComida" class="control-label"></label>
-                <input asp-for="MontoComida" class="form-control" />
-                <span asp-validation-for="MontoComida" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MontoServicio" class="control-label"></label>
-                <input asp-for="MontoServicio" class="form-control" />
-                <span asp-validation-for="MontoServicio" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MontoTransporte" class="control-label"></label>
-                <input asp-for="MontoTransporte" class="form-control" />
-                <span asp-validation-for="MontoTransporte" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TotalRestante" class="control-label"></label>
-                <input asp-for="TotalRestante" class="form-control" />
-                <span asp-validation-for="TotalRestante" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </form>
+        </div>
+        <div class="col-sm-3"></div>
     </div>
-</div>
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
 
-<div>
-    <a asp-action="GestionarEncuentros">Back to List</a>
-</div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+</div>

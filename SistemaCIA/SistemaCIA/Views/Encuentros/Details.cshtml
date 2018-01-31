@@ -5,183 +5,412 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<script>
+    var info , equipo, finanzas;
+    function desplegarDiv(id) {        
+        if (id == 'info') {
+            info = document.getElementById('infob').style.display;
+            if (info == 'none') {
+                document.getElementById('infob').style.display = 'block';
+                document.getElementById('infob').className = 'panel-body animated fadeIn box';
+            } else {
+                document.getElementById('infob').style.display = 'none';
+            }
+            
+        }
+        if (id == 'equipo') {
+            equipo = document.getElementById('equipob').style.display;
+            if (equipo == 'none') {
+                document.getElementById('equipob').style.display = 'block';
+                document.getElementById('equipob').className = 'panel-body animated fadeIn box';
+            } else {
+                document.getElementById('equipob').style.display = 'none';
+            }
 
-<div>
-    <h4>Encuentros</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Lema)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Lema)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Objetivo)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Objetivo)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaInicio)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.FechaInicio)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaFinal)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.FechaFinal)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Asistencia)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Asistencia)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.TotalDinero)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.TotalDinero)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.TotalInvertido)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.TotalInvertido)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.MontoDecoracion)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.MontoDecoracion)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.MontoLogistica)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.MontoLogistica)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.MontoComida)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.MontoComida)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.MontoServicio)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.MontoServicio)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.MontoTransporte)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.MontoTransporte)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.TotalRestante)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.TotalRestante)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.AsistenteCocinaNavigation)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AsistenteCocinaNavigation.CodigoPersona)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.AsistenteNavigation)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AsistenteNavigation.CodigoPersona)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CocinaNavigation)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CocinaNavigation.CodigoPersona)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CoordinadorNavigation)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CoordinadorNavigation.CodigoPersona)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DecoracionNavigation)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DecoracionNavigation.CodigoPersona)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.FinanzasNavigation)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.FinanzasNavigation.CodigoPersona)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.GuiaH1Navigation)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.GuiaH1Navigation.CodigoPersona)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.GuiaH2Navigation)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.GuiaH2Navigation.CodigoPersona)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.GuiaM1Navigation)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.GuiaM1Navigation.CodigoPersona)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.GuiaM2Navigation)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.GuiaM2Navigation.CodigoPersona)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.GuiaNavigation)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.GuiaNavigation.CodigoPersona)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.LogisticaNavigation)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.LogisticaNavigation.CodigoPersona)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.MusicaNavigation)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.MusicaNavigation.CodigoPersona)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ServidorNavigation)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ServidorNavigation.CodigoPersona)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.CodigoEncuentro">Edit</a> |
-    <a asp-action="GestionarEncuentros">Back to List</a>
+        }
+        if (id == 'finanzas') {
+            finanzas = document.getElementById('finanzasb').style.display;
+            if (finanzas == 'none') {
+                document.getElementById('finanzasb').style.display = 'block';
+                document.getElementById('finanzasb').className = 'panel-body animated fadeIn box';
+            } else {
+                document.getElementById('finanzasb').style.display = 'none';
+            }
+
+        }
+    }
+</script>
+
+<div class="container contenido">
+    <div class="caja">
+        <div>
+            <h4>Detalles del encuentro</h4>
+            <hr />
+            <div class="row">
+                <div class="col-sm-12">
+                    <div style="margin-bottom:3px;" id="info" class="titulo" onclick="desplegarDiv(id)">
+                        <h3>Información del encuentro</h3>
+                    </div>
+                    <div id="infob" class="panel-body animated fadeIn box">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h4><b>Nombre:</b></h4>
+                                @Html.DisplayFor(model => model.Nombre)
+                            </div>
+                            <div class="col-sm-3">
+                                <h4><b>Fecha de Inicio:</b></h4>
+                                @Html.DisplayFor(model => model.FechaInicio)
+                            </div>
+                            <div class="col-sm-3">
+                                <h4><b>Fecha Final:</b></h4>
+                                @Html.DisplayFor(model => model.FechaFinal)
+                            </div>
+                            <div class="col-sm-3">
+                                <h4><b>Asistencia:</b></h4>
+                                @Html.DisplayFor(model => model.Asistencia)
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h4><b>Lema:</b></h4>
+                                @Html.DisplayFor(model => model.Lema)
+                            </div>
+                            <div class="col-sm-6">
+                                <h4><b>Objetivo:</b></h4>
+                                @Html.DisplayFor(model => model.Objetivo)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div style="margin-bottom:3px;" id="equipo" class="titulo" onclick="desplegarDiv(id)">
+                        <h3>Equipo de Trabajo</h3>
+                    </div>
+                    <div style="display:none;" id="equipob" class="panel-body animated fadeIn box">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h4><b>Asistente</b></h4>
+                                @Html.DisplayFor(model => model.AsistenteNavigation.Nombre) &emsp;
+                                @Html.DisplayFor(model => model.AsistenteNavigation.Apellido1) &emsp;
+                                @Html.DisplayFor(model => model.AsistenteNavigation.Apellido2) 
+                            </div>
+                            <div class="col-sm-3">
+                                <h4><b>Asistente Cocina</b></h4>
+                                @Html.DisplayFor(model => model.AsistenteCocinaNavigation.Nombre) &emsp;
+                                @Html.DisplayFor(model => model.AsistenteCocinaNavigation.Apellido1) &emsp;
+                                @Html.DisplayFor(model => model.AsistenteCocinaNavigation.Apellido2)
+                                
+                            </div>
+                            <div class="col-sm-3">
+                                <h4><b>Cocina</b></h4>
+                                @Html.DisplayFor(model => model.CocinaNavigation.Nombre) &emsp;
+                                @Html.DisplayFor(model => model.CocinaNavigation.Apellido1) &emsp;
+                                @Html.DisplayFor(model => model.CocinaNavigation.Apellido2)
+                            </div>
+                            <div class="col-sm-3">
+                                <h4><b>Coordinador</b></h4>
+                                @Html.DisplayFor(model => model.CoordinadorNavigation.Nombre) &emsp;
+                                @Html.DisplayFor(model => model.CoordinadorNavigation.Apellido1) &emsp;
+                                @Html.DisplayFor(model => model.CoordinadorNavigation.Apellido2)
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h4><b>Decoración</b></h4>
+                                @Html.DisplayFor(model => model.DecoracionNavigation.Nombre) &emsp;
+                                @Html.DisplayFor(model => model.DecoracionNavigation.Apellido1) &emsp;
+                                @Html.DisplayFor(model => model.DecoracionNavigation.Apellido2)
+                            </div>
+                            <div class="col-sm-3">
+                                <h4><b>Finanzas</b></h4>
+                                @Html.DisplayFor(model => model.FinanzasNavigation.Nombre) &emsp;
+                                @Html.DisplayFor(model => model.FinanzasNavigation.Apellido1) &emsp;
+                                @Html.DisplayFor(model => model.FinanzasNavigation.Apellido2)
+                            </div>
+                            <div class="col-sm-3">
+                                <h4><b>Guia H1</b></h4>
+                                @Html.DisplayFor(model => model.GuiaH1Navigation.Nombre) &emsp;
+                                @Html.DisplayFor(model => model.GuiaH1Navigation.Apellido1) &emsp;
+                                @Html.DisplayFor(model => model.GuiaH1Navigation.Apellido2)
+                            </div>
+                            <div class="col-sm-3">
+                                <h4><b>Guia H2</b></h4>
+                                @Html.DisplayFor(model => model.GuiaH2Navigation.Nombre) &emsp;
+                                @Html.DisplayFor(model => model.GuiaH2Navigation.Apellido1) &emsp;
+                                @Html.DisplayFor(model => model.GuiaH2Navigation.Apellido2)
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h4><b>Guia M1</b></h4>
+                                @Html.DisplayFor(model => model.GuiaM1Navigation.Nombre) &emsp;
+                                @Html.DisplayFor(model => model.GuiaM1Navigation.Apellido1) &emsp;
+                                @Html.DisplayFor(model => model.GuiaM1Navigation.Apellido2)
+                            </div>
+                            <div class="col-sm-3">
+                                <h4><b>Guia M2</b></h4>
+                                @Html.DisplayFor(model => model.GuiaM2Navigation.Nombre) &emsp;
+                                @Html.DisplayFor(model => model.GuiaM2Navigation.Apellido1) &emsp;
+                                @Html.DisplayFor(model => model.GuiaM2Navigation.Apellido2)
+                            </div>
+                            <div class="col-sm-3">
+                                <h4><b>Guia</b></h4>
+                                @Html.DisplayFor(model => model.GuiaNavigation.Nombre) &emsp;
+                                @Html.DisplayFor(model => model.GuiaNavigation.Apellido1) &emsp;
+                                @Html.DisplayFor(model => model.GuiaNavigation.Apellido2)
+                            </div>
+                            <div class="col-sm-3">
+                                <h4><b>Logistica</b></h4>
+                                @Html.DisplayFor(model => model.LogisticaNavigation.Nombre) &emsp;
+                                @Html.DisplayFor(model => model.LogisticaNavigation.Apellido1) &emsp;
+                                @Html.DisplayFor(model => model.LogisticaNavigation.Apellido2)
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-3">
+                                <h4><b>Música</b></h4>
+                                @Html.DisplayFor(model => model.MusicaNavigation.Nombre) &emsp;
+                                @Html.DisplayFor(model => model.MusicaNavigation.Apellido1) &emsp;
+                                @Html.DisplayFor(model => model.MusicaNavigation.Apellido2)
+                            </div>
+                            <div class="col-sm-3">
+                                <h4><b>Servidor</b></h4>
+                                @Html.DisplayFor(model => model.ServidorNavigation.Nombre) &emsp;
+                                @Html.DisplayFor(model => model.ServidorNavigation.Apellido1) &emsp;
+                                @Html.DisplayFor(model => model.ServidorNavigation.Apellido2)
+                            </div>
+                            <div class="col-sm-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="finanzas" class="titulo" onclick="desplegarDiv(id)">
+                        <h3>Finanzas</h3>
+                    </div>
+                    <div style="display:none;" id="finanzasb" class="panel-body animated fadeIn box">
+                        <div class="row">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-6">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-condensed">
+                                        <thead>
+                                            <tr>
+                                                <th>Rubro</th>
+                                                <th>Monto</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Finanzas</td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">₡</span>
+                                                            <input type="text" asp-for="Finanzas" class="form-control" readonly />
+                                                            <span asp-validation-for="Finanzas" class="text-danger"></span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Decoración</td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">₡</span>
+                                                            <input type="text" asp-for="Decoracion" class="form-control" readonly />
+                                                            <span asp-validation-for="Decoracion" class="text-danger"></span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Total del Dinero</td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">₡</span>
+                                                            <input type="text" asp-for="TotalDinero" class="form-control" readonly />
+                                                            <span asp-validation-for="TotalDinero" class="text-danger"></span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Total Invertido</td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">₡</span>
+                                                            <input type="text" asp-for="TotalInvertido" class="form-control" readonly />
+                                                            <span asp-validation-for="TotalInvertido" class="text-danger"></span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Monto Decoración</td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">₡</span>
+                                                            <input type="text" asp-for="MontoDecoracion" class="form-control" readonly />
+                                                            <span asp-validation-for="MontoDecoracion" class="text-danger"></span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Monto Logística</td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">₡</span>
+                                                            <input type="text" asp-for="MontoLogistica" class="form-control" readonly />
+                                                            <span asp-validation-for="MontoLogistica" class="text-danger"></span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Monto Comida</td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">₡</span>
+                                                            <input type="text" asp-for="MontoComida" class="form-control" readonly />
+                                                            <span asp-validation-for="MontoComida" class="text-danger"></span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Monto Servicio</td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">₡</span>
+                                                            <input type="text" asp-for="MontoServicio" class="form-control" readonly />
+                                                            <span asp-validation-for="MontoServicio" class="text-danger"></span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Monto Transporte</td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">₡</span>
+                                                            <input type="text" asp-for="MontoTransporte" class="form-control" readonly />
+                                                            <span asp-validation-for="MontoTransporte" class="text-danger"></span>
+                                                        </div>
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Total Restante</td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">₡</span>
+                                                            <input type="text" asp-for="TotalRestante" class="form-control" readonly />
+                                                            <span asp-validation-for="TotalRestante" class="text-danger"></span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-sm-3"></div>
+                        </div>
+                        @*<div class="row">
+                            <div class="col-sm-6">
+                                <h4><b>Total Dinero</b></h4>
+                            </div>
+                            <div class="col-sm-6">
+                                ₡ @Html.DisplayFor(model => model.TotalDinero)
+                            </div>  
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h4><b>Monto decoración</b></h4>
+                            </div>
+                            <div class="col-sm-6">
+                                ₡ @Html.DisplayFor(model => model.MontoDecoracion)
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h4><b>Monto logística</b></h4>
+                            </div>
+                            <div class="col-sm-6">
+                                ₡ @Html.DisplayFor(model => model.MontoLogistica)
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h4><b>Monto Comida</b></h4>
+                            </div>
+                            <div class="col-sm-6">
+                                ₡ @Html.DisplayFor(model => model.MontoComida)
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h4><b>Monto Servicio</b></h4>
+                            </div>
+                            <div class="col-sm-6">
+                                ₡ @Html.DisplayFor(model => model.MontoServicio)
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h4><b>Monto Transporte</b></h4>
+                            </div>
+                            <div class="col-sm-6">
+                                ₡ @Html.DisplayFor(model => model.MontoTransporte)
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h4><b>Total invertido</b></h4>
+                            </div>
+                            <div class="col-sm-6">
+                                ₡ @Html.DisplayFor(model => model.TotalInvertido)
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h4><b>Total Restante</b></h4>
+                            </div>
+                            <div class="col-sm-6">
+                                ₡ @Html.DisplayFor(model => model.TotalRestante)
+                            </div>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
