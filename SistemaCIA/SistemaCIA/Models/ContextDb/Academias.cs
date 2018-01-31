@@ -13,6 +13,7 @@ namespace SistemaCIA.Models.ContextDb
         }
 
         public int CodigoAcademias { get; set; }
+        public string Nombre { get; set; }
         public DateTime Fecha { get; set; }
         public int? CantNiveles { get; set; }
         public int? Asistencia { get; set; }

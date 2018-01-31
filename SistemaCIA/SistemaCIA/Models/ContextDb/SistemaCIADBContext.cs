@@ -42,17 +42,13 @@ namespace SistemaCIA.Models.ContextDb
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseMySql("server=localhost;User Id=UserCIA;password=cia1q2w3e4r;database=SistemaCIADB;");
-            }
-        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { if (!optionsBuilder.IsConfigured) {
+                optionsBuilder.UseMySql("server=localhost;User Id=UserCIA;password=cia1q2w3e4r;database=SistemaCIADB;"); } }
 
         public SistemaCIADBContext(DbContextOptions<SistemaCIADBContext> options)
             : base(options)
         { }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Academias>(entity =>
@@ -84,6 +80,10 @@ namespace SistemaCIA.Models.ContextDb
                 entity.Property(e => e.MontoSalida)
                     .HasColumnName("montoSalida")
                     .HasColumnType("int(11)");
+
+                entity.Property(e => e.Nombre)
+                    .IsRequired()
+                    .HasMaxLength(100);
 
                 entity.Property(e => e.Total)
                     .HasColumnName("total")

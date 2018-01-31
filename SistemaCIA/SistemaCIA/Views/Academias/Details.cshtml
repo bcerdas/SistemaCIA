@@ -1,0 +1,55 @@
+﻿@model SistemaCIA.Models.ContextDb.Academias
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Academias</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CantNiveles)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CantNiveles)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Asistencia)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Asistencia)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MontoIngreso)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MontoIngreso)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MontoSalida)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MontoSalida)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.CodigoAcademias">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
