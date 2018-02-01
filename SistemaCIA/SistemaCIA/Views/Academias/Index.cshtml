@@ -62,6 +62,7 @@
                 @Html.DisplayFor(modelItem => item.Total)
             </td>
             <td>
+                <a asp-action="MatriculaAcademia" asp-route-id="@item.CodigoAcademias">Matricular</a> |
                 <a asp-action="Edit" asp-route-id="@item.CodigoAcademias">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.CodigoAcademias">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.CodigoAcademias">Delete</a>

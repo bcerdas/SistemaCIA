@@ -2,161 +2,101 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<h2>Index</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $("#tbPersonas tbody tr").dblclick(function () {
+            var Persona = {};
+            var cod, nom;
+            cod = Persona.Codigo = $(this).children().eq('0').text().trim();
+            nom = Persona.Nombre = $(this).children().eq('1').text().trim() +
+                " " + $(this).children().eq('2').text().trim() +
+                " " + $(this).children().eq('3').text().trim();
+            console.info(cod, nom);
+            window.opener.obtenerPersona(Persona);
+            window.close();
+
+        });
+    });
+</script>
+
+
+<h2>Miembros de la Iglesia</h2>
+
+<table id="tbPersonas" class="table table-hover">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Nombre)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Apellido1)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Apellido2)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.NombreCompletoMadre)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TelefonoMadre)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.NombreCompletoPadre)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TelefonoPadre)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.NombreCompletoConyuge)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TelefonoConyuge)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.NombreCompletoEncargado)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TelefonoEncargado)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ParentescoEncargado)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Telefono)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Direccion)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FechaIngreso)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FechaDeNacimiento)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CumbreTimoteos)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CumbreLideres)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Sexo)
-                </th>
+            <th>id</th>
             <th>
-                @Html.DisplayNameFor(model => model.CodigoAreaNavigation)
+                @Html.DisplayNameFor(model => model.Nombre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CodigoMinisterioNavigation)
+
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NivelAcademiasNavigation)
+
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lider)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefono)
+            </th>
+            <th>
+                Cumbre<br />
+                Timoteos
+            </th>
+            <th>
+                Cumbre<br />
+                Líderes
+            </th>
+            <th>
+                Nivel<br />
+                Academias
+            </th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Apellido1)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Apellido2)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NombreCompletoMadre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TelefonoMadre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NombreCompletoPadre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TelefonoPadre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NombreCompletoConyuge)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TelefonoConyuge)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NombreCompletoEncargado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TelefonoEncargado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ParentescoEncargado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telefono)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Direccion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaIngreso)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaDeNacimiento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CumbreTimoteos)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CumbreLideres)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sexo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CodigoAreaNavigation.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CodigoMinisterioNavigation.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NivelAcademiasNavigation.Nombre)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CodigoPersona">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CodigoPersona">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CodigoPersona">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CodigoPersona)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Apellido1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Apellido2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LiderNavigation.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefono)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CumbreTimoteos)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CumbreLideres)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NivelAcademiasNavigation.Nombre)
+                </td>
+
+            </tr>
+        }
     </tbody>
 </table>

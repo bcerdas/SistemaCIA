@@ -45,25 +45,25 @@
 
             <script>
 
-            function AgregarNivel() {
+                function AgregarNivel() {
 
-                var checkboxes = document.getElementById("form1").checkbox;
-                var cont = 0;
-                var v = "";
+                    var checkboxes = document.getElementById("form1").checkbox;
+                    var cont = 0;
+                    var v = "";
 
-                for (var x = 0; x < checkboxes.length; x++) {
-                    if (checkboxes[x].checked) {
-                        cont = cont + 1;
+                    for (var x = 0; x < checkboxes.length; x++) {
+                        if (checkboxes[x].checked) {
+                            cont = cont + 1;
 
-                        v = v + checkboxes[x].value.toString() + "/";
+                            v = v + checkboxes[x].value.toString() + "/";
 
+                        }
                     }
-                }
-                v = v + cont.toString();
+                    v = v + cont.toString();
 
-                document.getElementById("parametros").value = v;
-                
-            }
+                    document.getElementById("parametros").value = v;
+
+                }
 
             </script>
 

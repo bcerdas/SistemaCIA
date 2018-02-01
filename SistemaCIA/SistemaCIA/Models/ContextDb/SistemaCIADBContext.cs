@@ -42,8 +42,13 @@ namespace SistemaCIA.Models.ContextDb
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { if (!optionsBuilder.IsConfigured) {
-                optionsBuilder.UseMySql("server=localhost;User Id=UserCIA;password=cia1q2w3e4r;database=SistemaCIADB;"); } }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseMySql("server=localhost;User Id=UserCIA;password=cia1q2w3e4r;database=SistemaCIADB;");
+            }
+        }
 
         public SistemaCIADBContext(DbContextOptions<SistemaCIADBContext> options)
             : base(options)
@@ -182,6 +187,9 @@ namespace SistemaCIA.Models.ContextDb
                 entity.HasIndex(e => e.CodigoAcademias)
                     .HasName("codigoAcademias");
 
+                entity.HasIndex(e => e.CodigoNivel)
+                    .HasName("codigoNivel");
+
                 entity.HasIndex(e => e.CodigoPersona)
                     .HasName("codigoPersona");
 
@@ -199,6 +207,10 @@ namespace SistemaCIA.Models.ContextDb
 
                 entity.Property(e => e.CodigoAcademias)
                     .HasColumnName("codigoAcademias")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.CodigoNivel)
+                    .HasColumnName("codigoNivel")
                     .HasColumnType("int(11)");
 
                 entity.Property(e => e.CodigoPersona)
@@ -219,6 +231,12 @@ namespace SistemaCIA.Models.ContextDb
                     .HasForeignKey(d => d.CodigoAcademias)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("academiasmatriculas_ibfk_1");
+
+                entity.HasOne(d => d.CodigoNivelNavigation)
+                    .WithMany(p => p.Academiasmatriculas)
+                    .HasForeignKey(d => d.CodigoNivel)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("academiasmatriculas_ibfk_3");
 
                 entity.HasOne(d => d.CodigoPersonaNavigation)
                     .WithMany(p => p.Academiasmatriculas)
