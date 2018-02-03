@@ -7,7 +7,9 @@
     }
     /*html, body, #wrapper, #page-wrapper {height: 100%; overflow: hidden;}*/
 }
-
+a {
+    cursor: pointer;
+}
 #steps {
     list-style: none;
     width: 100%;

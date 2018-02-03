@@ -3,6 +3,20 @@
     ViewData["Title"] = "Matricular";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
+<style>
+
+    ul > li {
+        list-style: none;
+    }
+
+    .table {
+        display: none;
+    }
+</style>
+
+
 <h2>Matricula de academias</h2>
 <h4>@ViewBag.nombreAcademias - @ViewBag.fechaAcademias</h4>
 <hr />
@@ -15,12 +29,12 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="CodigoPersona" class="control-label"></label>
-                <input asp-for="CodigoPersona" class="form-control" />
+                <input asp-for="CodigoPersona" readonly="readonly" class="form-control" />
                 <span asp-validation-for="CodigoPersona" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="NombrePersona" class="control-label"></label>
-                <input asp-for="NombrePersona" class="form-control" />
+                <input asp-for="NombrePersona" readonly="readonly" class="form-control" />
                 <span asp-validation-for="NombrePersona" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -50,144 +64,184 @@
 
     @*<div class="row">*@
 
-    <div class="col-md-6">
-        <p>@ViewBag.msj</p>
-        <table style="text-align:center" class="table">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayName("Nombre")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Lider")
-                    </th>
-                    <th>
-                        Nivel<br />
-                        Academias
-                    </th>
-                    <th>
-                        @Html.DisplayName("Nivel Matriculado")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Becado")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Abono")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Saldo")
-                    </th>
+    <div class="col-md-6" onload="ContarFilas();">
+        @if (!string.IsNullOrEmpty(ViewBag.msj))
+        {
+            <p>Error: @ViewBag.msj</p>
+        }
 
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (Model.Matriculados.Count == 0)
-                {
-                    <tr>
-                        <td colspan="7">
-                            Aun no hay personas en matricula!!
-                        </td>
-                    </tr>
-                }
-                else
-                {
-                    foreach (var item in Model.Matriculados)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Nombre)
-                                @Html.DisplayFor(modelItem => item.Apellido1)
-                                @*@Html.DisplayFor(modelItem => item.Apellido2)*@
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Lider)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.NivelAcademias)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.NivelMatriculado)
-                            </td>
-                            <td>
-                                @if (item.Becado == 1)
-                                {
-                                    @Html.DisplayName("SI");
-                                }
-                                else
-                                {
-                                    @Html.DisplayName("NO");
-                                }
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Abono)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Saldo)
-                            </td>
-                            <td>
-                                <!-- Trigger the modal with a button -->
-                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#A_@item.CodigoAcademiaMatricula">Abonar</button>
 
-                                    <!-- Modal -->
-                                    <div id="A_@item.CodigoAcademiaMatricula" class="modal fade" role="dialog">
-                                        <div class="modal-dialog">
-
-                                            <!-- Modal content-->
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                    <h4 class="modal-title">Abonando: @item.Nombre @item.Apellido2</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>Monto a recibir:   <input style="display:inline-block; width:50%" type="number" id="montoAbonar" name="montoAbonar" class="form-control" /> </p>
-                                                    
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="AbonarMatriculado(@item.CodigoAcademiaMatricula)">Abonar</button>
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <!-- End Modal -->
-        
-
-                                <!-- Trigger the modal with a button -->
-                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#@item.CodigoAcademiaMatricula">Eliminar</button>
-
-                                <!-- Modal -->
-                                <div id="@item.CodigoAcademiaMatricula" class="modal fade" role="dialog">
-                                    <div class="modal-dialog">
-
-                                        <!-- Modal content-->
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 class="modal-title">Eliminar</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>Desea eliminar la siguiente persona: @item.Nombre @item.Apellido2</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <a asp-action="EliminarMatriculado" asp-route-id="@item.CodigoAcademiaMatricula">Eliminar</a>
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <!-- End Modal -->
-
-                            </td>
-                        </tr>
+        <h2> @ViewBag.total </h2>
+        <ul>
+            @{
+                int c = 0;
+            }
+            @foreach (var group in Model.Matriculados.GroupBy(item => item.NivelMatriculado))
+            {
+                <li>
+                    <br />
+                    @{
+                        var obj = Model.Matriculados.FirstOrDefault(x => x.NivelMatriculado == group.Key);
                     }
+                    <a onclick="mostrar(@c);" style="margin-left:30px;font-size:20px;">@Html.DisplayName(obj.NivelMatriculado)</a>
 
-                }
 
-            </tbody>
-        </table>
+                    <ul>
+                        <li>
+                            <table style="text-align:center" id="tab_@c" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayName("Nombre")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Lider")
+                                        </th>
+                                        <th>
+                                            Nivel<br />
+                                            Academias
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Nivel Matriculado")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Becado")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Abono")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Saldo")
+                                        </th>
+
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.Matriculados.Count == 0)
+                                    {
+                                        <tr>
+                                            <td colspan="7">
+                                                Aun no hay personas en matricula!!
+                                            </td>
+                                        </tr>
+                                    }
+                                    else
+                                    {
+                                        var cantidad = 0;
+                                        foreach (var item in group)
+                                        {
+
+
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Nombre)
+                                                    @Html.DisplayFor(modelItem => item.Apellido1)
+                                                    @*@Html.DisplayFor(modelItem => item.Apellido2)*@
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Lider)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.NivelAcademias)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.NivelMatriculado)
+                                                </td>
+                                                <td>
+                                                    @if (item.Becado == 1)
+                                                    {
+                                                        @Html.DisplayName("SI");
+                                                    }
+                                                    else
+                                                    {
+                                                        @Html.DisplayName("NO");
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Abono)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Saldo)
+                                                </td>
+                                                <td>
+                                                    <!-- Trigger the modal with a button -->
+                                                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#A_@item.CodigoAcademiaMatricula">Abonar</button>
+
+                                                    <!-- Modal -->
+                                                    <div id="A_@item.CodigoAcademiaMatricula" class="modal fade" role="dialog">
+                                                        <div class="modal-dialog">
+
+                                                            <!-- Modal content-->
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                    <h4 class="modal-title">Abonando: @item.Nombre @item.Apellido2</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <p>Monto a recibir:   <input style="display:inline-block; width:50%" type="number" id="Abono_@item.CodigoAcademiaMatricula" name="Abono_@item.CodigoAcademiaMatricula" class="form-control" /> </p>
+
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="AbonarMatriculado(@item.CodigoAcademiaMatricula)">Abonar</button>
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <!-- End Modal -->
+                                                    <!-- Trigger the modal with a button -->
+                                                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#@item.CodigoAcademiaMatricula">Eliminar</button>
+
+                                                    <!-- Modal -->
+                                                    <div id="@item.CodigoAcademiaMatricula" class="modal fade" role="dialog">
+                                                        <div class="modal-dialog">
+
+                                                            <!-- Modal content-->
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                    <h4 class="modal-title">Eliminar</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <p>Desea eliminar la siguiente persona: @item.Nombre @item.Apellido2</p>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <a asp-action="EliminarMatriculado" asp-route-id="@item.CodigoAcademiaMatricula">Eliminar</a>
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <!-- End Modal -->
+
+                                                </td>
+                                            </tr>
+
+                                            cantidad++;
+
+                                        }
+
+                                        ViewBag.cantidad = cantidad;
+
+                                    }
+
+                                </tbody>
+                            </table>
+
+                            <h1>@ViewBag.cantidad</h1>
+
+
+                        </li>
+                    </ul>
+
+                </li>
+                c++;
+
+            }
+        </ul>
 
     </div>
 
@@ -198,13 +252,11 @@
 
 <script type="text/javascript">
 
-
     function AbonarMatriculado(id) {
 
-        var abono = parseInt(document.getElementById('montoAbonar').value);
+        var abono = document.getElementById('Abono_'+id).value;
         var url = "@Url.Action("AbonarMatriculado", "Academias")" + "?id=" + id + "&abono=" + abono;
         location.href = url;
-
     }
 
 
@@ -212,7 +264,6 @@
 
         window.open('/Personas/Index', "PopupWindow", 'width=800px,height=400px,top=150,left=250');
     }
-
 
     function obtenerPersona(Persona) {
 
@@ -228,4 +279,14 @@
         $("#NombrePersona").val("");
 
     }
+
+    function mostrar(c) {
+        if (document.getElementById("tab_"+c).style.display == "table") {
+            document.getElementById("tab_"+c).style.display = "none";
+
+        } else {
+            document.getElementById("tab_"+c).style.display = "table";
+        }
+    }
+
 </script>

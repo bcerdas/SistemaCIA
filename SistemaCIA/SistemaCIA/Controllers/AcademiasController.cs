@@ -32,6 +32,8 @@ namespace SistemaCIA.Controllers
                 return NotFound();
             }
 
+            ViewBag.msj = TempData["msj"];
+
             var academias = _context.Academias.SingleOrDefault(x => x.CodigoAcademias == id);
 
             ViewBag.nombreAcademias = academias.Nombre;
@@ -72,6 +74,8 @@ namespace SistemaCIA.Controllers
             MatriculaAcademiaModel matriculaAcademias = new MatriculaAcademiaModel();
             matriculaAcademias.Matriculados = matriculados;
 
+            ViewBag.total = "Total de matriculados: " + matriculados.Count;
+
             return View(matriculaAcademias);
         }
 
@@ -83,7 +87,7 @@ namespace SistemaCIA.Controllers
 
                 if (id == null)
                 {
-                    NotFound();
+                   return NotFound();
                 }
 
                 var pepe = matricula.Observaciones;
@@ -107,27 +111,37 @@ namespace SistemaCIA.Controllers
                     Saldo = saldo - matricula.Abono,
                     Observaciones = matricula.Observaciones
                 };
-                _context.Academiasmatriculas.Add(matriculado);
-                await _context.SaveChangesAsync();
 
-                var ultimoMatriculado = _context.Academiasmatriculas.LastOrDefault();
+                var yaMatriculado = _context.Academiasmatriculas.SingleOrDefault(x => 
+                x.CodigoAcademias == matriculado.CodigoAcademias && x.CodigoPersona == matriculado.CodigoPersona);
 
-                if (ultimoMatriculado.Abono > 0)
+                if (yaMatriculado == null)
                 {
-                    Academiasabono abonoMatriculado = new Academiasabono()
-                    {
-                        CodigoAcademiasMatricula = ultimoMatriculado.CodigoAcademiaMatricula,
-                        Fecha = DateTime.Now,
-                        Abono = ultimoMatriculado.Abono,
-                    };
-
-                    _context.Academiasabono.Add(abonoMatriculado);
+                    _context.Academiasmatriculas.Add(matriculado);
                     await _context.SaveChangesAsync();
+
+                    var ultimoMatriculado = _context.Academiasmatriculas.LastOrDefault();
+
+                    if (ultimoMatriculado.Abono > 0)
+                    {
+                        Academiasabono abonoMatriculado = new Academiasabono()
+                        {
+                            CodigoAcademiasMatricula = ultimoMatriculado.CodigoAcademiaMatricula,
+                            Fecha = DateTime.Now,
+                            Abono = ultimoMatriculado.Abono,
+                        };
+
+                        _context.Academiasabono.Add(abonoMatriculado);
+                        await _context.SaveChangesAsync();
+                    }
                 }
-                
+                else
+                {
+                    TempData.Add("msj", "La persona ya esta matriculada en esta academia");
+                }
             }
 
-            return RedirectToAction("MatriculaAcademia", new { id = id });
+            return RedirectToAction("MatriculaAcademia", new { id = id});
         }
 
   
@@ -135,14 +149,14 @@ namespace SistemaCIA.Controllers
         {
             if (id == null || abono == null)
             {
-                NotFound();
+                return NotFound();
             }
 
             var matricula = _context.Academiasmatriculas.SingleOrDefault(x => x.CodigoAcademiaMatricula == id);
 
             if (abono > matricula.Saldo)
             {
-                ViewBag.msj = "No se puede hacer el abono, la cantidad excede al saldo";
+                TempData.Add("msj", "No se puede hacer el abono, la cantidad excede al saldo");
             }
             else
             {
@@ -163,7 +177,7 @@ namespace SistemaCIA.Controllers
                 _context.SaveChanges();
             }
 
-            return RedirectToAction("MatriculaAcademia", new { id = matricula.CodigoAcademias });
+            return RedirectToAction("MatriculaAcademia", new { id = matricula.CodigoAcademias});
         }
 
         public ActionResult EliminarMatriculado(int? id)
