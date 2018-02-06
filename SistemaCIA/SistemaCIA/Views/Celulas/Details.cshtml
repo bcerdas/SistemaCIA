@@ -1,0 +1,67 @@
+﻿@model SistemaCIA.Models.ContextDb.Celulas
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Celulas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Lugar)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Lugar)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Direccion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Hora)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Hora)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Dia)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Dia)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PromedioPersonas)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PromedioPersonas)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AsistenteNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AsistenteNavigation.CodigoPersona)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CelulaRaizNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CelulaRaizNavigation.CodigoCelula)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LiderNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LiderNavigation.CodigoPersona)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.CodigoCelula">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

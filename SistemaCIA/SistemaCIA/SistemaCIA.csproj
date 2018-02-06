@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <Folder Include="Models\Consolidation\" />
-    <Folder Include="Models\Cells\" />
     <Folder Include="Models\CellsSupervision\" />
     <Folder Include="Models\PrayerX3\" />
   </ItemGroup>

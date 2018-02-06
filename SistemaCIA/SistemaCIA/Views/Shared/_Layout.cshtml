@@ -32,7 +32,7 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                <a class="navbar-brand" href="http://cijulenlinea.ucr.ac.cr/dev-users/">
+                <a class="navbar-brand" href="@Url.Action("Index","Home")">
                     <img width="200" src="~/images/logo.jpg" alt="LOGO">
                 </a>
 
@@ -76,8 +76,9 @@
                         <a data-toggle="collapse" data-target="#submenu-3"><i class="fa fa-fw fa-street-view"></i> Células <i class="fa fa-fw fa-angle-down pull-right"></i></a>
                         <ul id="submenu-3" class="collapse">
                             <li><a asp-area="" asp-controller="Site" asp-action="Index"><i class="fa fa-angle-double-right"></i> Informes </a></li>
-                            <li><a asp-area="" asp-controller="Site" asp-action="Index"><i class="fa fa-angle-double-right"></i> Historiales </a></li>
-                            <li><a asp-area="" asp-controller="Site" asp-action="Index"><i class="fa fa-angle-double-right"></i> Gestionar </a></li>
+                            <li><a asp-area="" asp-controller="Site" asp-action="Index"><i class="fa fa-angle-double-right"></i> Mi célula </a></li>
+                            <li><a asp-area="" asp-controller="Site" asp-action="Index"><i class="fa fa-angle-double-right"></i> Células hijas</a></li>
+                            <li><a asp-area="" asp-controller="Celulas" asp-action="AgregarCelula"><i class="fa fa-angle-double-right"></i> Agregar nueva célula </a></li>
                         </ul>
                     </li>
                     <li>
