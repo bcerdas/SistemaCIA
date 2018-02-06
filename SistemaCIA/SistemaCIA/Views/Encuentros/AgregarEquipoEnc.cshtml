@@ -4,94 +4,142 @@
     ViewData["Title"] = "Agregar equipo";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="contenido">
+    <h3><img width="50" src="~/images/logo2.jpg" />Agregar equipo de encuentro</h3>
+    <hr />
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="caja2">
+                <form asp-action="AgregarEquipoEnc">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-<h2>Create</h2>
+                    <input type="hidden" asp-for="CodigoEncuentro" />
+                    <input type="hidden" asp-for="Nombre" />
+                    <input type="hidden" asp-for="Lema" />
+                    <input type="hidden" asp-for="Objetivo" />
+                    <input type="hidden" asp-for="FechaFinal" />
+                    <input type="hidden" asp-for="FechaInicio" />
 
-<h4>Encuentros</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="AgregarEquipoEnc">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            
-            <input type="hidden" asp-for="CodigoEncuentro" />
-            <input type="hidden" asp-for="Nombre" />
-            <input type="hidden" asp-for="Lema" />
-            <input type="hidden" asp-for="Objetivo" />
-            <input type="hidden" asp-for="FechaFinal" />
-            <input type="hidden" asp-for="FechaInicio" />
+                    <center>
+                        <h3>@Html.DisplayFor(model => model.Nombre)</h3> 
+                        <p>Del @Html.DisplayFor(model => model.FechaInicio) al @Html.DisplayFor(model => model.FechaFinal)</p>
+                    </center>
+                    <hr />
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h4><b>Asistente</b></h4>
+                            <div class="form-group">
+                                <select asp-for="Asistente" class="form-control" asp-items="ViewBag.Asistente"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <h4><b>Asistente Cocina</b></h4>
+                            <div class="form-group">
+                                <select asp-for="AsistenteCocina" class="form-control" asp-items="ViewBag.AsistenteCocina"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <h4><b>Cocina</b></h4>
+                            <div class="form-group">
+                                <select asp-for="Cocina" class="form-control" asp-items="ViewBag.Cocina"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <h4><b>Coordinador</b></h4>
+                            <div class="form-group">
+                                <select asp-for="Coordinador" class="form-control" asp-items="ViewBag.Coordinador"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h4><b>Decoración</b></h4>
+                            <div class="form-group">
+                                <select asp-for="Decoracion" class="form-control" asp-items="ViewBag.Decoracion"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <h4><b>Finanzas</b></h4>
+                            <div class="form-group">
+                                <select asp-for="Finanzas" class="form-control" asp-items="ViewBag.Finanzas"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <h4><b>Guia H1</b></h4>
+                            <div class="form-group">
+                                <select asp-for="GuiaH1" class="form-control" asp-items="ViewBag.GuiaH1"></select>
+                            </div>
 
-            <div class="form-group">
-                @Html.DisplayFor(model => model.Nombre)<br />
-                @Html.DisplayFor(model => model.FechaInicio) - @Html.DisplayFor(model => model.FechaFinal)
-            </div>
-            <div class="form-group">
-                <label asp-for="Coordinador" class="control-label"></label>
-                <select asp-for="Coordinador" class="form-control" asp-items="ViewBag.Coordinador"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Asistente" class="control-label"></label>
-                <select asp-for="Asistente" class="form-control" asp-items="ViewBag.Asistente"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Logistica" class="control-label"></label>
-                <select asp-for="Logistica" class="form-control" asp-items="ViewBag.Logistica"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Servidor" class="control-label"></label>
-                <select asp-for="Servidor" class="form-control" asp-items="ViewBag.Servidor"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Cocina" class="control-label"></label>
-                <select asp-for="Cocina" class="form-control" asp-items="ViewBag.Cocina"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="AsistenteCocina" class="control-label"></label>
-                <select asp-for="AsistenteCocina" class="form-control" asp-items="ViewBag.AsistenteCocina"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Musica" class="control-label"></label>
-                <select asp-for="Musica" class="form-control" asp-items="ViewBag.Musica"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="GuiaH1" class="control-label"></label>
-                <select asp-for="GuiaH1" class="form-control" asp-items="ViewBag.GuiaH1"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="GuiaH2" class="control-label"></label>
-                <select asp-for="GuiaH2" class="form-control" asp-items="ViewBag.GuiaH2"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="GuiaM1" class="control-label"></label>
-                <select asp-for="GuiaM1" class="form-control" asp-items="ViewBag.GuiaM1"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="GuiaM2" class="control-label"></label>
-                <select asp-for="GuiaM2" class="form-control" asp-items="ViewBag.GuiaM2"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Guia" class="control-label"></label>
-                <select asp-for="Guia" class="form-control" asp-items="ViewBag.Guia"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Finanzas" class="control-label"></label>
-                <select asp-for="Finanzas" class="form-control" asp-items="ViewBag.Finanzas"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Decoracion" class="control-label"></label>
-                <select asp-for="Decoracion" class="form-control" asp-items="ViewBag.Decoracion"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
+                        </div>
+                        <div class="col-sm-3">
+                            <h4><b>Guia H2</b></h4>
+                            <div class="form-group">
+                                <select asp-for="GuiaH2" class="form-control" asp-items="ViewBag.GuiaH2"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h4><b>Guia M1</b></h4>
+                            <div class="form-group">
+                                <select asp-for="GuiaM1" class="form-control" asp-items="ViewBag.GuiaM1"></select>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-3">
+                            <h4><b>Guia M2</b></h4>
+                            <div class="form-group">
+                                <select asp-for="GuiaM2" class="form-control" asp-items="ViewBag.GuiaM2"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <h4><b>Guia</b></h4>
+                            <div class="form-group">
+                                <select asp-for="Guia" class="form-control" asp-items="ViewBag.Guia"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <h4><b>Logistica</b></h4>
+                            <div class="form-group">
+                                <select asp-for="Logistica" class="form-control" asp-items="ViewBag.Logistica"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-3">
+                            <h4><b>Música</b></h4>
+                            <div class="form-group">
+                                <select asp-for="Musica" class="form-control" asp-items="ViewBag.Musica"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <h4><b>Servidor</b></h4>
+                            <div class="form-group">
+                                <select asp-for="Servidor" class="form-control" asp-items="ViewBag.Servidor"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3"></div>
+                    </div>
+
+                    <center>
+                        <div class="form-group">
+                            <input style="float:none; width:200px;" type="submit" value="Guardar equipo" class="btn-next" />
+                        </div>
+                    </center>
+
+                </form>
+            </div>  
+        </div>
     </div>
+
+
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
 </div>
 
-<div>
-    <a asp-action="GestionarEncuentros">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

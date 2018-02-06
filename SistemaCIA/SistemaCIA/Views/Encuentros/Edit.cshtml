@@ -43,8 +43,14 @@
 
 
 <div class="container contenido">
-    <h2>Editar</h2>
-    <hr />
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-7">
+            <h3><img width="50" src="~/images/logo2.jpg" />Editar encuentro</h3>
+            <hr />
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
     <div class="row">
         <div class="col-sm-2"></div>
         <div class="col-sm-7">
@@ -52,7 +58,7 @@
                 <form asp-action="Edit" id="editarEncuentro">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="progress progress-striped active">
-                        <div id="barra" class="progress-bar progress-bar-warning" role="progressbar"
+                        <div id="barra" class="progress-bar progress-bar-success" role="progressbar"
                              aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
                              style="width:29%">
                         </div>
@@ -362,7 +368,7 @@
                     <fieldset>
                         <legend style="display:none;"><i class="fa fa-check fa-3x"></i></legend>
                         <center>
-                            <h3 style="color:#f78246;">Has terminado<br /><i class="fa fa-check fa-3x"></i></h3>
+                            <h3 id="terminado">Has terminado<br /><i class="fa fa-check fa-3x"></i></h3>
                             <div class="form-group">
                                 <input id="editar" type="submit" value="Guardar cambios" class="btn-next" />
                             </div>

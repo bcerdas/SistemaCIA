@@ -3,66 +3,72 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>Index</h2>
-<p>
-    <a asp-action="CrearEncuentro">Create New</a>
-</p>
-@if(Model.Count() == 0){
-<h1>Mostrar un mensaje que diga que en este omento no hay un encuentro disponible para poder insertar encuentristas</h1>
-}else{
+<div class="contenido">
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Lema)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Objetivo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaInicio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaFinal)
-            </th>
-           
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model) {
-
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Lema)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Objetivo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaInicio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaFinal)
-            </td>
-
-            
-            <td>
-                <a asp-action="AgregarEncuentrista" asp-route-id="@item.CodigoEncuentro">Agregar encuentrista</a> |
-                <a asp-action="Encuentristas" asp-route-id="@item.CodigoEncuentro">Encuentristas</a>
-            </td>
-
-        </tr>
+    <h3><img width="50" src="~/images/logo2.jpg" />Encuentros</h3>
+@if (Model.Count() == 0)
+{
+    <h1>Mostrar un mensaje que diga que en este omento no hay un encuentro disponible para poder insertar encuentristas</h1>
 }
-    </tbody>
-</table>
-            }
+else
+{
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead style="background-color:#15748c; color:white;">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Lema)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Objetivo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FechaInicio)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FechaFinal)
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Lema)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Objetivo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaInicio)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaFinal)
+                        </td>
+
+
+                        <td>
+                            <a asp-action="AgregarEncuentrista" asp-route-id="@item.CodigoEncuentro">Agregar encuentrista</a> |
+                            <a asp-action="Encuentristas" asp-route-id="@item.CodigoEncuentro">Encuentristas</a>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+</div>
+
 
 

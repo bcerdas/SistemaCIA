@@ -319,7 +319,7 @@ p {
 
 .loginheader {
     font-family: 'Merriweather', serif;
-    background-color: #fa9213;
+    background-color: #15748c;
     color: white;
     text-align: center;
     padding: 20px;
@@ -331,7 +331,7 @@ p {
 
 .btn-login {
     border: none;
-    background: #f78246;
+    background: #15748c;
     color: #fff;
     padding: 10px;
     font-size: 18px;
@@ -339,12 +339,11 @@ p {
     position: relative;
     box-sizing: border-box;
     transition: all 200ms ease;
-   
 }
     .btn-login:hover {
         text-decoration: none;
         background: #fff;
-        color: #f78246;
-        box-shadow: inset 0 0 0 3px #f78246;
+        color: #15748c;
+        box-shadow: inset 0 0 0 3px #15748c;
     }
 

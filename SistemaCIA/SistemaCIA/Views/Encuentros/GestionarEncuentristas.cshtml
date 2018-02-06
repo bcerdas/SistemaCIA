@@ -5,80 +5,79 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<div class="contenido">
+    <h3><img width="50" src="~/images/logo2.jpg" />Gestionar encuentristas</h3>
+    <hr />
+    <form asp-action="GestionarEncuentristas" method="POST">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="table-responsive">
+            <table class="table table-hover table-condensed" id="table">
+                <thead style="background-color:#15748c; color:white;">
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Nombre")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Nacimiento")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Telefono")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Sexo")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Estado")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Lider")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Guia")
+                        </th>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<form asp-action="GestionarEncuentristas" method="POST">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <table class="table" id="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayName("Nombre")
-                </th>
-                <th>
-                    @Html.DisplayName("Nacimiento")
-                </th>
-                <th>
-                    @Html.DisplayName("Telefono")
-                </th>
-                <th>
-                    @Html.DisplayName("Sexo")
-                </th>
-                <th>
-                    @Html.DisplayName("Estado")
-                </th>
-                <th>
-                    @Html.DisplayName("Lider")
-                </th>
-                <th>
-                    @Html.DisplayName("Guia")
-                </th>
-
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @{
-                int c = 0;
-            }
-            @foreach (var item in Model)
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int c = 0;
+                    }
+                    @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Nombre)
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nombre)
 
-                        @Html.DisplayFor(modelItem => item.Apellido1)
+                                @Html.DisplayFor(modelItem => item.Apellido1)
 
-                        @Html.DisplayFor(modelItem => item.Apellido2)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FechaDeNacimiento)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Telefono)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Sexo)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Estado)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Lider)
-                    </td>
-                    <td>
+                                @Html.DisplayFor(modelItem => item.Apellido2)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FechaDeNacimiento)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Telefono)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Sexo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Estado)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Lider)
+                            </td>
+                            <td>
 
-                        <select asp-for="@item.Guia" id="@c" class="form-control" asp-items="ViewBag.Guias"></select>
-                        <span asp-validation-for="@item.Guia" class="text-danger"></span>
+                                <select asp-for="@item.Guia" id="@c" class="form-control" asp-items="ViewBag.Guias"></select>
+                                <span asp-validation-for="@item.Guia" class="text-danger"></span>
 
-                        <input type="hidden" id="p_@c" asp-for="@item.CodigoPersona" />
-                        <input type="hidden" id="e_@c" asp-for="@item.CodigoEncuentro" />
-                        <input type="hidden" id="observacion" name="observacion" />
-                        <input type="hidden" id="em_@c" asp-for="@item.CodigoMatriculaEncuentro" />
-                        <script>
+                                <input type="hidden" id="p_@c" asp-for="@item.CodigoPersona" />
+                                <input type="hidden" id="e_@c" asp-for="@item.CodigoEncuentro" />
+                                <input type="hidden" id="observacion" name="observacion" />
+                                <input type="hidden" id="em_@c" asp-for="@item.CodigoMatriculaEncuentro" />
+                                <script>
 
                         $(document).ready(function () {
                                 var indice = document.getElementById('@c').selectedIndex;
@@ -102,60 +101,65 @@
                                 });
                             });
 
-                        </script>
-                    </td>
+                                </script>
+                            </td>
 
-                    <td>
-                        <button type="button" id="b_@c" class="btn btn-primary" data-toggle="modal" data-target="#@item.CodigoPersona">
-                            Observaciones
-                        </button>
-                        |
-                        <a asp-action="Details" asp-route-id="@item.CodigoPersona">Detalles</a> |
-                        <a asp-action="Delete" asp-route-id="@item.CodigoPersona">Eliminar</a>
+                            <td>
+                                <button type="button" id="b_@c" class="btn btn-primary" data-toggle="modal" data-target="#@item.CodigoPersona">
+                                    Observaciones
+                                </button>
+                                |
+                                <a asp-action="Details" asp-route-id="@item.CodigoPersona">Detalles</a> |
+                                <a asp-action="Delete" asp-route-id="@item.CodigoPersona">Eliminar</a>
 
 
-                        <!--Modal-Observaciones -->
-                        <div id="@item.CodigoPersona" class="modal fade" role="dialog">
-                            <div class="modal-dialog">
+                                <!--Modal-Observaciones -->
+                                <div id="@item.CodigoPersona" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
 
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">@item.Nombre @item.Apellido1</h4>
-                                    </div>
-                                    <div class="modal-body">
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">@item.Nombre @item.Apellido1</h4>
+                                            </div>
+                                            <div class="modal-body">
 
-                                        <br />
-                                        Observaciones:<br />
-                                        <textarea id="ob_@c" asp-for="@item.Observaciones" style="resize:vertical" class="form-control" rows="4" onchange="valorname = this.value"></textarea>
-                                    </div>
+                                                <br />
+                                                Observaciones:<br />
+                                                <textarea id="ob_@c" asp-for="@item.Observaciones" style="resize:vertical" class="form-control" rows="4" onchange="valorname = this.value"></textarea>
+                                            </div>
 
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-default" asp-route-id="@item.CodigoMatriculaEncuentro" onclick="AgregarObservaciones()">Guardar</button>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-default" asp-route-id="@item.CodigoMatriculaEncuentro" onclick="AgregarObservaciones()">Guardar</button>
 
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
 
-                            </div>
-                        </div>
+                                <script>
 
-                        <script>
+                                    function AgregarObservaciones() {
 
-                            function AgregarObservaciones() {
+                                        document.getElementById('observacion').value = valorname;
+                                    }
 
-                                document.getElementById('observacion').value = valorname;
-                            }
+                                </script>
+                                <!--End Modal -->
 
-                        </script>
-                        <!--End Modal -->
+                            </td>
+                        </tr>
 
-                    </td>
-                </tr>
+                        c++;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </form>
+</div>
 
-                c++;
-            }
-        </tbody>
-    </table>
-</form>
+
+

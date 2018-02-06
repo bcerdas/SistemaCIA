@@ -6,8 +6,7 @@
 }
 
 <div class="contenido">
-    <div class="caja">
-        <h3>Encuentros</h3>
+        <h3><img width="50" src="~/images/logo2.jpg" />Gestionar Encuentros</h3>
         <hr />
         <script>
             function mostrarOpciones(id) {
@@ -30,23 +29,51 @@
             {
                 <div id="activo">
                     <div class="row">
-                        <div class="col-sm-3"></div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-8">
                             <div class="panel panel-success">
                                 <div class="panel-heading">
                                     <h3>@Html.DisplayFor(modelItem => item.Nombre)</h3>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <b>Asistencia:</b>@Html.DisplayFor(modelItem => item.Asistencia)<br />
+                                            <small style="font-size:17px;">Del @Html.DisplayFor(modelItem => item.FechaInicio) al @Html.DisplayFor(modelItem => item.FechaFinal)</small> 
+                                        </div>
+                                    </div>
+                                    
+                                    
                                 </div>
                                 <div style="background-color:white;" class="panel-body">
-                                    <br />
-                                    Lema:@Html.DisplayFor(modelItem => item.Lema)<br />
-                                    Objetivo:@Html.DisplayFor(modelItem => item.Objetivo)<br />
-                                    Fecha de Inicio:@Html.DisplayFor(modelItem => item.FechaInicio)Fecha Final @Html.DisplayFor(modelItem => item.FechaFinal)<br />
-                                    Asistencia:@Html.DisplayFor(modelItem => item.Asistencia)<br />
-                                    <div class="jumbotron">
-                                        Dinero disponible:@Html.DisplayFor(modelItem => item.TotalDinero)<br />
-                                        Gastos realizados:@Html.DisplayFor(modelItem => item.TotalInvertido)<br />
-                                        Restante:@Html.DisplayFor(modelItem => item.TotalRestante)
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <h4><b>Lema</b></h4>@Html.DisplayFor(modelItem => item.Lema)
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <h4><b>Objetivo</b></h4>@Html.DisplayFor(modelItem => item.Objetivo)
+                                        </div>
                                     </div>
+
+                                    <hr />
+
+                                    <div class="jumbotron">
+                                        <div class="row">
+                                            <div class="col-sm-12 text-center">
+                                                <h4>Finanzas</h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <h4><b>Dinero disponible</b></h4>@Html.DisplayFor(modelItem => item.TotalDinero)
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <h4><b>Gastos realizados</b></h4>@Html.DisplayFor(modelItem => item.TotalInvertido)
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <h4><b>Restante</b></h4>@Html.DisplayFor(modelItem => item.TotalRestante)
+                                            </div>
+                                        </div>    
+                                    </div>
+
                                     <center>
                                         <a id="down" style="color:black; font-size:50px; cursor:pointer;" onclick="mostrarOpciones(id)"><i class="fa fa-angle-double-down"></i></a>
                                         <a id="up" style="display:none;color:black; font-size:40px; cursor:pointer;" onclick="mostrarOpciones(id)"><i class="fa fa-angle-double-up"></i></a>
@@ -83,23 +110,50 @@
             else
             {
                 <div class="row">
-                    <div class="col-sm-3"></div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-8">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3>@Html.DisplayFor(modelItem => item.Nombre)</h3>
+                                <h3>@Html.DisplayFor(modelItem => item.Nombre)<span class="pull-right">Asistencia:@Html.DisplayFor(modelItem => item.Asistencia)</span></h3>
+                                <small>@Html.DisplayFor(modelItem => item.FechaInicio) @Html.DisplayFor(modelItem => item.FechaFinal)</small>
                             </div>
-                            <div class="panel-body">
-                                Lema:@Html.DisplayFor(modelItem => item.Lema)<br />
-                                Objetivo:@Html.DisplayFor(modelItem => item.Objetivo)<br />
-                                Fecha de Inicio:@Html.DisplayFor(modelItem => item.FechaInicio) Fecha Final @Html.DisplayFor(modelItem => item.FechaFinal)<br />
-                                Asistencia:@Html.DisplayFor(modelItem => item.Asistencia)<br />
-                                <div class="jumbotron">
-                                    Dinero disponible:@Html.DisplayFor(modelItem => item.TotalDinero)<br />
-                                    Gastos realizados:@Html.DisplayFor(modelItem => item.TotalInvertido)<br />
-                                    Restante:@Html.DisplayFor(modelItem => item.TotalRestante)
+                            <div style="background-color:white;" class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <h4><b>Lema</b></h4>@Html.DisplayFor(modelItem => item.Lema)
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <h4><b>Objetivo</b></h4>@Html.DisplayFor(modelItem => item.Objetivo)
+                                    </div>
                                 </div>
-                                <a asp-action="Details" asp-route-id="@item.CodigoEncuentro">Ver en detalle</a>
+
+                                <hr />
+
+                                <div class="jumbotron">
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <h4>Finanzas</h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <h4><b>Dinero disponible</b></h4>@Html.DisplayFor(modelItem => item.TotalDinero)
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <h4><b>Gastos realizados</b></h4>@Html.DisplayFor(modelItem => item.TotalInvertido)
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <h4><b>Restante</b></h4>@Html.DisplayFor(modelItem => item.TotalRestante)
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-12 text-center ge">
+                                        <a asp-action="Details" asp-route-id="@item.CodigoEncuentro"><i class="fa fa-fw fa-info-circle"></i>Ver en detalle</a>
+                                    </div>
+                                </div>
+                               
                             </div>
                         </div>
                     </div>
@@ -109,7 +163,6 @@
 
 
         }
-    </div>
     
 </div>
 
