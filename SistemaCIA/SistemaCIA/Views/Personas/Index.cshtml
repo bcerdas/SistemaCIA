@@ -27,81 +27,84 @@
         });
     });
 </script>
+<div class="container-fluid contenido">
+    <h3><img width="50" src="~/images/logo2.jpg" />Miembros de la Iglesia</h3>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <input id="buscar" type="text" class="form-control" placeholder="Escriba algo para filtrar" /><br />            
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table id="tbPersonas" class="table table-hover table-condensed">
+            <thead style="background-color:#15748c; color:white;">
+                <tr>
+                    <th>id</th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </th>
+                    <th>
 
+                    </th>
+                    <th>
 
-<h2>Miembros de la Iglesia</h2>
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Lider)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Telefono)
+                    </th>
+                    <th>
+                        Cumbre<br />
+                        Timoteos
+                    </th>
+                    <th>
+                        Cumbre<br />
+                        Líderes
+                    </th>
+                    <th>
+                        Nivel<br />
+                        Academias
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CodigoPersona)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Apellido1)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Apellido2)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LiderNavigation.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Telefono)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CumbreTimoteos)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CumbreLideres)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NivelAcademiasNavigation.Nombre)
+                        </td>
 
-<br />
-<input id="buscar" type="text" class="form-control" placeholder="Escriba algo para filtrar" />
-<br />
-
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>id</th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-
-            </th>
-            <th>
-
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Lider)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Telefono)
-            </th>
-            <th>
-                Cumbre<br />
-                Timoteos
-            </th>
-            <th>
-                Cumbre<br />
-                Líderes
-            </th>
-            <th>
-                Nivel<br />
-                Academias
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CodigoPersona)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Apellido1)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Apellido2)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LiderNavigation.Nombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Telefono)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CumbreTimoteos)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CumbreLideres)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NivelAcademiasNavigation.Nombre)
-                </td>
-
-            </tr>
-        }
-    </tbody>
-</table>
-<script type="text/javascript" src="~/js/BusquedaTablas.js"></script>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <script type="text/javascript" src="~/js/BusquedaTablas.js"></script>
+    </div>
+</div>

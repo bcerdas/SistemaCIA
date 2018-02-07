@@ -70,7 +70,7 @@
                             </td>
                             <td>
 
-                                <select asp-for="@item.Guia" id="@c" class="form-control" asp-items="ViewBag.Guias"></select>
+                                <select asp-for="@item.Guia" id="@c" style="height:35px;" class="form-control" asp-items="ViewBag.Guias"></select>
                                 <span asp-validation-for="@item.Guia" class="text-danger"></span>
 
                                 <input type="hidden" id="p_@c" asp-for="@item.CodigoPersona" />

@@ -37,93 +37,102 @@
 
 
 <div class="container contenido">
-    <h3><img width="50" src="~/images/logo2.jpg" />Academias</h3>
-    <hr />
     <div class="row">
         <div class="col-sm-3"></div>
         <div class="col-sm-5">
-            <form id="form1" asp-action="Create">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="progress progress-striped active">
-                    <div id="barra" class="progress-bar progress-bar-success" role="progressbar"
-                         aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
-                         style="width: 27%">
-                    </div>
-                </div>
-                <fieldset>
-                    <legend style="display:none;"><i class="fa fa-university fa-2x"></i><br />Academia</legend>
-                    <div class="row">
-                        <div class="col-sm-7">
-                            <div class="form-group">
-                                <label asp-for="Nombre" class="control-label"></label>
-                                <input asp-for="Nombre" class="form-control" />
-                                <span asp-validation-for="Nombre" class="text-danger"></span>
-                            </div>
-                        </div>
-                        <div class="col-sm-5">
-                            <div class="form-group">
-                                <label asp-for="Fecha" class="control-label"></label>
-                                <input asp-for="Fecha" class="form-control" />
-                                <span asp-validation-for="Fecha" class="text-danger"></span>
-                            </div>
+            <h3><img width="50" src="~/images/logo2.jpg" />Academias</h3>
+            <hr />
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-5">
+            <div class="caja">
+                <form id="form1" asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="progress progress-striped active">
+                        <div id="barra" class="progress-bar progress-bar-success" role="progressbar"
+                             aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+                             style="width: 27%">
                         </div>
                     </div>
-                    <input type="hidden" id="parametros" name="parametros" />
-
-
-                </fieldset>
-
-                <fieldset>
-                    <legend style="display:none;"><i style="position:center;" class="fa fa-sitemap fa-2x"></i><br />Niveles</legend>
-                    <h4>Seleccione los niveles</h4>
-                    @foreach (var item in Model.niveles)
-                    {
-                        <div class="col-sm-6 text-justify">
-                            @item.Nombre
-                            <div class="form-group material-switch">
-                                <input type="checkbox" name="checkbox" id="@item.CodigoNivel" value="@item.CodigoNivel" />
-                                <label for="@item.CodigoNivel" class="control-label label-info"></label>
-                                <span asp-validation-for="@item.Nombre" class="text-danger"></span>
+                    <fieldset>
+                        <legend style="display:none;"><i class="fa fa-university fa-2x"></i><br />Academia</legend>
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <div class="form-group">
+                                    <label asp-for="Nombre" class="control-label"></label>
+                                    <input asp-for="Nombre" class="form-control" />
+                                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-5">
+                                <div class="form-group">
+                                    <label asp-for="Fecha" class="control-label"></label>
+                                    <input asp-for="Fecha" class="form-control" />
+                                    <span asp-validation-for="Fecha" class="text-danger"></span>
+                                </div>
                             </div>
                         </div>
+                        <input type="hidden" id="parametros" name="parametros" />
 
-                    }
 
-                    <script>
+                    </fieldset>
 
-                        function AgregarNivel() {
-
-                            var checkboxes = document.getElementById("form1").checkbox;
-                            var cont = 0;
-                            var v = "";
-
-                            for (var x = 0; x < checkboxes.length; x++) {
-                                if (checkboxes[x].checked) {
-                                    cont = cont + 1;
-
-                                    v = v + checkboxes[x].value.toString() + "/";
-
-                                }
-                            }
-                            v = v + cont.toString();
-
-                            document.getElementById("parametros").value = v;
+                    <fieldset>
+                        <legend style="display:none;"><i style="position:center;" class="fa fa-sitemap fa-2x"></i><br />Niveles</legend>
+                        <h4>Seleccione los niveles</h4>
+                        @foreach (var item in Model.niveles)
+                        {
+                            <div class="col-sm-6 text-justify">
+                                @item.Nombre
+                                <div class="form-group material-switch">
+                                    <input type="checkbox" name="checkbox" id="@item.CodigoNivel" value="@item.CodigoNivel" />
+                                    <label for="@item.CodigoNivel" class="control-label label-info"></label>
+                                    <span asp-validation-for="@item.Nombre" class="text-danger"></span>
+                                </div>
+                            </div>
 
                         }
 
-                    </script>
-                </fieldset>
-                <fieldset>
-                    <legend style="display:none;"><i class="fa fa-check fa-3x"></i></legend>
-                    <center>
-                        <h3 style="color:#15748c;">Has terminado<br /><i class="fa fa-check fa-3x"></i></h3>
-                        <div class="form-group">
-                            <input id="guardarAcademia" class="btn-next" type="submit" value="Guardar" onclick="AgregarNivel()" />
-                        </div>
-                    </center>
-                </fieldset>
+                        <script>
 
-            </form>
+                            function AgregarNivel() {
+
+                                var checkboxes = document.getElementById("form1").checkbox;
+                                var cont = 0;
+                                var v = "";
+
+                                for (var x = 0; x < checkboxes.length; x++) {
+                                    if (checkboxes[x].checked) {
+                                        cont = cont + 1;
+
+                                        v = v + checkboxes[x].value.toString() + "/";
+
+                                    }
+                                }
+                                v = v + cont.toString();
+
+                                document.getElementById("parametros").value = v;
+
+                            }
+
+                        </script>
+                    </fieldset>
+                    <fieldset>
+                        <legend style="display:none;"><i class="fa fa-check fa-3x"></i></legend>
+                        <center>
+                            <h3 style="color:#15748c;">Has terminado<br /><i class="fa fa-check fa-3x"></i></h3>
+                            <div class="form-group">
+                                <input id="guardarAcademia" class="btn-next" type="submit" value="Guardar" onclick="AgregarNivel()" />
+                            </div>
+                        </center>
+                    </fieldset>
+
+                </form>
+            </div>
         </div>
         <div class="col-sm-4"></div>
     </div>

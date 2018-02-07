@@ -16,14 +16,14 @@
     }
 </style>
 
-
-<h2>Matricula de academias</h2>
-<h4>@ViewBag.nombreAcademias - @ViewBag.fechaAcademias</h4>
-<hr />
-<div class="row">
+<div class="contenido">
+    <h3><img width="50" src="~/images/logo2.jpg" />Matricula de academias</h3>
+    <h4>@ViewBag.nombreAcademias - @ViewBag.fechaAcademias</h4>
+    <hr />
+    <div class="row">
     <div class="col-md-4">
-
-        <input type="button" id="btnpopu" value="Agregar Persona" onclick="ShowPopup();" />
+        <h4>Agregar Persona&emsp;<button class="btn-next" style="float:none;" id="btnpopu" value="Agregar Persona" onclick="ShowPopup();"><i class="fa fa-user-plus"></i></button></h4><br />
+        
 
         <form asp-action="MatriculaAcademia">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -246,9 +246,9 @@
     </div>
 
 </div>
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
+
+
 
 <script type="text/javascript">
 
@@ -262,7 +262,7 @@
 
     ShowPopup = function () {
 
-        window.open('/Personas/Index', "PopupWindow", 'width=800px,height=400px,top=150,left=250');
+        window.open('/Personas/Index', "PopupWindow", 'width=990px,height=400px,top=150,left=250');
     }
 
     function obtenerPersona(Persona) {
