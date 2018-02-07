@@ -18,6 +18,7 @@ namespace SistemaCIA.Models.ContextDb
         public string Nombre { get; set; }
         public string Tema { get; set; }
         public string Descripcion { get; set; }
+        public int CantidadLecciones { get; set; }
 
         public ICollection<Academiasmatriculas> Academiasmatriculas { get; set; }
         public ICollection<Academiasniveles> Academiasniveles { get; set; }

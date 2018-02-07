@@ -18,6 +18,7 @@ namespace SistemaCIA.Models.ContextDb
         public int Saldo { get; set; }
         public int Abono { get; set; }
         public int? Becado { get; set; }
+        public int Grupo { get; set; }
 
         public Academias CodigoAcademiasNavigation { get; set; }
         public Niveles CodigoNivelNavigation { get; set; }

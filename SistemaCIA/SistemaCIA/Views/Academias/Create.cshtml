@@ -36,7 +36,7 @@
 
 
 
-<div class="container contenido">
+
     <div class="row">
         <div class="col-sm-3"></div>
         <div class="col-sm-5">
@@ -86,15 +86,14 @@
                         <h4>Seleccione los niveles</h4>
                         @foreach (var item in Model.niveles)
                         {
-                            <div class="col-sm-6 text-justify">
-                                @item.Nombre
-                                <div class="form-group material-switch">
-                                    <input type="checkbox" name="checkbox" id="@item.CodigoNivel" value="@item.CodigoNivel" />
-                                    <label for="@item.CodigoNivel" class="control-label label-info"></label>
-                                    <span asp-validation-for="@item.Nombre" class="text-danger"></span>
-                                </div>
+                        <div class="col-sm-6 text-justify">
+                            @item.Nombre
+                            <div class="form-group material-switch">
+                                <input type="checkbox" name="checkbox" id="@item.CodigoNivel" value="@item.CodigoNivel" />
+                                <label for="@item.CodigoNivel" class="control-label label-info"></label>
+                                <span asp-validation-for="@item.Nombre" class="text-danger"></span>
                             </div>
-
+                        </div>
                         }
 
                         <script>
@@ -116,7 +115,7 @@
                                 v = v + cont.toString();
 
                                 document.getElementById("parametros").value = v;
-
+                                
                             }
 
                         </script>
@@ -136,4 +135,3 @@
         </div>
         <div class="col-sm-4"></div>
     </div>
-</div>

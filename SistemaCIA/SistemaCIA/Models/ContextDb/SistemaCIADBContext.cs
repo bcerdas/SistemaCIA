@@ -155,7 +155,6 @@ namespace SistemaCIA.Models.ContextDb
                     .HasColumnType("int(11)");
 
                 entity.Property(e => e.CodigoMaestro)
-                    .IsRequired()
                     .HasColumnName("codigoMaestro")
                     .HasMaxLength(15);
 
@@ -174,7 +173,6 @@ namespace SistemaCIA.Models.ContextDb
                 entity.HasOne(d => d.CodigoMaestroNavigation)
                     .WithMany(p => p.Academiaslecciones)
                     .HasForeignKey(d => d.CodigoMaestro)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("academiaslecciones_ibfk_2");
             });
 
@@ -217,6 +215,10 @@ namespace SistemaCIA.Models.ContextDb
                     .IsRequired()
                     .HasColumnName("codigoPersona")
                     .HasMaxLength(15);
+
+                entity.Property(e => e.Grupo)
+                    .HasColumnName("grupo")
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.Observaciones)
                     .HasColumnName("observaciones")
@@ -261,16 +263,16 @@ namespace SistemaCIA.Models.ContextDb
                     .HasColumnName("codigoAcademiasNiveles")
                     .HasColumnType("int(11)");
 
-                entity.Property(e => e.Cantidad)
-                    .HasColumnName("cantidad")
-                    .HasColumnType("int(11)");
-
                 entity.Property(e => e.CodigoAcademias)
                     .HasColumnName("codigoAcademias")
                     .HasColumnType("int(11)");
 
                 entity.Property(e => e.CodigoNivel)
                     .HasColumnName("codigoNivel")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Grupo)
+                    .HasColumnName("grupo")
                     .HasColumnType("int(11)");
 
                 entity.HasOne(d => d.CodigoAcademiasNavigation)
@@ -1308,6 +1310,10 @@ namespace SistemaCIA.Models.ContextDb
 
                 entity.Property(e => e.CodigoNivel)
                     .HasColumnName("codigoNivel")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.CantidadLecciones)
+                    .HasColumnName("cantidadLecciones")
                     .HasColumnType("int(11)");
 
                 entity.Property(e => e.Descripcion)

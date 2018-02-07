@@ -15,6 +15,5 @@ namespace SistemaCIA.Models.Academias
         public int? CantNiveles { get; set; }
         public List<Niveles> niveles { get; set; }
 
-
     }
 }

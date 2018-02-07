@@ -52,6 +52,7 @@ namespace SistemaCIA.Controllers
                 var persona = _context.Personas.Include(l => l.LiderNavigation)//Lideres 
                     .Include(a => a.NivelAcademiasNavigation)//Academias
                     .SingleOrDefault(x => x.CodigoPersona == item.CodigoPersona);
+
                 var matriculado = new MatriculadosAcademiasModel() {
                     CodigoAcademiaMatricula = item.CodigoAcademiaMatricula,
                     Nombre = persona.Nombre,
@@ -109,7 +110,8 @@ namespace SistemaCIA.Controllers
                     Abono = matricula.Abono,
                     Becado = becado,
                     Saldo = saldo - matricula.Abono,
-                    Observaciones = matricula.Observaciones
+                    Observaciones = matricula.Observaciones,
+                    Grupo = 1
                 };
 
                 var yaMatriculado = _context.Academiasmatriculas.SingleOrDefault(x => 
@@ -253,20 +255,39 @@ namespace SistemaCIA.Controllers
 
                 var ofertaIngresada = _context.Academias.LastOrDefault();
 
-                for (int i = 0; i < (separados.Length-1); i++)
+                for (int i = 0; i < (separados.Length - 1); i++)
                 {
-                    var nuevoNivel = new Academiasniveles() {
+                    int codigoNivel = Convert.ToInt32(separados[i]);
+
+                    var nuevoNivel = new Academiasniveles()
+                    {
                         CodigoAcademias = ofertaIngresada.CodigoAcademias,
-                        CodigoNivel = Convert.ToInt32(separados[i])
+                        CodigoNivel = codigoNivel,
+                        Grupo = 1
                     };
                     _context.Academiasniveles.Add(nuevoNivel);
+
+                    var nivel = _context.Niveles.SingleOrDefault(x => x.CodigoNivel == codigoNivel);
+
+
+                    for (int l = 1; l <= nivel.CantidadLecciones; l++)
+                    {
+                        var leccion = _context.Niveleslecciones.SingleOrDefault(x => x.CodigoNivel == codigoNivel && x.NumeroLeccion == l);
+
+                        var nuevaLeccion = new Academiaslecciones()
+                        {
+                            CodigoAcademias = ofertaIngresada.CodigoAcademias,
+                            CodigoLeccion = leccion.CodigoNivelLeccion
+                        };
+
+                        _context.Academiaslecciones.Add(nuevaLeccion);
+                    }
+
                 }
 
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));
-                
-
                 
             }
             return View(academias);
@@ -323,6 +344,81 @@ namespace SistemaCIA.Controllers
             return View(academias);
         }
 
+        public IActionResult AdministrarPrograma(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var academiasNiveles = _context.Niveleslecciones.ToList();
+            var academiasLecciones = _context.Academiaslecciones.Where(x => x.CodigoAcademias == id);
+            List<AcNivelesExpositores> nuevaListaNiveles = new List<AcNivelesExpositores>();
+
+            if (academiasLecciones.Count() == 0)
+            {
+                foreach (var item in academiasNiveles)
+                {
+                    var nuevoNivel = new AcNivelesExpositores()
+                    {
+                        CodigoNivel = item.CodigoNivel,
+                        NombreNivel = item.Nombre,
+                        NombreLeccion = item.Nombre,
+                        NumeroLeccion = item.NumeroLeccion
+                    };
+
+                    nuevaListaNiveles.Add(nuevoNivel);
+
+                }
+            }
+            else
+            {
+                foreach (var item in academiasNiveles)
+                {
+                    foreach (var item2 in academiasLecciones)
+                    {
+
+                        if (item.CodigoNivel == item2.CodigoLeccionNavigation.CodigoNivel)
+                        {
+                            switch (item2.CodigoLeccion)
+                            {
+
+                            }
+                        }
+
+                        var nuevoNivel = new AcNivelesExpositores()
+                        {
+                            CodigoNivel = item.CodigoNivel,
+                            NombreNivel = item.Nombre,
+                            NombreLeccion = item.Nombre,
+                            NumeroLeccion = item.NumeroLeccion,
+                            Expositor = item2.CodigoMaestro
+                        };
+
+                        nuevaListaNiveles.Add(nuevoNivel);
+
+                    }
+
+                }
+            }
+
+            
+
+
+            var administrarPrograma = new AcademiasLeccionesModel();
+            administrarPrograma.academiasNiveles = _context.Academiasniveles.Where(x => x.CodigoAcademias == id).Include(x => x.CodigoNivelNavigation).ToList();
+           
+            administrarPrograma.nivelesLecciones = nuevaListaNiveles;
+            administrarPrograma.CodigoAcademia = (int)id;
+
+            var academia = _context.Academias.SingleOrDefault(x => x.CodigoAcademias == id);
+
+            ViewBag.fecha = academia.Fecha.ToShortDateString();
+            ViewBag.nombre = academia.Nombre;
+
+            return View(administrarPrograma);
+        }
+
         // GET: Academias/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -340,6 +436,8 @@ namespace SistemaCIA.Controllers
 
             return View(academias);
         }
+
+
 
         // POST: Academias/Delete/5
         [HttpPost, ActionName("Delete")]
