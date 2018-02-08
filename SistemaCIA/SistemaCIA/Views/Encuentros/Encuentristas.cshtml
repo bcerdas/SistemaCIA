@@ -44,12 +44,22 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.FechaDeNacimiento)
                         </td>
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.CodigoPersona">Editar</a> |
-                            <a asp-action="Details" asp-route-id="@item.CodigoPersona">Detalles</a> |
-                            <a asp-action="Delete" asp-route-id="@item.CodigoPersona">Eliminar</a>
-                        </td>
                     </tr>
+                    <tr style="background-color:#ededed;">
+                        <td></td>
+                        <td></td>
+                        <td>
+                        <div class="col-sm-3">
+                            <div class="ge"><a asp-action="Edit" asp-route-id="@item.CodigoPersona"><i style="color:#15748c;" class="fa fa-fw fa-angle-double-right"></i>Editar</a></div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="ge"><a asp-action="Details" asp-route-id="@item.CodigoPersona"><i style="color:#15748c;" class="fa fa-fw fa-angle-double-right"></i>Detalles</a></div>
+                        </div>
+                        
+                        <div class="ge"><a asp-action="Delete" asp-route-id="@item.CodigoPersona"><i style="color:#15748c;" class="fa fa-fw fa-trash"></i></a></div></td>
+                    </tr>
+                        
+                    
                 }
             </tbody>
         </table>

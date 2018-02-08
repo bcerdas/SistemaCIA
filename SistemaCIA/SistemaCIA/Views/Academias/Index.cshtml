@@ -61,14 +61,19 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Total)
                         </td>
-                        <td>
-                            <a asp-action="MatriculaAcademia" asp-route-id="@item.CodigoAcademias">Matricular</a> |
-                            <a asp-action="Edit" asp-route-id="@item.CodigoAcademias">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.CodigoAcademias">Details</a> |
-                            <a asp-action="AdministrarPrograma" asp-route-id="@item.CodigoAcademias">Programa</a> |
-                            <a asp-action="Delete" asp-route-id="@item.CodigoAcademias">Delete</a>
-                        </td>
                     </tr>
+
+                    <tr style="background-color:#ededed;">
+                        <td></td>
+                        <td></td>
+                        <td><div class="ge"><a asp-action="MatriculaAcademia" asp-route-id="@item.CodigoAcademias"><i style="color:#15748c;" class="fa fa-fw fa-angle-double-right"></i>Matricular</a></div></td>
+                        <td><div class="ge"><a asp-action="Edit" asp-route-id="@item.CodigoAcademias"><i style="color:#15748c;" class="fa fa-fw fa-angle-double-right"></i>Edit</a></div></td>
+                        <td><div class="ge"><a asp-action="Details" asp-route-id="@item.CodigoAcademias"><i style="color:#15748c;" class="fa fa-fw fa-angle-double-right"></i>Details</a></div></td>
+                        <td><div class="ge"><a asp-action="AdministrarPrograma" asp-route-id="@item.CodigoAcademias"><i style="color:#15748c;" class="fa fa-fw fa-angle-double-right"></i>Programa</a></div></td>
+                        <td><div class="ge"><a asp-action="Delete" asp-route-id="@item.CodigoAcademias"><i style="color:#15748c;" class="fa fa-fw fa-trash"></i></a></div></td>
+                    </tr>
+                        
+                    
                 }
             </tbody>
         </table>
