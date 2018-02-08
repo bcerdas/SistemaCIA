@@ -20,104 +20,137 @@
 @Html.HiddenFor(model => model.CodigoAcademia)
 <ul>
     @{
-        int c = 0;
+        int c = 0, d = 0;
     }
-    @foreach (var group in Model.academiasNiveles.GroupBy(item => item.CodigoNivel))
+    @foreach (var group in Model.academiasNiveles.GroupBy(item => item.CodigoAcademiasNiveles))
     {
-        <li>
-            <br />
-            @{
-                var obj = Model.academiasNiveles.FirstOrDefault(x => x.CodigoNivel == group.Key);
-            }
-            <a onclick="mostrar(@c);" style="margin-left:30px;font-size:20px;">@Html.DisplayName(obj.CodigoNivelNavigation.Nombre)</a>
-            <ul>
-                <li>
-                    <table id="tab_@c" class="table">
-                        <thead>
-                            <tr>
-                                <th>
-                                    Numero leccion
-                                </th>
-                                <th>
-                                    Hora
-                                </th>
-                                <th>
-                                    Leccion
-                                </th>
-                                <th>
-                                    Expositor
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.nivelesLecciones)
-                            {
-                                if (item.CodigoNivel == obj.CodigoNivel)
-                                {
+    <li>
+        <br />
+        @{
+        var obj = Model.academiasNiveles.FirstOrDefault(x => x.CodigoAcademiasNiveles == group.Key);
+        }
+        <a onclick="mostrar(@c);" style="margin-left:30px;font-size:20px;">@Html.DisplayName(obj.CodigoNivelNavigation.Nombre)</a> <h4 style="display:inline-block">Grupo (@obj.Grupo)</h4>
+        &emsp;&emsp; <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="AgregarNuevoGrupo(@obj.CodigoNivel,@obj.CodigoAcademias)">Nuevo grupo</button>
+        <ul id="ul">
+            <li>
+                <table id="tab_@c" class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Leccion
+                            </th>
+                            <th>
+                                Hora
+                            </th>
+                            <th>
+                                Nombre
+                            </th>
+                            <th>
+                                Expositor
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.leccionesExpositores)
+    {
+        if (item.CodigoAcademiaNivel == obj.CodigoAcademiasNiveles)
+        {
 
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.NumeroLeccion)
-                                        </td>
-                                        @if (item.NumeroLeccion == 1)
-                                        {
-                                            <td>
-                                                8:00am - 9:00am
-                                            </td>
-                                        }
-                                        else if (item.NumeroLeccion == 2)
-                                        {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CodigoLeccionNavigation.NumeroLeccion)
+                        </td>
+                        @if (item.CodigoLeccionNavigation.NumeroLeccion == 1)
+    {
+                    <td>
+                        8:00am - 9:00am
+                    </td>
+}
+else if (item.CodigoLeccionNavigation.NumeroLeccion == 2)
+{
 
-                                            <td>
-                                                9:40am - 10:30am
-                                            </td>
-                                        }
-                                        else if (item.NumeroLeccion == 3)
-                                        {
+                    <td>
+                        9:40am - 10:30am
+                    </td>
+}
+else if (item.CodigoLeccionNavigation.NumeroLeccion == 3)
+{
 
-                                            <td>
-                                                10:30am - 11:20am
-                                            </td>
-                                        }
-                                        else if (item.NumeroLeccion == 4)
-                                        {
-                                            <td>
-                                                11:20am - 12:10am
-                                            </td>
+                    <td>
+                        10:30am - 11:20am
+                    </td>
+}
+else if (item.CodigoLeccionNavigation.NumeroLeccion == 4)
+{
+                    <td>
+                        11:20am - 12:10am
+                    </td>
 
-                                        }
-                                        else if (item.NumeroLeccion == 5)
-                                        {
+}
+else if (item.CodigoLeccionNavigation.NumeroLeccion == 5)
+{
 
-                                            <td>
-                                                1:00pm - 1:50pm
-                                            </td>
-                                        }
-                                        else if (item.NumeroLeccion == 6)
-                                        {
+                    <td>
+                        1:00pm - 1:50pm
+                    </td>
+}
+else if (item.CodigoLeccionNavigation.NumeroLeccion == 6)
+{
 
-                                            <td>
-                                                1:50pm - 2:40pm
-                                            </td>
-                                        }
+                    <td>
+                        1:50pm - 2:40pm
+                    </td>
+}
 
-                                        @*<td>
-                                            @Html.DisplayFor(modelItem => item.Nombre)
-                                        </td>*@
-                                        @*<td>
-                                            <select asp-for="@item." id="@c" style="height:35px;" class="form-control" asp-items="ViewBag.Guias"></select>
-                                            <span asp-validation-for="@item.Guia" class="text-danger"></span>
-                                        </td>*@
-                                    </tr>
-                                }
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CodigoLeccionNavigation.Nombre)
+                        </td>
+                        <td>
+                            <input type="hidden" id="l_@d" asp-for="@item.CodigoAcademiaLeccion" />
 
-                            }
-                        </tbody>
-                    </table>
+                            <select asp-for="@item.CodigoMaestro" id="@d" style="height:35px" class="form-control" asp-items="ViewBag.Expositores"></select>
+                            <span asp-validation-for="@item.CodigoMaestro" class="text-danger"></span>
 
-                </li>
-            </ul>
-        </li>
+
+                            <script>
+
+                        $(document).ready(function () {
+                                var indice = document.getElementById('@d').selectedIndex;
+                                $("#@d").change(function (event) {
+                                    var valor = $(this).val();
+
+                                    if (valor != "Asignar") {
+                                        indice = document.getElementById('@d').selectedIndex;
+                                        var url = "@Url.Action("AsignarExpositor", "Academias", new { parametros = "param-1" })";
+
+                                        var codAcLeccion = document.getElementById('l_' + '@d').value;
+
+                                        url = url.replace("param-1", valor + '/' + codAcLeccion);
+
+                                        $("#ul").load(url);
+                                    } else {
+                                        document.getElementById('@d').selectedIndex = indice;
+                                    }
+
+                                });
+                            });
+
+                            </script>
+
+
+                        </td>
+                    </tr>
+}
+                            d++;
+
+}
+                    </tbody>
+                </table>
+
+            </li>
+            <hr/>
+        </ul>
+    </li>
         c++;
 
     }
@@ -131,6 +164,17 @@
         } else {
             document.getElementById("tab_" + c).style.display = "table";
         }
+    }
+
+    function AgregarNuevoGrupo(nivel, academia) {
+
+        alert(nivel + "/" + academia);
+
+        var url = "@Url.Action("AgregarNuevoGrupo", "Academias", new { parametros = "param-1" })";
+
+        url = url.replace("param-1", nivel + '/' + academia);
+
+        $("#ul").load(url);
     }
 
 </script>

@@ -15,23 +15,17 @@
 
             <div class="form-group">
                 <label asp-for="Lider" class="control-label"></label>
-                <input class="form-control" type="text" name="Lider" list="personas" />
-                <datalist id="personas">
-                    @foreach (var item in Model.personas)
-                    {
-                        <option value="@item.CodigoPersona">@item.Nombre  @item.Apellido1</option>
-                    }
-                </datalist>
+                <select asp-for="Lider" class="form-control" asp-items="ViewBag.Asistente"></select>
             </div>
 
             <div class="form-group">
                 <label asp-for="Asistente" class="control-label"></label>
                 <select asp-for="Asistente" class="form-control" asp-items="ViewBag.Asistente"></select>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="CelulaRaiz" class="control-label"></label>
                 <select asp-for="CelulaRaiz" class="form-control" asp-items="ViewBag.CelulaRaiz"></select>
-            </div>
+            </div>*@
             <div class="form-group">
                 <label asp-for="Lugar" class="control-label"></label>
                 <input asp-for="Lugar" class="form-control" />
@@ -39,56 +33,63 @@
             </div>
             <div class="form-group">
                 <label asp-for="Direccion" class="control-label"></label>
-                <input asp-for="Direccion" class="form-control" />
+                <textarea asp-for="Direccion" class="form-control" rows="4" style="resize:vertical"></textarea>
                 <span asp-validation-for="Direccion" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Hora" class="control-label"></label>
-                <input asp-for="Hora" class="form-control" />
+                <select asp-for="Hora" class="form-control" asp-items="ViewBag.Horas"></select>
                 <span asp-validation-for="Hora" class="text-danger"></span>
             </div>
-            <div class="form-group funkyradio">
 
-                <div class="funkyradio-primary">
-                    <input asp-for="Dia" id="dia1" type="radio" value="Lunes" class="form-control" />
-                    <label for="dia1" class="control-label">Lunes</label>
-                    <span asp-validation-for="Dia" class="text-danger"></span>
-                </div>
-                <div class="funkyradio-primary">
-                    <input asp-for="Dia" id="dia2" type="radio" value="Martes" class="form-control" />
-                    <label for="dia2" class="control-label">Martes</label>
-                    <span asp-validation-for="Dia" class="text-danger"></span>
-                </div>
-                <div class="funkyradio-primary">
-                    <input asp-for="Dia" id="dia3" type="radio" value="Miércoles" class="form-control" />
-                    <label for="dia3" class="control-label">Miércoles</label>
-                    <span asp-validation-for="Dia" class="text-danger"></span>
-                </div>
-                <div class="funkyradio-primary">
-                    <input asp-for="Dia" id="dia4" type="radio" value="Jueves" class="form-control" />
-                    <label for="dia4" class="control-label">Jueves</label>
-                    <span asp-validation-for="Dia" class="text-danger"></span>
-                </div>
-                <div class="funkyradio-primary">
-                    <input asp-for="Dia" id="dia5" type="radio" value="Viernes" class="form-control" />
-                    <label for="dia5" class="control-label">Viernes</label>
-                    <span asp-validation-for="Dia" class="text-danger"></span>
-                </div>
-                <div class="funkyradio-primary">
-                    <input asp-for="Dia" id="dia6" type="radio" value="Sábado" class="form-control" />
-                    <label for="dia6" class="control-label">Sábado</label>
-                    <span asp-validation-for="Dia" class="text-danger"></span>
-                </div>
-                <div class="funkyradio-primary">
-                    <input asp-for="Dia" id="dia7" type="radio" value="Domingo" class="form-control" />
-                    <label for="dia7" class="control-label">Domingo</label>
-                    <span asp-validation-for="Dia" class="text-danger"></span>
-                </div>
-
-            </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <label asp-for="Dia" class="control-label"></label>
+
+                <div class="funkyradio">
+                    <div class="funkyradio-primary">
+                        <input asp-for="Dia" id="dia1" type="radio" value="Lunes" class="form-control" />
+                        <label for="dia1" class="control-label">Lunes</label>
+                        <span asp-validation-for="Dia" class="text-danger"></span>
+                    </div>
+                    <div class="funkyradio-primary">
+                        <input asp-for="Dia" id="dia2" type="radio" value="Martes" class="form-control" />
+                        <label for="dia2" class="control-label">Martes</label>
+                        <span asp-validation-for="Dia" class="text-danger"></span>
+                    </div>
+                    <div class="funkyradio-primary">
+                        <input asp-for="Dia" id="dia3" type="radio" value="Miércoles" class="form-control" />
+                        <label for="dia3" class="control-label">Miércoles</label>
+                        <span asp-validation-for="Dia" class="text-danger"></span>
+                    </div>
+                    <div class="funkyradio-primary">
+                        <input asp-for="Dia" id="dia4" type="radio" value="Jueves" class="form-control" />
+                        <label for="dia4" class="control-label">Jueves</label>
+                        <span asp-validation-for="Dia" class="text-danger"></span>
+                    </div>
+                    <div class="funkyradio-primary">
+                        <input asp-for="Dia" id="dia5" type="radio" value="Viernes" class="form-control" />
+                        <label for="dia5" class="control-label">Viernes</label>
+                        <span asp-validation-for="Dia" class="text-danger"></span>
+                    </div>
+                    <div class="funkyradio-primary">
+                        <input asp-for="Dia" id="dia6" type="radio" value="Sábado" class="form-control" />
+                        <label for="dia6" class="control-label">Sábado</label>
+                        <span asp-validation-for="Dia" class="text-danger"></span>
+                    </div>
+                    <div class="funkyradio-primary">
+                        <input asp-for="Dia" id="dia7" type="radio" value="Domingo" class="form-control" />
+                        <label for="dia7" class="control-label">Domingo</label>
+                        <span asp-validation-for="Dia" class="text-danger"></span>
+                    </div>
+
+                </div>
+
             </div>
+
+                
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
         </form>
     </div>
 </div>

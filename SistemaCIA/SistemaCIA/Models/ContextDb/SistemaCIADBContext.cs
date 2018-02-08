@@ -42,13 +42,7 @@ namespace SistemaCIA.Models.ContextDb
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseMySql("server=localhost;User Id=UserCIA;password=cia1q2w3e4r;database=SistemaCIADB;");
-            }
-        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { if (!optionsBuilder.IsConfigured) { optionsBuilder.UseMySql("server=localhost;User Id=UserCIA;password=cia1q2w3e4r;database=SistemaCIADB;"); } }
 
         public SistemaCIADBContext(DbContextOptions<SistemaCIADBContext> options)
             : base(options)
@@ -133,6 +127,9 @@ namespace SistemaCIA.Models.ContextDb
 
                 entity.ToTable("academiaslecciones");
 
+                entity.HasIndex(e => e.CodigoAcademiaNivel)
+                    .HasName("codigoAcademiaNivel");
+
                 entity.HasIndex(e => e.CodigoAcademias)
                     .HasName("codigoAcademias");
 
@@ -146,6 +143,10 @@ namespace SistemaCIA.Models.ContextDb
                     .HasColumnName("codigoAcademiaLeccion")
                     .HasColumnType("int(11)");
 
+                entity.Property(e => e.CodigoAcademiaNivel)
+                    .HasColumnName("codigoAcademiaNivel")
+                    .HasColumnType("int(11)");
+
                 entity.Property(e => e.CodigoAcademias)
                     .HasColumnName("codigoAcademias")
                     .HasColumnType("int(11)");
@@ -157,6 +158,12 @@ namespace SistemaCIA.Models.ContextDb
                 entity.Property(e => e.CodigoMaestro)
                     .HasColumnName("codigoMaestro")
                     .HasMaxLength(15);
+
+                entity.HasOne(d => d.CodigoAcademiaNivelNavigation)
+                    .WithMany(p => p.Academiaslecciones)
+                    .HasForeignKey(d => d.CodigoAcademiaNivel)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("academiaslecciones_ibfk_4");
 
                 entity.HasOne(d => d.CodigoAcademiasNavigation)
                     .WithMany(p => p.Academiaslecciones)
@@ -182,6 +189,9 @@ namespace SistemaCIA.Models.ContextDb
 
                 entity.ToTable("academiasmatriculas");
 
+                entity.HasIndex(e => e.CodigoAcademiaNivel)
+                    .HasName("codigoAcademiaNivel");
+
                 entity.HasIndex(e => e.CodigoAcademias)
                     .HasName("codigoAcademias");
 
@@ -203,6 +213,10 @@ namespace SistemaCIA.Models.ContextDb
                     .HasColumnName("becado")
                     .HasColumnType("int(11)");
 
+                entity.Property(e => e.CodigoAcademiaNivel)
+                    .HasColumnName("codigoAcademiaNivel")
+                    .HasColumnType("int(11)");
+
                 entity.Property(e => e.CodigoAcademias)
                     .HasColumnName("codigoAcademias")
                     .HasColumnType("int(11)");
@@ -216,10 +230,6 @@ namespace SistemaCIA.Models.ContextDb
                     .HasColumnName("codigoPersona")
                     .HasMaxLength(15);
 
-                entity.Property(e => e.Grupo)
-                    .HasColumnName("grupo")
-                    .HasColumnType("int(11)");
-
                 entity.Property(e => e.Observaciones)
                     .HasColumnName("observaciones")
                     .HasMaxLength(500);
@@ -227,6 +237,12 @@ namespace SistemaCIA.Models.ContextDb
                 entity.Property(e => e.Saldo)
                     .HasColumnName("saldo")
                     .HasColumnType("int(11)");
+
+                entity.HasOne(d => d.CodigoAcademiaNivelNavigation)
+                    .WithMany(p => p.Academiasmatriculas)
+                    .HasForeignKey(d => d.CodigoAcademiaNivel)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("academiasmatriculas_ibfk_4");
 
                 entity.HasOne(d => d.CodigoAcademiasNavigation)
                     .WithMany(p => p.Academiasmatriculas)
@@ -1150,6 +1166,9 @@ namespace SistemaCIA.Models.ContextDb
 
                 entity.ToTable("informescelulares");
 
+                entity.HasIndex(e => e.CodigoCelula)
+                    .HasName("codigoCelula");
+
                 entity.Property(e => e.CodigoInformeCelular)
                     .HasColumnName("codigoInformeCelular")
                     .HasColumnType("int(11)");
@@ -1157,6 +1176,11 @@ namespace SistemaCIA.Models.ContextDb
                 entity.Property(e => e.Asistencia)
                     .HasColumnName("asistencia")
                     .HasColumnType("int(11)");
+
+                entity.Property(e => e.CodigoCelula)
+                    .IsRequired()
+                    .HasColumnName("codigoCelula")
+                    .HasMaxLength(15);
 
                 entity.Property(e => e.Fecha)
                     .HasColumnName("fecha")
@@ -1177,6 +1201,11 @@ namespace SistemaCIA.Models.ContextDb
                 entity.Property(e => e.Visitas)
                     .HasColumnName("visitas")
                     .HasColumnType("int(11)");
+
+                entity.HasOne(d => d.CodigoCelulaNavigation)
+                    .WithMany(p => p.Informescelulares)
+                    .HasForeignKey(d => d.CodigoCelula)
+                    .HasConstraintName("informescelulares_ibfk_1");
             });
 
             modelBuilder.Entity<Matriculaenlinea>(entity =>

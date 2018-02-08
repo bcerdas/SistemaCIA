@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-02-2018 a las 11:00:42
--- Versión del servidor: 10.1.22-MariaDB
--- Versión de PHP: 7.1.4
+-- Tiempo de generación: 08-02-2018 a las 12:14:18
+-- Versión del servidor: 10.1.21-MariaDB
+-- Versión de PHP: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -44,13 +42,7 @@ CREATE TABLE `academias` (
 --
 
 INSERT INTO `academias` (`codigoAcademias`, `Nombre`, `fecha`, `cantNiveles`, `asistencia`, `montoIngreso`, `montoSalida`, `total`) VALUES
-(1, 'Prueba de niveles', '2018-12-12 00:00:00', 4, 0, 0, 0, 0),
-(2, 'Prueba 2', '2015-12-12 15:00:00', 6, 0, 0, 0, 0),
-(3, 'prueba sin niveles', '0001-01-01 00:00:00', 0, 0, 0, 0, 0),
-(4, 'PruebaCheck', '2018-02-06 00:00:00', 3, 0, 0, 0, 0),
-(5, 'Prueba con lecciones', '2018-02-07 00:00:00', 3, 0, 0, 0, 0),
-(6, 'Prueba con lecciones', '2018-02-07 00:00:00', 3, 0, 0, 0, 0),
-(7, 'prueba con lecciones automaticas', '2018-02-09 00:00:00', 4, 0, 0, 0, 0);
+(10, 'prueba con codigoAcademiaNivel 2', '2018-02-07 00:00:00', 3, 6, 10000, 0, 10000);
 
 -- --------------------------------------------------------
 
@@ -70,18 +62,9 @@ CREATE TABLE `academiasabono` (
 --
 
 INSERT INTO `academiasabono` (`codigoAcademiaAbono`, `codigoAcademiasMatricula`, `abono`, `fecha`) VALUES
-(4, 7, 2000, '2018-02-01 03:18:45'),
-(5, 3, 1000, '2018-02-01 03:22:48'),
-(6, 7, 1500, '2018-02-01 03:23:48'),
-(7, 7, 4000, '2018-02-01 03:24:18'),
-(8, 8, 1000, '2018-02-03 00:15:22'),
-(9, 9, 2000, '2018-02-03 01:29:09'),
-(10, 10, 2000, '2018-02-03 01:33:17'),
-(11, 11, 6000, '2018-02-03 01:40:44'),
-(13, 13, 2000, '2018-02-03 01:45:22'),
-(15, 3, 200, '2018-02-03 02:32:19'),
-(16, 9, 300, '2018-02-03 02:42:39'),
-(17, 14, 1000, '2018-02-07 00:29:14');
+(19, 16, 2000, '2018-02-07 23:19:42'),
+(20, 17, 5000, '2018-02-07 23:20:15'),
+(21, 21, 3000, '2018-02-08 01:10:36');
 
 -- --------------------------------------------------------
 
@@ -92,6 +75,7 @@ INSERT INTO `academiasabono` (`codigoAcademiaAbono`, `codigoAcademiasMatricula`,
 CREATE TABLE `academiaslecciones` (
   `codigoAcademiaLeccion` int(11) NOT NULL,
   `codigoAcademias` int(11) NOT NULL,
+  `codigoAcademiaNivel` int(11) DEFAULT NULL,
   `codigoMaestro` varchar(15) COLLATE utf8_spanish_ci DEFAULT NULL,
   `codigoLeccion` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -100,26 +84,26 @@ CREATE TABLE `academiaslecciones` (
 -- Volcado de datos para la tabla `academiaslecciones`
 --
 
-INSERT INTO `academiaslecciones` (`codigoAcademiaLeccion`, `codigoAcademias`, `codigoMaestro`, `codigoLeccion`) VALUES
-(1, 7, NULL, 28),
-(2, 7, NULL, 54),
-(3, 7, NULL, 53),
-(4, 7, NULL, 52),
-(5, 7, NULL, 51),
-(6, 7, NULL, 50),
-(7, 7, NULL, 49),
-(8, 7, NULL, 30),
-(9, 7, NULL, 29),
-(10, 7, NULL, 27),
-(11, 7, NULL, 62),
-(12, 7, NULL, 25),
-(13, 7, NULL, 18),
-(14, 7, NULL, 17),
-(15, 7, NULL, 16),
-(16, 7, NULL, 15),
-(17, 7, NULL, 14),
-(18, 7, NULL, 13),
-(19, 7, NULL, 26);
+INSERT INTO `academiaslecciones` (`codigoAcademiaLeccion`, `codigoAcademias`, `codigoAcademiaNivel`, `codigoMaestro`, `codigoLeccion`) VALUES
+(33, 10, 21, 'CER-123', 13),
+(34, 10, 21, 'CER-123', 14),
+(35, 10, 21, 'CER-123', 15),
+(36, 10, 21, 'CER-123', 16),
+(37, 10, 21, 'CER-123', 17),
+(38, 10, 21, 'CER-123', 18),
+(39, 10, 22, 'AN-100', 43),
+(40, 10, 22, 'AN-100', 44),
+(41, 10, 22, 'AN-100', 45),
+(42, 10, 22, 'AN-100', 46),
+(43, 10, 22, 'AN-100', 47),
+(44, 10, 22, 'AN-100', 48),
+(45, 10, 23, 'f10d2a3a-9b96-4', 63),
+(46, 10, 26, 'f10d2a3a-9b96-4', 13),
+(47, 10, 26, 'f10d2a3a-9b96-4', 14),
+(48, 10, 26, 'CER-123', 15),
+(49, 10, 26, 'AN-100', 16),
+(50, 10, 26, 'CER-123', 17),
+(51, 10, 26, 'f10d2a3a-9b96-4', 18);
 
 -- --------------------------------------------------------
 
@@ -130,29 +114,26 @@ INSERT INTO `academiaslecciones` (`codigoAcademiaLeccion`, `codigoAcademias`, `c
 CREATE TABLE `academiasmatriculas` (
   `codigoAcademiaMatricula` int(11) NOT NULL,
   `codigoAcademias` int(11) NOT NULL,
+  `codigoAcademiaNivel` int(11) DEFAULT NULL,
   `codigoPersona` varchar(15) COLLATE utf8_spanish_ci NOT NULL,
   `codigoNivel` int(11) NOT NULL,
   `observaciones` varchar(500) COLLATE utf8_spanish_ci DEFAULT NULL,
   `saldo` int(11) NOT NULL,
   `abono` int(11) NOT NULL,
-  `becado` int(11) DEFAULT NULL,
-  `grupo` int(11) NOT NULL
+  `becado` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `academiasmatriculas`
 --
 
-INSERT INTO `academiasmatriculas` (`codigoAcademiaMatricula`, `codigoAcademias`, `codigoPersona`, `codigoNivel`, `observaciones`, `saldo`, `abono`, `becado`, `grupo`) VALUES
-(3, 2, 'AND-1234', 8, 'ESTE MAE ', 800, 5200, 0, 1),
-(4, 2, 'AN-100', 3, 'holis', 2000, 1000, 1, 1),
-(7, 1, 'aa1c1e00-3b32-4', 1, NULL, -1500, 7500, 0, 1),
-(8, 1, '606ce9d7-96d8-4', 9, NULL, 2000, 1000, 1, 1),
-(9, 1, 'ME-44444', 9, 'si', 700, 2300, 1, 1),
-(10, 2, 'ME-44444', 10, 'Si claro que si', 1000, 2000, 1, 1),
-(11, 2, 'CER-123', 10, NULL, 0, 6000, 0, 1),
-(13, 2, '606ce9d7-96d8-4', 13, NULL, 4000, 2000, 0, 1),
-(14, 4, '72786524-d747-4', 11, NULL, 2000, 1000, 1, 1);
+INSERT INTO `academiasmatriculas` (`codigoAcademiaMatricula`, `codigoAcademias`, `codigoAcademiaNivel`, `codigoPersona`, `codigoNivel`, `observaciones`, `saldo`, `abono`, `becado`) VALUES
+(16, 10, 21, '72786524-d747-4', 3, NULL, 1000, 2000, 1),
+(17, 10, 23, 'AN-100', 13, NULL, 1000, 5000, 0),
+(18, 10, 22, '606ce9d7-96d8-4', 8, NULL, 6000, 0, 0),
+(19, 10, 23, 'ka12345', 13, NULL, 6000, 0, 0),
+(20, 10, 21, 'ME-44444', 3, NULL, 6000, 0, 0),
+(21, 10, 23, 'AND-1234', 13, NULL, 3000, 3000, 0);
 
 -- --------------------------------------------------------
 
@@ -172,23 +153,10 @@ CREATE TABLE `academiasniveles` (
 --
 
 INSERT INTO `academiasniveles` (`codigoAcademiasNiveles`, `codigoAcademias`, `codigoNivel`, `grupo`) VALUES
-(1, 1, 1, 1),
-(2, 1, 4, 1),
-(3, 1, 9, 1),
-(4, 1, 11, 1),
-(5, 2, 1, 1),
-(6, 2, 2, 1),
-(7, 2, 3, 1),
-(8, 2, 8, 1),
-(9, 2, 10, 1),
-(10, 2, 13, 1),
-(11, 4, 8, 1),
-(12, 4, 11, 1),
-(13, 4, 12, 1),
-(14, 7, 12, 1),
-(15, 7, 5, 1),
-(16, 7, 9, 1),
-(17, 7, 3, 1);
+(21, 10, 3, 1),
+(22, 10, 8, 1),
+(23, 10, 13, 1),
+(26, 10, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -247,6 +215,13 @@ CREATE TABLE `celulas` (
   `dia` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `promedioPersonas` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `celulas`
+--
+
+INSERT INTO `celulas` (`codigoCelula`, `lider`, `asistente`, `celulaRaiz`, `lugar`, `direccion`, `hora`, `dia`, `promedioPersonas`) VALUES
+('35fa6479-5ac4-4', 'ka12345', 'ka12345', NULL, 'Tres Rios', 'De el parque central 100mts este.', '06 : 30 pm', 'Sábado', 0);
 
 -- --------------------------------------------------------
 
@@ -454,6 +429,7 @@ INSERT INTO `encuentrosmatricula` (`codigoEncMatricula`, `codigoEncuentro`, `cod
 
 CREATE TABLE `informescelulares` (
   `codigoInformeCelular` int(11) NOT NULL,
+  `codigoCelula` varchar(15) COLLATE utf8_spanish_ci NOT NULL,
   `fecha` datetime NOT NULL,
   `asistencia` int(11) NOT NULL,
   `visitas` int(11) NOT NULL,
@@ -461,6 +437,13 @@ CREATE TABLE `informescelulares` (
   `observaciones` varchar(500) COLLATE utf8_spanish_ci DEFAULT NULL,
   `seRealizo` bit(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `informescelulares`
+--
+
+INSERT INTO `informescelulares` (`codigoInformeCelular`, `codigoCelula`, `fecha`, `asistencia`, `visitas`, `ofrenda`, `observaciones`, `seRealizo`) VALUES
+(3, '35fa6479-5ac4-4', '2018-02-08 06:30:00', 17, 3, 5100, '.', b'1');
 
 -- --------------------------------------------------------
 
@@ -684,16 +667,16 @@ CREATE TABLE `personas` (
 --
 
 INSERT INTO `personas` (`codigoPersona`, `codigoMinisterio`, `codigoArea`, `lider`, `nombre`, `apellido1`, `apellido2`, `nombreCompletoMadre`, `telefonoMadre`, `nombreCompletoPadre`, `telefonoPadre`, `nombreCompletoConyuge`, `telefonoConyuge`, `nombreCompletoEncargado`, `telefonoEncargado`, `parentescoEncargado`, `telefono`, `direccion`, `fechaIngreso`, `nivelAcademias`, `fechaDeNacimiento`, `cumbreTimoteos`, `cumbreLideres`, `sexo`) VALUES
-('606ce9d7-96d8-4', NULL, NULL, 'ka12345', 'prueba de hola', 'holis', 'holas', 'yuca', '777', 'camote', '8888', NULL, NULL, NULL, NULL, NULL, '45678', '8765gggfrrr', '2018-01-26 00:00:00', 14, '2018-01-27 00:12:00', b'1111111111111111111111111111111', b'1111111111111111111111111111111', 'Femenino'),
-('72786524-d747-4', NULL, NULL, 'ka12345', 'Esteban', 'Marin', 'Chinchilla', NULL, NULL, NULL, NULL, 'Pepa alfonsa marin laguniada', '11111111', 'ronald', '33333333', 'compa de trabajo', '22222222', 'por ahi a la vuelta', '2018-01-26 00:00:00', 14, '2018-01-25 00:12:00', b'1111111111111111111111111111111', b'1111111111111111111111111111111', 'Masculino'),
-('aa1c1e00-3b32-4', NULL, NULL, 'ka12345', 'Pepe', 'ljlkj', 'kljkj', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '43353', 'rrerer', '2018-01-19 00:00:00', 14, '2018-01-26 16:44:00', b'1111111111111111111111111111111', b'1111111111111111111111111111111', 'ff'),
-('AN-100', 11, NULL, 'ka12345', 'Antonia', 'Qwerty', 'Asdpo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '96325', NULL, NULL, 7, NULL, b'1111111111111111111111111111111', b'1111111111111111111111111111111', 'Femenino'),
-('AND-1234', 7, NULL, 'ka12345', 'Andres', 'Blanco', 'Duran', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '213213', NULL, NULL, 8, NULL, b'1111111111111111111111111111111', b'1111111111111111111111111111111', 'Masculino'),
-('c67e0c2b-0558-4', NULL, NULL, 'ka12345', 'pruebaak7', 'jajaja', 'jajaja', 'jajajaa', '333', 'ajajaja', '333', 'jajaja', '222', 'jj', '222', 'jnjv', '9999', 'jfhjsfbhsbfjhbwfj', '2018-01-19 00:00:00', 14, '2018-01-19 00:12:00', b'1111111111111111111111111111111', b'1111111111111111111111111111111', 'desconocid'),
-('CER-123', 5, NULL, 'ka12345', 'Bryan', 'Cerdas', 'Salas', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '123456', NULL, NULL, 11, '1995-01-18 00:00:00', b'1111111111111111111111111111111', b'1111111111111111111111111111111', 'Masculino'),
-('f10d2a3a-9b96-4', NULL, NULL, 'ka12345', 'Pepe', 'Cerdas', 'Sallon', 'Pepa', '1111', 'Pepo', '2222', 'Pepina', '3333', 'Pepino', '4444', 'vegetal', '5555', 'verdureria', '2018-01-19 00:00:00', 14, '2018-01-19 00:12:00', b'1111111111111111111111111111111', b'1111111111111111111111111111111', 'tuberculo'),
-('ka12345', 8, NULL, 'ka12345', 'Kamil', 'Sallon', 'Arroyo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '131132', NULL, NULL, 3, '1997-01-02 00:00:00', b'1111111111111111111111111111111', b'1111111111111111111111111111111', 'Masculino'),
-('ME-44444', 3, NULL, 'ka12345', 'Maria', 'CAA', 'PEEE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '12222', NULL, NULL, 6, '2018-01-03 00:00:00', b'1111111111111111111111111111111', b'1111111111111111111111111111111', 'Femenino');
+('606ce9d7-96d8-4', NULL, NULL, 'ka12345', 'prueba de hola', 'holis', 'holas', 'yuca', '777', 'camote', '8888', NULL, NULL, NULL, NULL, NULL, '45678', '8765gggfrrr', '2018-01-26 00:00:00', 14, '2018-01-27 00:12:00', b'1', b'1', 'Femenino'),
+('72786524-d747-4', NULL, NULL, 'ka12345', 'Esteban', 'Marin', 'Chinchilla', NULL, NULL, NULL, NULL, 'Pepa alfonsa marin laguniada', '11111111', 'ronald', '33333333', 'compa de trabajo', '22222222', 'por ahi a la vuelta', '2018-01-26 00:00:00', 14, '2018-01-25 00:12:00', b'1', b'1', 'Masculino'),
+('aa1c1e00-3b32-4', NULL, NULL, 'ka12345', 'Pepe', 'ljlkj', 'kljkj', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '43353', 'rrerer', '2018-01-19 00:00:00', 14, '2018-01-26 16:44:00', b'1', b'1', 'ff'),
+('AN-100', 11, NULL, 'ka12345', 'Antonia', 'Qwerty', 'Asdpo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '96325', NULL, NULL, 7, NULL, b'1', b'1', 'Femenino'),
+('AND-1234', 7, NULL, 'ka12345', 'Andres', 'Blanco', 'Duran', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '213213', NULL, NULL, 8, NULL, b'1', b'1', 'Masculino'),
+('c67e0c2b-0558-4', NULL, NULL, 'ka12345', 'pruebaak7', 'jajaja', 'jajaja', 'jajajaa', '333', 'ajajaja', '333', 'jajaja', '222', 'jj', '222', 'jnjv', '9999', 'jfhjsfbhsbfjhbwfj', '2018-01-19 00:00:00', 14, '2018-01-19 00:12:00', b'1', b'1', 'desconocid'),
+('CER-123', 5, NULL, 'ka12345', 'Bryan', 'Cerdas', 'Salas', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '123456', NULL, NULL, 11, '1995-01-18 00:00:00', b'1', b'1', 'Masculino'),
+('f10d2a3a-9b96-4', NULL, NULL, 'ka12345', 'Pepe', 'Cerdas', 'Sallon', 'Pepa', '1111', 'Pepo', '2222', 'Pepina', '3333', 'Pepino', '4444', 'vegetal', '5555', 'verdureria', '2018-01-19 00:00:00', 14, '2018-01-19 00:12:00', b'1', b'1', 'tuberculo'),
+('ka12345', 8, NULL, 'ka12345', 'Kamil', 'Sallon', 'Arroyo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '131132', NULL, NULL, 3, '1997-01-02 00:00:00', b'1', b'1', 'Masculino'),
+('ME-44444', 3, NULL, 'ka12345', 'Maria', 'CAA', 'PEEE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '12222', NULL, NULL, 6, '2018-01-03 00:00:00', b'1', b'1', 'Femenino');
 
 -- --------------------------------------------------------
 
@@ -718,7 +701,11 @@ INSERT INTO `personasroles` (`codigoPersonasRoles`, `codigoPersona`, `codigoRol`
 (4, 'ME-44444', 5),
 (5, 'f10d2a3a-9b96-4', 2),
 (6, 'CER-123', 11),
-(7, 'c67e0c2b-0558-4', 2);
+(7, 'c67e0c2b-0558-4', 2),
+(8, 'CER-123', 8),
+(9, 'AN-100', 8),
+(10, 'f10d2a3a-9b96-4', 8),
+(11, 'ME-44444', 8);
 
 -- --------------------------------------------------------
 
@@ -919,7 +906,8 @@ ALTER TABLE `academiaslecciones`
   ADD PRIMARY KEY (`codigoAcademiaLeccion`),
   ADD KEY `codigoAcademias` (`codigoAcademias`),
   ADD KEY `codigoMaestro` (`codigoMaestro`),
-  ADD KEY `codigoLeccion` (`codigoLeccion`);
+  ADD KEY `codigoLeccion` (`codigoLeccion`),
+  ADD KEY `codigoAcademiaNivel` (`codigoAcademiaNivel`);
 
 --
 -- Indices de la tabla `academiasmatriculas`
@@ -928,7 +916,8 @@ ALTER TABLE `academiasmatriculas`
   ADD PRIMARY KEY (`codigoAcademiaMatricula`),
   ADD KEY `codigoAcademias` (`codigoAcademias`),
   ADD KEY `codigoPersona` (`codigoPersona`),
-  ADD KEY `codigoNivel` (`codigoNivel`);
+  ADD KEY `codigoNivel` (`codigoNivel`),
+  ADD KEY `codigoAcademiaNivel` (`codigoAcademiaNivel`);
 
 --
 -- Indices de la tabla `academiasniveles`
@@ -1055,7 +1044,8 @@ ALTER TABLE `encuentrosmatricula`
 -- Indices de la tabla `informescelulares`
 --
 ALTER TABLE `informescelulares`
-  ADD PRIMARY KEY (`codigoInformeCelular`);
+  ADD PRIMARY KEY (`codigoInformeCelular`),
+  ADD KEY `codigoCelula` (`codigoCelula`);
 
 --
 -- Indices de la tabla `matriculaenlinea`
@@ -1181,27 +1171,27 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `academias`
 --
 ALTER TABLE `academias`
-  MODIFY `codigoAcademias` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `codigoAcademias` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `academiasabono`
 --
 ALTER TABLE `academiasabono`
-  MODIFY `codigoAcademiaAbono` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `codigoAcademiaAbono` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT de la tabla `academiaslecciones`
 --
 ALTER TABLE `academiaslecciones`
-  MODIFY `codigoAcademiaLeccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `codigoAcademiaLeccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 --
 -- AUTO_INCREMENT de la tabla `academiasmatriculas`
 --
 ALTER TABLE `academiasmatriculas`
-  MODIFY `codigoAcademiaMatricula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `codigoAcademiaMatricula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT de la tabla `academiasniveles`
 --
 ALTER TABLE `academiasniveles`
-  MODIFY `codigoAcademiasNiveles` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `codigoAcademiasNiveles` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT de la tabla `areasdeministerio`
 --
@@ -1266,7 +1256,7 @@ ALTER TABLE `encuentrosmatricula`
 -- AUTO_INCREMENT de la tabla `informescelulares`
 --
 ALTER TABLE `informescelulares`
-  MODIFY `codigoInformeCelular` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `codigoInformeCelular` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `matriculaenlineaalumnos`
 --
@@ -1291,7 +1281,7 @@ ALTER TABLE `niveleslecciones`
 -- AUTO_INCREMENT de la tabla `personasroles`
 --
 ALTER TABLE `personasroles`
-  MODIFY `codigoPersonasRoles` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `codigoPersonasRoles` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT de la tabla `procesoox3`
 --
@@ -1348,7 +1338,8 @@ ALTER TABLE `academiasabono`
 ALTER TABLE `academiaslecciones`
   ADD CONSTRAINT `academiaslecciones_ibfk_1` FOREIGN KEY (`codigoAcademias`) REFERENCES `academias` (`codigoAcademias`),
   ADD CONSTRAINT `academiaslecciones_ibfk_2` FOREIGN KEY (`codigoMaestro`) REFERENCES `personas` (`codigoPersona`),
-  ADD CONSTRAINT `academiaslecciones_ibfk_3` FOREIGN KEY (`codigoLeccion`) REFERENCES `niveleslecciones` (`codigoNivelLeccion`);
+  ADD CONSTRAINT `academiaslecciones_ibfk_3` FOREIGN KEY (`codigoLeccion`) REFERENCES `niveleslecciones` (`codigoNivelLeccion`),
+  ADD CONSTRAINT `academiaslecciones_ibfk_4` FOREIGN KEY (`codigoAcademiaNivel`) REFERENCES `academiasniveles` (`codigoAcademiasNiveles`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `academiasmatriculas`
@@ -1356,7 +1347,8 @@ ALTER TABLE `academiaslecciones`
 ALTER TABLE `academiasmatriculas`
   ADD CONSTRAINT `academiasmatriculas_ibfk_1` FOREIGN KEY (`codigoAcademias`) REFERENCES `academias` (`codigoAcademias`),
   ADD CONSTRAINT `academiasmatriculas_ibfk_2` FOREIGN KEY (`codigoPersona`) REFERENCES `personas` (`codigoPersona`),
-  ADD CONSTRAINT `academiasmatriculas_ibfk_3` FOREIGN KEY (`codigoNivel`) REFERENCES `niveles` (`codigoNivel`);
+  ADD CONSTRAINT `academiasmatriculas_ibfk_3` FOREIGN KEY (`codigoNivel`) REFERENCES `niveles` (`codigoNivel`),
+  ADD CONSTRAINT `academiasmatriculas_ibfk_4` FOREIGN KEY (`codigoAcademiaNivel`) REFERENCES `academiasniveles` (`codigoAcademiasNiveles`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `academiasniveles`
@@ -1456,6 +1448,12 @@ ALTER TABLE `encuentrosmatricula`
   ADD CONSTRAINT `encuentrosmatricula_ibfk_3` FOREIGN KEY (`guia`) REFERENCES `personas` (`codigoPersona`);
 
 --
+-- Filtros para la tabla `informescelulares`
+--
+ALTER TABLE `informescelulares`
+  ADD CONSTRAINT `informescelulares_ibfk_1` FOREIGN KEY (`codigoCelula`) REFERENCES `celulas` (`codigoCelula`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `matriculaenlinea`
 --
 ALTER TABLE `matriculaenlinea`
@@ -1534,7 +1532,6 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `usuarios`
   ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`codigoPersona`) REFERENCES `personas` (`codigoPersona`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

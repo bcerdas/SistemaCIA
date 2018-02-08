@@ -10,7 +10,7 @@ namespace SistemaCIA.Models.Academias
     {
 
         public int CodigoAcademia { set; get; } 
-        public List<AcNivelesExpositores> nivelesLecciones { set; get; }
+        public List<Academiaslecciones> leccionesExpositores { set; get; }
         public List<Academiasniveles> academiasNiveles { set; get; }
 
 

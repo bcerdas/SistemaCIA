@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SistemaCIA.Models.Cells;
 using SistemaCIA.Models.ContextDb;
+using SistemaCIA.Models.Session;
 
 namespace SistemaCIA.Controllers
 {
@@ -50,15 +51,79 @@ namespace SistemaCIA.Controllers
         // GET: Celulas/Create
         public IActionResult AgregarCelula()
         {
-            ViewData["Asistente"] = new SelectList(_context.Personas, "CodigoPersona", "CodigoPersona");
-            ViewData["CelulaRaiz"] = new SelectList(_context.Celulas, "CodigoCelula", "CodigoCelula");
-            ViewData["Lider"] = new SelectList(_context.Personas, "CodigoPersona", "CodigoPersona");
+            ViewData["Asistente"] = new SelectList(_context.Personas, "CodigoPersona", "Nombre");
+            //ViewData["CelulaRaiz"] = new SelectList(_context.Celulas, "CodigoCelula", "CelulaRaizNavigation.Lider");
+            ViewData["Lider"] = new SelectList(_context.Personas, "CodigoPersona", "Nombre");
 
-            var pepe = _context.Personas.ToList();
-            AgregarCelulaModel model = new AgregarCelulaModel();
-            model.personas = pepe;
+            List<SelectListItem> horas = new List<SelectListItem>();
 
-            return View(model);
+            //Aqui llenamos el dropdownlist de las horas
+
+            #region AM
+            for (int h = 7; h < 12; h++)
+            {
+                for (int m = 0; m <= 30; m = m + 30)
+                {
+                    string hora = "";
+
+                    if (h > 9 & m == 0)
+                    {
+                        hora = h + " : " + "0" + m + " am";
+                    }
+                    else if(h >= 0 && h < 10 && m < 10)
+                    {
+                        hora = "0" + h + " : " + "0" + m + " am";
+                    }
+                    else if (h >= 0 && h < 10)
+                    {
+                        hora = "0" + h + " : " + m + " am";
+                    }
+                    else
+                    {
+                        hora = h + " : " + m + " am";
+                    }
+
+                    horas.Add(new SelectListItem() { Text = hora, Value = hora });
+                }
+            }
+
+            #endregion
+
+            #region MD
+            var medioDia = "12 : 00 md";
+            horas.Add(new SelectListItem() { Text = medioDia, Value = medioDia });
+            medioDia = "12 : 30 pm";
+            horas.Add(new SelectListItem() { Text = medioDia, Value = medioDia });
+            #endregion
+
+            #region PM
+            for (int h = 1; h <= 9; h++)
+            {
+                for (int m = 0; m <= 30; m = m + 30)
+                {
+                    string hora = "";
+
+                    if (h >= 0 && h < 10 && m < 10)
+                    {
+                        hora = "0" + h + " : " + "0" + m + " pm";
+                    }
+                    else if (h >= 0 && h < 10)
+                    {
+                        hora = "0" + h + " : " + m + " pm";
+                    }
+                    else
+                    {
+                        hora = h + " : " + m + " pm";
+                    }
+
+                    horas.Add(new SelectListItem() { Text = hora, Value = hora });
+                }
+            }
+            #endregion
+
+            ViewBag.Horas = horas;
+
+            return View();
         }
 
         // POST: Celulas/Create
@@ -66,18 +131,55 @@ namespace SistemaCIA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AgregarCelula([Bind("CodigoCelula,Lider,Asistente,CelulaRaiz,Lugar,Direccion,Hora,Dia,PromedioPersonas")] AgregarCelulaModel celulas)
+        public async Task<IActionResult> AgregarCelula(AgregarCelulaModel celula)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(celulas);
+                Celulas nuevaCelula = new Celulas() {
+                    Lider = celula.Lider,
+                    Asistente = celula.Asistente,
+                    CelulaRaiz = celula.CelulaRaiz,
+                    Dia = celula.Dia,
+                    Direccion = celula.Direccion,
+                    Hora = celula.Hora,
+                    Lugar = celula.Lugar,
+                    PromedioPersonas = 0
+                };
+
+                _context.Celulas.Add(nuevaCelula);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Asistente"] = new SelectList(_context.Personas, "CodigoPersona", "CodigoPersona", celulas.Asistente);
-            ViewData["CelulaRaiz"] = new SelectList(_context.Celulas, "CodigoCelula", "CodigoCelula", celulas.CelulaRaiz);
-            ViewData["Lider"] = new SelectList(_context.Personas, "CodigoPersona", "CodigoPersona", celulas.Lider);
-            return View(celulas);
+
+            ViewData["Asistente"] = new SelectList(_context.Personas, "CodigoPersona", "CodigoPersona");
+            ViewData["CelulaRaiz"] = new SelectList(_context.Celulas, "CodigoCelula", "CodigoCelula");
+            ViewData["Lider"] = new SelectList(_context.Personas, "CodigoPersona", "CodigoPersona");
+
+            return View();
+        }
+
+
+        public IActionResult AgregarInforme( )
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AgregarInforme(Informescelulares informe)
+        {
+            if (ModelState.IsValid)
+            {
+                if (SessionHelper.ExisteUsuarioEnSesion())
+                {
+                    var celula = _context.Celulas.SingleOrDefault(x => x.Lider == SessionHelper.ObtenerCodigoPersona);
+                    informe.CodigoCelula = celula.CodigoCelula;
+                    _context.Informescelulares.Add(informe);
+                    await _context.SaveChangesAsync();
+                }  
+            }
+
+            return View();//enviar al index de informes
         }
 
         // GET: Celulas/Edit/5

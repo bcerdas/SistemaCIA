@@ -9,6 +9,7 @@ namespace SistemaCIA.Models.ContextDb
         {
             Boletasconsolidacion = new HashSet<Boletasconsolidacion>();
             Celulaspersonas = new HashSet<Celulaspersonas>();
+            Informescelulares = new HashSet<Informescelulares>();
             InverseCelulaRaizNavigation = new HashSet<Celulas>();
         }
 
@@ -27,6 +28,7 @@ namespace SistemaCIA.Models.ContextDb
         public Personas LiderNavigation { get; set; }
         public ICollection<Boletasconsolidacion> Boletasconsolidacion { get; set; }
         public ICollection<Celulaspersonas> Celulaspersonas { get; set; }
+        public ICollection<Informescelulares> Informescelulares { get; set; }
         public ICollection<Celulas> InverseCelulaRaizNavigation { get; set; }
     }
 }
