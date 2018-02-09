@@ -1,7 +1,7 @@
 ﻿@model SistemaCIA.Models.ContextDb.Procesoox3
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Agregar Proceso Ox3";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -12,7 +12,7 @@
 <button class="btn-next" style="float:none;" id="btnpopu" value="Agregar Celula" onclick="ShowPopup();"><i class="fa fa-user-plus"></i></button>
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="AgregarProcesoX3">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Nombre" class="control-label"></label>
@@ -30,7 +30,15 @@
                 <span asp-validation-for="FechaFinal" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="AperturaDeCelulas" /> @Html.DisplayNameFor(model => model.AperturaDeCelulas)
+                    </label>
+                </div>
+            </div>
+            <input type="hidden" id="celulas" name="celulas" />
+            <div class="form-group">
+                <input type="submit" value="Guardar" onclick="AgregarProcesoOx3()" class="btn btn-default" />
             </div>
         </form>
     </div>
@@ -143,6 +151,29 @@
             td.innerText = text;
         }
         return  td;
+    }
+
+
+    function AgregarProcesoOx3() {
+
+        var celulas = "";
+        var tabla = document.getElementById("tbCelulas");
+        for (var i = 1; i < tabla.rows.length; i++) {
+            alert(tabla.rows.length);
+            if (i == (tabla.rows.length - 1)) {
+
+                celulas = celulas + tabla.rows[i].cells[0].innerText;
+            } else {
+
+                celulas = celulas + tabla.rows[i].cells[0].innerText + "/";
+            }
+
+            alert(tabla.rows[i].cells[0].innerText);
+            
+        }
+
+        alert(celulas);
+        document.getElementById("celulas").value = celulas;
     }
 
 </script>

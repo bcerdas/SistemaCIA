@@ -53,13 +53,41 @@ namespace SistemaCIA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AgregarProcesoX3([Bind("CodigoProcesoOx3,FechaInicio,FechaFinal,CantOrando,TotalConvertidos")] Procesoox3 procesoox3)
+        public async Task<IActionResult> AgregarProcesoX3(Procesoox3 procesoox3, string celulas)
         {
             if (ModelState.IsValid)
             {
+                var separados = celulas.Split("/");
+                procesoox3.CantOrando = 0;
+                procesoox3.TotalConvertidos = 0;
+
                 _context.Add(procesoox3);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                var result = await _context.SaveChangesAsync();
+
+                if (result > 0)
+                {
+                    var procesoOx3Agregado = _context.Procesoox3.LastOrDefault();
+
+                    for (int i = 0; i < separados.Length; i++)
+                    {
+                        var procesoOx3Celula = new Procesox3celulas()
+                        {
+                            CodigoCelula = separados[i],
+                            CantidadPersonasOrando = 0,
+                            CodigoProcesoX3 = procesoOx3Agregado.CodigoProcesoOx3
+                        };
+
+                        _context.Procesox3celulas.Add(procesoOx3Celula);
+
+                    }
+
+                    var result2 = await _context.SaveChangesAsync();
+                    if (result2 > 0)
+                    {
+                        return RedirectToAction(nameof(Index));//Hay que cambiarlo
+                    }
+                }
+                
             }
             return View(procesoox3);
         }
