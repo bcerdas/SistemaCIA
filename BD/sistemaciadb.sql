@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-02-2018 a las 12:14:18
+-- Tiempo de generación: 09-02-2018 a las 06:21:38
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -761,20 +761,29 @@ CREATE TABLE `procesoox3informer6` (
 
 CREATE TABLE `procesoox3personas` (
   `codigoProcesoOx3Personas` int(11) NOT NULL,
+  `codigoProceso0x3PersonaOrando` int(11) NOT NULL,
+  `nombreCompleto` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `numeroPersona` int(11) NOT NULL,
+  `necesidades` varchar(500) COLLATE utf8_spanish_ci NOT NULL,
+  `contactoUno` bit(1) NOT NULL,
+  `observacionesContactoUno` varchar(5000) COLLATE utf8_spanish_ci NOT NULL,
+  `contactoDos` bit(1) NOT NULL,
+  `observacionesContactoDos` varchar(500) COLLATE utf8_spanish_ci NOT NULL,
+  `asistioR5` bit(1) NOT NULL,
+  `asistioR6` bit(1) NOT NULL,
+  `seConvirtio` bit(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `procesoox3personasorando`
+--
+
+CREATE TABLE `procesoox3personasorando` (
+  `codigoProcesoOx3PersonaOrando` int(11) NOT NULL,
   `codigoProcesoOx3` int(11) NOT NULL,
   `codigopersona` varchar(15) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `nombre1` varchar(70) COLLATE utf8_spanish_ci NOT NULL,
-  `nombre2` varchar(70) COLLATE utf8_spanish_ci NOT NULL,
-  `nombre3` varchar(70) COLLATE utf8_spanish_ci NOT NULL,
-  `observaciones1` varchar(500) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `observaciones2` varchar(500) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `observaciones3` varchar(500) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `contactoUno1` bit(1) DEFAULT NULL,
-  `contactoUno2` bit(1) DEFAULT NULL,
-  `contactoUno3` bit(1) DEFAULT NULL,
-  `contactoDos1` bit(1) DEFAULT NULL,
-  `contactoDos2` bit(1) DEFAULT NULL,
-  `contactoDos3` bit(1) DEFAULT NULL,
   `r5Fecha` datetime DEFAULT NULL,
   `r5Lugar` varchar(40) COLLATE utf8_spanish_ci DEFAULT NULL,
   `r5Direccion` varchar(500) COLLATE utf8_spanish_ci DEFAULT NULL,
@@ -783,6 +792,19 @@ CREATE TABLE `procesoox3personas` (
   `r6Lugar` varchar(40) COLLATE utf8_spanish_ci DEFAULT NULL,
   `r6Direccion` varchar(500) COLLATE utf8_spanish_ci DEFAULT NULL,
   `r6Hora` varchar(10) COLLATE utf8_spanish_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `procesox3celulas`
+--
+
+CREATE TABLE `procesox3celulas` (
+  `codigoProcesoX3Celula` int(11) NOT NULL,
+  `codigoCelula` varchar(15) COLLATE utf8_spanish_ci NOT NULL,
+  `codigoProcesoX3` int(11) NOT NULL,
+  `cantidadPersonasOrando` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -1124,8 +1146,23 @@ ALTER TABLE `procesoox3informer6`
 --
 ALTER TABLE `procesoox3personas`
   ADD PRIMARY KEY (`codigoProcesoOx3Personas`),
+  ADD KEY `codigoProceso0x3PersonaOrando` (`codigoProceso0x3PersonaOrando`);
+
+--
+-- Indices de la tabla `procesoox3personasorando`
+--
+ALTER TABLE `procesoox3personasorando`
+  ADD PRIMARY KEY (`codigoProcesoOx3PersonaOrando`),
   ADD KEY `codigoProcesoOx3` (`codigoProcesoOx3`),
   ADD KEY `codigopersona` (`codigopersona`);
+
+--
+-- Indices de la tabla `procesox3celulas`
+--
+ALTER TABLE `procesox3celulas`
+  ADD PRIMARY KEY (`codigoProcesoX3Celula`),
+  ADD KEY `codigoCelula` (`codigoCelula`),
+  ADD KEY `codigoProcesoX3` (`codigoProcesoX3`);
 
 --
 -- Indices de la tabla `reencuentroabonos`
@@ -1302,6 +1339,16 @@ ALTER TABLE `procesoox3informer6`
 --
 ALTER TABLE `procesoox3personas`
   MODIFY `codigoProcesoOx3Personas` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `procesoox3personasorando`
+--
+ALTER TABLE `procesoox3personasorando`
+  MODIFY `codigoProcesoOx3PersonaOrando` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `procesox3celulas`
+--
+ALTER TABLE `procesox3celulas`
+  MODIFY `codigoProcesoX3Celula` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `reencuentroabonos`
 --
@@ -1492,20 +1539,33 @@ ALTER TABLE `personasroles`
 -- Filtros para la tabla `procesoox3informer5`
 --
 ALTER TABLE `procesoox3informer5`
-  ADD CONSTRAINT `procesoox3informer5_ibfk_1` FOREIGN KEY (`codigoProcesoOx3Personas`) REFERENCES `procesoox3personas` (`codigoProcesoOx3Personas`);
+  ADD CONSTRAINT `procesoox3informer5_ibfk_1` FOREIGN KEY (`codigoProcesoOx3Personas`) REFERENCES `procesoox3personasorando` (`codigoProcesoOx3PersonaOrando`);
 
 --
 -- Filtros para la tabla `procesoox3informer6`
 --
 ALTER TABLE `procesoox3informer6`
-  ADD CONSTRAINT `procesoox3informer6_ibfk_1` FOREIGN KEY (`codigoProcesoOx3Personas`) REFERENCES `procesoox3personas` (`codigoProcesoOx3Personas`);
+  ADD CONSTRAINT `procesoox3informer6_ibfk_1` FOREIGN KEY (`codigoProcesoOx3Personas`) REFERENCES `procesoox3personasorando` (`codigoProcesoOx3PersonaOrando`);
 
 --
 -- Filtros para la tabla `procesoox3personas`
 --
 ALTER TABLE `procesoox3personas`
-  ADD CONSTRAINT `procesoox3personas_ibfk_1` FOREIGN KEY (`codigoProcesoOx3`) REFERENCES `procesoox3` (`codigoProcesoOx3`),
-  ADD CONSTRAINT `procesoox3personas_ibfk_2` FOREIGN KEY (`codigopersona`) REFERENCES `personas` (`codigoPersona`);
+  ADD CONSTRAINT `procesoox3personas_ibfk_1` FOREIGN KEY (`codigoProceso0x3PersonaOrando`) REFERENCES `procesoox3personasorando` (`codigoProcesoOx3PersonaOrando`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `procesoox3personasorando`
+--
+ALTER TABLE `procesoox3personasorando`
+  ADD CONSTRAINT `procesoox3personasorando_ibfk_1` FOREIGN KEY (`codigoProcesoOx3`) REFERENCES `procesoox3` (`codigoProcesoOx3`),
+  ADD CONSTRAINT `procesoox3personasorando_ibfk_2` FOREIGN KEY (`codigopersona`) REFERENCES `personas` (`codigoPersona`);
+
+--
+-- Filtros para la tabla `procesox3celulas`
+--
+ALTER TABLE `procesox3celulas`
+  ADD CONSTRAINT `procesox3celulas_ibfk_1` FOREIGN KEY (`codigoProcesoX3`) REFERENCES `procesoox3` (`codigoProcesoOx3`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `procesox3celulas_ibfk_2` FOREIGN KEY (`codigoCelula`) REFERENCES `celulas` (`codigoCelula`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `reencuentroabonos`

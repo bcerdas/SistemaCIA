@@ -39,7 +39,7 @@ namespace SistemaCIA.Models.ContextDb
             Matriculaenlinea = new HashSet<Matriculaenlinea>();
             Matriculaenlineaalumnos = new HashSet<Matriculaenlineaalumnos>();
             Personasroles = new HashSet<Personasroles>();
-            Procesoox3personas = new HashSet<Procesoox3personas>();
+            Procesoox3personasorando = new HashSet<Procesoox3personasorando>();
             ReencuentrosmatriculaCodigoPersonaNavigation = new HashSet<Reencuentrosmatricula>();
             ReencuentrosmatriculaGuiaNavigation = new HashSet<Reencuentrosmatricula>();
             Usuarios = new HashSet<Usuarios>();
@@ -106,7 +106,7 @@ namespace SistemaCIA.Models.ContextDb
         public ICollection<Matriculaenlinea> Matriculaenlinea { get; set; }
         public ICollection<Matriculaenlineaalumnos> Matriculaenlineaalumnos { get; set; }
         public ICollection<Personasroles> Personasroles { get; set; }
-        public ICollection<Procesoox3personas> Procesoox3personas { get; set; }
+        public ICollection<Procesoox3personasorando> Procesoox3personasorando { get; set; }
         public ICollection<Reencuentrosmatricula> ReencuentrosmatriculaCodigoPersonaNavigation { get; set; }
         public ICollection<Reencuentrosmatricula> ReencuentrosmatriculaGuiaNavigation { get; set; }
         public ICollection<Usuarios> Usuarios { get; set; }

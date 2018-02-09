@@ -5,39 +5,19 @@ namespace SistemaCIA.Models.ContextDb
 {
     public partial class Procesoox3personas
     {
-        public Procesoox3personas()
-        {
-            Procesoox3informer5 = new HashSet<Procesoox3informer5>();
-            Procesoox3informer6 = new HashSet<Procesoox3informer6>();
-        }
-
         public int CodigoProcesoOx3Personas { get; set; }
-        public int CodigoProcesoOx3 { get; set; }
-        public string Codigopersona { get; set; }
-        public string Nombre1 { get; set; }
-        public string Nombre2 { get; set; }
-        public string Nombre3 { get; set; }
-        public string Observaciones1 { get; set; }
-        public string Observaciones2 { get; set; }
-        public string Observaciones3 { get; set; }
-        public bool? ContactoUno1 { get; set; }
-        public bool? ContactoUno2 { get; set; }
-        public bool? ContactoUno3 { get; set; }
-        public bool? ContactoDos1 { get; set; }
-        public bool? ContactoDos2 { get; set; }
-        public bool? ContactoDos3 { get; set; }
-        public DateTime? R5Fecha { get; set; }
-        public string R5Lugar { get; set; }
-        public string R5Direccion { get; set; }
-        public string R5Hora { get; set; }
-        public DateTime? R6Fecha { get; set; }
-        public string R6Lugar { get; set; }
-        public string R6Direccion { get; set; }
-        public string R6Hora { get; set; }
+        public int CodigoProceso0x3PersonaOrando { get; set; }
+        public string NombreCompleto { get; set; }
+        public int NumeroPersona { get; set; }
+        public string Necesidades { get; set; }
+        public bool ContactoUno { get; set; }
+        public string ObservacionesContactoUno { get; set; }
+        public bool ContactoDos { get; set; }
+        public string ObservacionesContactoDos { get; set; }
+        public bool AsistioR5 { get; set; }
+        public bool AsistioR6 { get; set; }
+        public bool SeConvirtio { get; set; }
 
-        public Procesoox3 CodigoProcesoOx3Navigation { get; set; }
-        public Personas CodigopersonaNavigation { get; set; }
-        public ICollection<Procesoox3informer5> Procesoox3informer5 { get; set; }
-        public ICollection<Procesoox3informer6> Procesoox3informer6 { get; set; }
+        public Procesoox3personasorando CodigoProceso0x3PersonaOrandoNavigation { get; set; }
     }
 }

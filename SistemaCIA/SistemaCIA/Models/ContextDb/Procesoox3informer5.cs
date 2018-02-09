@@ -13,6 +13,6 @@ namespace SistemaCIA.Models.ContextDb
         public int Ofrenda { get; set; }
         public int Observaciones { get; set; }
 
-        public Procesoox3personas CodigoProcesoOx3PersonasNavigation { get; set; }
+        public Procesoox3personasorando CodigoProcesoOx3PersonasNavigation { get; set; }
     }
 }

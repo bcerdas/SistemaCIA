@@ -11,6 +11,7 @@ namespace SistemaCIA.Models.ContextDb
             Celulaspersonas = new HashSet<Celulaspersonas>();
             Informescelulares = new HashSet<Informescelulares>();
             InverseCelulaRaizNavigation = new HashSet<Celulas>();
+            Procesox3celulas = new HashSet<Procesox3celulas>();
         }
 
         public string CodigoCelula { get; set; }
@@ -30,5 +31,6 @@ namespace SistemaCIA.Models.ContextDb
         public ICollection<Celulaspersonas> Celulaspersonas { get; set; }
         public ICollection<Informescelulares> Informescelulares { get; set; }
         public ICollection<Celulas> InverseCelulaRaizNavigation { get; set; }
+        public ICollection<Procesox3celulas> Procesox3celulas { get; set; }
     }
 }

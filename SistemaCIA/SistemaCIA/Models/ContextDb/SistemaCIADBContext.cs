@@ -36,6 +36,8 @@ namespace SistemaCIA.Models.ContextDb
         public virtual DbSet<Procesoox3informer5> Procesoox3informer5 { get; set; }
         public virtual DbSet<Procesoox3informer6> Procesoox3informer6 { get; set; }
         public virtual DbSet<Procesoox3personas> Procesoox3personas { get; set; }
+        public virtual DbSet<Procesoox3personasorando> Procesoox3personasorando { get; set; }
+        public virtual DbSet<Procesox3celulas> Procesox3celulas { get; set; }
         public virtual DbSet<Reencuentroabonos> Reencuentroabonos { get; set; }
         public virtual DbSet<Reencuentros> Reencuentros { get; set; }
         public virtual DbSet<Reencuentrosmatricula> Reencuentrosmatricula { get; set; }
@@ -1695,14 +1697,81 @@ namespace SistemaCIA.Models.ContextDb
 
                 entity.ToTable("procesoox3personas");
 
+                entity.HasIndex(e => e.CodigoProceso0x3PersonaOrando)
+                    .HasName("codigoProceso0x3PersonaOrando");
+
+                entity.Property(e => e.CodigoProcesoOx3Personas)
+                    .HasColumnName("codigoProcesoOx3Personas")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.AsistioR5)
+                    .HasColumnName("asistioR5")
+                    .HasColumnType("bit(1)");
+
+                entity.Property(e => e.AsistioR6)
+                    .HasColumnName("asistioR6")
+                    .HasColumnType("bit(1)");
+
+                entity.Property(e => e.CodigoProceso0x3PersonaOrando)
+                    .HasColumnName("codigoProceso0x3PersonaOrando")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.ContactoDos)
+                    .HasColumnName("contactoDos")
+                    .HasColumnType("bit(1)");
+
+                entity.Property(e => e.ContactoUno)
+                    .HasColumnName("contactoUno")
+                    .HasColumnType("bit(1)");
+
+                entity.Property(e => e.Necesidades)
+                    .IsRequired()
+                    .HasColumnName("necesidades")
+                    .HasMaxLength(500);
+
+                entity.Property(e => e.NombreCompleto)
+                    .IsRequired()
+                    .HasColumnName("nombreCompleto")
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.NumeroPersona)
+                    .HasColumnName("numeroPersona")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.ObservacionesContactoDos)
+                    .IsRequired()
+                    .HasColumnName("observacionesContactoDos")
+                    .HasMaxLength(500);
+
+                entity.Property(e => e.ObservacionesContactoUno)
+                    .IsRequired()
+                    .HasColumnName("observacionesContactoUno")
+                    .HasMaxLength(5000);
+
+                entity.Property(e => e.SeConvirtio)
+                    .HasColumnName("seConvirtio")
+                    .HasColumnType("bit(1)");
+
+                entity.HasOne(d => d.CodigoProceso0x3PersonaOrandoNavigation)
+                    .WithMany(p => p.Procesoox3personas)
+                    .HasForeignKey(d => d.CodigoProceso0x3PersonaOrando)
+                    .HasConstraintName("procesoox3personas_ibfk_1");
+            });
+
+            modelBuilder.Entity<Procesoox3personasorando>(entity =>
+            {
+                entity.HasKey(e => e.CodigoProcesoOx3PersonaOrando);
+
+                entity.ToTable("procesoox3personasorando");
+
                 entity.HasIndex(e => e.CodigoProcesoOx3)
                     .HasName("codigoProcesoOx3");
 
                 entity.HasIndex(e => e.Codigopersona)
                     .HasName("codigopersona");
 
-                entity.Property(e => e.CodigoProcesoOx3Personas)
-                    .HasColumnName("codigoProcesoOx3Personas")
+                entity.Property(e => e.CodigoProcesoOx3PersonaOrando)
+                    .HasColumnName("codigoProcesoOx3PersonaOrando")
                     .HasColumnType("int(11)");
 
                 entity.Property(e => e.CodigoProcesoOx3)
@@ -1712,57 +1781,6 @@ namespace SistemaCIA.Models.ContextDb
                 entity.Property(e => e.Codigopersona)
                     .HasColumnName("codigopersona")
                     .HasMaxLength(15);
-
-                entity.Property(e => e.ContactoDos1)
-                    .HasColumnName("contactoDos1")
-                    .HasColumnType("bit(1)");
-
-                entity.Property(e => e.ContactoDos2)
-                    .HasColumnName("contactoDos2")
-                    .HasColumnType("bit(1)");
-
-                entity.Property(e => e.ContactoDos3)
-                    .HasColumnName("contactoDos3")
-                    .HasColumnType("bit(1)");
-
-                entity.Property(e => e.ContactoUno1)
-                    .HasColumnName("contactoUno1")
-                    .HasColumnType("bit(1)");
-
-                entity.Property(e => e.ContactoUno2)
-                    .HasColumnName("contactoUno2")
-                    .HasColumnType("bit(1)");
-
-                entity.Property(e => e.ContactoUno3)
-                    .HasColumnName("contactoUno3")
-                    .HasColumnType("bit(1)");
-
-                entity.Property(e => e.Nombre1)
-                    .IsRequired()
-                    .HasColumnName("nombre1")
-                    .HasMaxLength(70);
-
-                entity.Property(e => e.Nombre2)
-                    .IsRequired()
-                    .HasColumnName("nombre2")
-                    .HasMaxLength(70);
-
-                entity.Property(e => e.Nombre3)
-                    .IsRequired()
-                    .HasColumnName("nombre3")
-                    .HasMaxLength(70);
-
-                entity.Property(e => e.Observaciones1)
-                    .HasColumnName("observaciones1")
-                    .HasMaxLength(500);
-
-                entity.Property(e => e.Observaciones2)
-                    .HasColumnName("observaciones2")
-                    .HasMaxLength(500);
-
-                entity.Property(e => e.Observaciones3)
-                    .HasColumnName("observaciones3")
-                    .HasMaxLength(500);
 
                 entity.Property(e => e.R5Direccion)
                     .HasColumnName("r5Direccion")
@@ -1797,15 +1815,55 @@ namespace SistemaCIA.Models.ContextDb
                     .HasMaxLength(40);
 
                 entity.HasOne(d => d.CodigoProcesoOx3Navigation)
-                    .WithMany(p => p.Procesoox3personas)
+                    .WithMany(p => p.Procesoox3personasorando)
                     .HasForeignKey(d => d.CodigoProcesoOx3)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("procesoox3personas_ibfk_1");
+                    .HasConstraintName("procesoox3personasorando_ibfk_1");
 
                 entity.HasOne(d => d.CodigopersonaNavigation)
-                    .WithMany(p => p.Procesoox3personas)
+                    .WithMany(p => p.Procesoox3personasorando)
                     .HasForeignKey(d => d.Codigopersona)
-                    .HasConstraintName("procesoox3personas_ibfk_2");
+                    .HasConstraintName("procesoox3personasorando_ibfk_2");
+            });
+
+            modelBuilder.Entity<Procesox3celulas>(entity =>
+            {
+                entity.HasKey(e => e.CodigoProcesoX3celula);
+
+                entity.ToTable("procesox3celulas");
+
+                entity.HasIndex(e => e.CodigoCelula)
+                    .HasName("codigoCelula");
+
+                entity.HasIndex(e => e.CodigoProcesoX3)
+                    .HasName("codigoProcesoX3");
+
+                entity.Property(e => e.CodigoProcesoX3celula)
+                    .HasColumnName("codigoProcesoX3Celula")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.CantidadPersonasOrando)
+                    .HasColumnName("cantidadPersonasOrando")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.CodigoCelula)
+                    .IsRequired()
+                    .HasColumnName("codigoCelula")
+                    .HasMaxLength(15);
+
+                entity.Property(e => e.CodigoProcesoX3)
+                    .HasColumnName("codigoProcesoX3")
+                    .HasColumnType("int(11)");
+
+                entity.HasOne(d => d.CodigoCelulaNavigation)
+                    .WithMany(p => p.Procesox3celulas)
+                    .HasForeignKey(d => d.CodigoCelula)
+                    .HasConstraintName("procesox3celulas_ibfk_2");
+
+                entity.HasOne(d => d.CodigoProcesoX3Navigation)
+                    .WithMany(p => p.Procesox3celulas)
+                    .HasForeignKey(d => d.CodigoProcesoX3)
+                    .HasConstraintName("procesox3celulas_ibfk_1");
             });
 
             modelBuilder.Entity<Reencuentroabonos>(entity =>
