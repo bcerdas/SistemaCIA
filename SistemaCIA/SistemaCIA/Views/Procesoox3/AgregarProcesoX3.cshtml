@@ -1,0 +1,148 @@
+﻿@model SistemaCIA.Models.ContextDb.Procesoox3
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+<h4>Procesoox3</h4>
+<hr />
+<button class="btn-next" style="float:none;" id="btnpopu" value="Agregar Celula" onclick="ShowPopup();"><i class="fa fa-user-plus"></i></button>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaInicio" class="control-label"></label>
+                <input asp-for="FechaInicio" class="form-control" />
+                <span asp-validation-for="FechaInicio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaFinal" class="control-label"></label>
+                <input asp-for="FechaFinal" class="form-control" />
+                <span asp-validation-for="FechaFinal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-6">
+
+        <table id="tbCelulas" class="table table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>
+                        Codigo
+                    </th>
+                    <th>
+                        Lider
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+
+    </div>
+
+
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<script>
+
+    ShowPopup = function () {
+
+        window.open('/Celulas/Index', "PopupWindow", 'width=990px,height=400px,top=150,left=250');
+    }
+
+    function obtenerCelula(Celula) {
+
+        var tabla = document.getElementById("tbCelulas");
+        
+        if (tabla.rows.length == 1) {
+
+            var newRow = document.createElement('tr');
+
+            newRow.appendChild(createCell(Celula.Codigo));//creamos la celda y mandamos lo que queramos mandar
+            newRow.appendChild(createCell(Celula.Nombre));
+
+            //crear boton
+            var boton = createCell();
+            boton.appendChild(createButton())
+            newRow.appendChild(boton);
+
+            document.querySelector('#tbCelulas tbody').appendChild(newRow);
+        } else {
+
+            var seEncontro = false;
+
+            for (var i = 1; i < tabla.rows.length; i++){
+
+                if (tabla.rows[i].cells[0].innerText == Celula.Codigo) {
+
+                    seEncontro = true;
+                    break;
+                }
+            }
+
+            if (seEncontro == false){
+
+                var newRow = document.createElement('tr');
+
+                newRow.appendChild(createCell(Celula.Codigo));//creamos la celda y mandamos lo que queramos mandar
+                newRow.appendChild(createCell(Celula.Nombre));
+
+                //crear boton
+                var boton = createCell();
+                boton.appendChild(createButton())
+                newRow.appendChild(boton);
+
+                document.querySelector('#tbCelulas tbody').appendChild(newRow);
+            }
+
+        }
+            
+        
+       
+    }
+
+    function remove() {
+        var row = this.parentNode.parentNode;
+        document.querySelector('#tbCelulas tbody')
+            .removeChild(row);
+    }
+
+    function createButton() {
+        var button = document.createElement('button');
+        button.className = 'btn btn-xs btn-danger';
+        button.onclick = remove;
+        button.innerText = 'Descartar';
+        return button;
+    }
+
+    function createCell(text) {
+        var td = document.createElement('td');
+        if (text) {
+            td.innerText = text;
+        }
+        return  td;
+    }
+
+</script>

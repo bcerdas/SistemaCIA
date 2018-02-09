@@ -23,6 +23,7 @@ namespace SistemaCIA.Models.ContextDb
         public string R6Lugar { get; set; }
         public string R6Direccion { get; set; }
         public string R6Hora { get; set; }
+        public bool AperturaDeCelulas { get; set; }
 
         public Procesoox3 CodigoProcesoOx3Navigation { get; set; }
         public Personas CodigopersonaNavigation { get; set; }

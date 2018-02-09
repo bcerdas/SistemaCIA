@@ -404,7 +404,7 @@ namespace SistemaCIA.Controllers
 
             ViewBag.Expositores = lista;
 
-
+            ViewBag.recargar = 0;
             return View(administrarPrograma);
         }
 
@@ -489,13 +489,32 @@ namespace SistemaCIA.Controllers
 
                 if (result2 > 0)
                 {
-                    return RedirectToAction("AdministrarPrograma");
+                    return View(nameof(AdministrarPrograma));
                 }
             }
 
             return View();
         }
 
+        public ActionResult EliminarGrupo(int? id)
+        {
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var academiasNiveles = _context.Academiasniveles.SingleOrDefault(x => x.CodigoAcademiasNiveles == id);
+            _context.Academiasniveles.Remove(academiasNiveles);
+            var result = _context.SaveChanges();
+
+            if (result > 0)
+            {
+                return View(nameof(AdministrarPrograma));
+            }
+            
+            return View();
+        }
 
         // GET: Academias/Delete/5
         public async Task<IActionResult> Delete(int? id)

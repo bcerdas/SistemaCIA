@@ -50,6 +50,7 @@ namespace SistemaCIA.Models.ContextDb
             : base(options)
         { }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Academias>(entity =>
@@ -1586,6 +1587,10 @@ namespace SistemaCIA.Models.ContextDb
                     .HasColumnName("codigoProcesoOx3")
                     .HasColumnType("int(11)");
 
+                entity.Property(e => e.AperturaDeCelulas)
+                    .HasColumnName("aperturaDeCelulas")
+                    .HasColumnType("bit(1)");
+
                 entity.Property(e => e.CantOrando)
                     .HasColumnName("cantOrando")
                     .HasColumnType("int(11)");
@@ -1597,6 +1602,11 @@ namespace SistemaCIA.Models.ContextDb
                 entity.Property(e => e.FechaInicio)
                     .HasColumnName("fechaInicio")
                     .HasColumnType("datetime");
+
+                entity.Property(e => e.Nombre)
+                    .IsRequired()
+                    .HasColumnName("nombre")
+                    .HasMaxLength(100);
 
                 entity.Property(e => e.TotalConvertidos)
                     .HasColumnName("totalConvertidos")
@@ -1773,6 +1783,10 @@ namespace SistemaCIA.Models.ContextDb
                 entity.Property(e => e.CodigoProcesoOx3PersonaOrando)
                     .HasColumnName("codigoProcesoOx3PersonaOrando")
                     .HasColumnType("int(11)");
+
+                entity.Property(e => e.AperturaDeCelulas)
+                    .HasColumnName("aperturaDeCelulas")
+                    .HasColumnType("bit(1)");
 
                 entity.Property(e => e.CodigoProcesoOx3)
                     .HasColumnName("codigoProcesoOx3")

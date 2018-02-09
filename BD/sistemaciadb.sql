@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-02-2018 a las 06:21:38
--- Versión del servidor: 10.1.21-MariaDB
--- Versión de PHP: 5.6.30
+-- Tiempo de generación: 09-02-2018 a las 11:36:35
+-- Versión del servidor: 10.1.22-MariaDB
+-- Versión de PHP: 7.1.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -221,7 +223,8 @@ CREATE TABLE `celulas` (
 --
 
 INSERT INTO `celulas` (`codigoCelula`, `lider`, `asistente`, `celulaRaiz`, `lugar`, `direccion`, `hora`, `dia`, `promedioPersonas`) VALUES
-('35fa6479-5ac4-4', 'ka12345', 'ka12345', NULL, 'Tres Rios', 'De el parque central 100mts este.', '06 : 30 pm', 'Sábado', 0);
+('35fa6479-5ac4-4', 'ka12345', 'ka12345', NULL, 'Tres Rios', 'De el parque central 100mts este.', '06 : 30 pm', 'Sábado', 0),
+('48ba7f0a-0018-4', 'CER-123', 'f10d2a3a-9b96-4', NULL, 'Concepcion', 'Ahi a la vuelta', '07 : 30 pm', 'Sábado', 0);
 
 -- --------------------------------------------------------
 
@@ -443,7 +446,7 @@ CREATE TABLE `informescelulares` (
 --
 
 INSERT INTO `informescelulares` (`codigoInformeCelular`, `codigoCelula`, `fecha`, `asistencia`, `visitas`, `ofrenda`, `observaciones`, `seRealizo`) VALUES
-(3, '35fa6479-5ac4-4', '2018-02-08 06:30:00', 17, 3, 5100, '.', b'1');
+(3, '35fa6479-5ac4-4', '2018-02-08 06:30:00', 17, 3, 5100, '.', b'1111111111111111111111111111111');
 
 -- --------------------------------------------------------
 
@@ -667,16 +670,16 @@ CREATE TABLE `personas` (
 --
 
 INSERT INTO `personas` (`codigoPersona`, `codigoMinisterio`, `codigoArea`, `lider`, `nombre`, `apellido1`, `apellido2`, `nombreCompletoMadre`, `telefonoMadre`, `nombreCompletoPadre`, `telefonoPadre`, `nombreCompletoConyuge`, `telefonoConyuge`, `nombreCompletoEncargado`, `telefonoEncargado`, `parentescoEncargado`, `telefono`, `direccion`, `fechaIngreso`, `nivelAcademias`, `fechaDeNacimiento`, `cumbreTimoteos`, `cumbreLideres`, `sexo`) VALUES
-('606ce9d7-96d8-4', NULL, NULL, 'ka12345', 'prueba de hola', 'holis', 'holas', 'yuca', '777', 'camote', '8888', NULL, NULL, NULL, NULL, NULL, '45678', '8765gggfrrr', '2018-01-26 00:00:00', 14, '2018-01-27 00:12:00', b'1', b'1', 'Femenino'),
-('72786524-d747-4', NULL, NULL, 'ka12345', 'Esteban', 'Marin', 'Chinchilla', NULL, NULL, NULL, NULL, 'Pepa alfonsa marin laguniada', '11111111', 'ronald', '33333333', 'compa de trabajo', '22222222', 'por ahi a la vuelta', '2018-01-26 00:00:00', 14, '2018-01-25 00:12:00', b'1', b'1', 'Masculino'),
-('aa1c1e00-3b32-4', NULL, NULL, 'ka12345', 'Pepe', 'ljlkj', 'kljkj', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '43353', 'rrerer', '2018-01-19 00:00:00', 14, '2018-01-26 16:44:00', b'1', b'1', 'ff'),
-('AN-100', 11, NULL, 'ka12345', 'Antonia', 'Qwerty', 'Asdpo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '96325', NULL, NULL, 7, NULL, b'1', b'1', 'Femenino'),
-('AND-1234', 7, NULL, 'ka12345', 'Andres', 'Blanco', 'Duran', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '213213', NULL, NULL, 8, NULL, b'1', b'1', 'Masculino'),
-('c67e0c2b-0558-4', NULL, NULL, 'ka12345', 'pruebaak7', 'jajaja', 'jajaja', 'jajajaa', '333', 'ajajaja', '333', 'jajaja', '222', 'jj', '222', 'jnjv', '9999', 'jfhjsfbhsbfjhbwfj', '2018-01-19 00:00:00', 14, '2018-01-19 00:12:00', b'1', b'1', 'desconocid'),
-('CER-123', 5, NULL, 'ka12345', 'Bryan', 'Cerdas', 'Salas', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '123456', NULL, NULL, 11, '1995-01-18 00:00:00', b'1', b'1', 'Masculino'),
-('f10d2a3a-9b96-4', NULL, NULL, 'ka12345', 'Pepe', 'Cerdas', 'Sallon', 'Pepa', '1111', 'Pepo', '2222', 'Pepina', '3333', 'Pepino', '4444', 'vegetal', '5555', 'verdureria', '2018-01-19 00:00:00', 14, '2018-01-19 00:12:00', b'1', b'1', 'tuberculo'),
-('ka12345', 8, NULL, 'ka12345', 'Kamil', 'Sallon', 'Arroyo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '131132', NULL, NULL, 3, '1997-01-02 00:00:00', b'1', b'1', 'Masculino'),
-('ME-44444', 3, NULL, 'ka12345', 'Maria', 'CAA', 'PEEE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '12222', NULL, NULL, 6, '2018-01-03 00:00:00', b'1', b'1', 'Femenino');
+('606ce9d7-96d8-4', NULL, NULL, 'ka12345', 'prueba de hola', 'holis', 'holas', 'yuca', '777', 'camote', '8888', NULL, NULL, NULL, NULL, NULL, '45678', '8765gggfrrr', '2018-01-26 00:00:00', 14, '2018-01-27 00:12:00', b'1111111111111111111111111111111', b'1111111111111111111111111111111', 'Femenino'),
+('72786524-d747-4', NULL, NULL, 'ka12345', 'Esteban', 'Marin', 'Chinchilla', NULL, NULL, NULL, NULL, 'Pepa alfonsa marin laguniada', '11111111', 'ronald', '33333333', 'compa de trabajo', '22222222', 'por ahi a la vuelta', '2018-01-26 00:00:00', 14, '2018-01-25 00:12:00', b'1111111111111111111111111111111', b'1111111111111111111111111111111', 'Masculino'),
+('aa1c1e00-3b32-4', NULL, NULL, 'ka12345', 'Pepe', 'ljlkj', 'kljkj', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '43353', 'rrerer', '2018-01-19 00:00:00', 14, '2018-01-26 16:44:00', b'1111111111111111111111111111111', b'1111111111111111111111111111111', 'ff'),
+('AN-100', 11, NULL, 'ka12345', 'Antonia', 'Qwerty', 'Asdpo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '96325', NULL, NULL, 7, NULL, b'1111111111111111111111111111111', b'1111111111111111111111111111111', 'Femenino'),
+('AND-1234', 7, NULL, 'ka12345', 'Andres', 'Blanco', 'Duran', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '213213', NULL, NULL, 8, NULL, b'1111111111111111111111111111111', b'1111111111111111111111111111111', 'Masculino'),
+('c67e0c2b-0558-4', NULL, NULL, 'ka12345', 'pruebaak7', 'jajaja', 'jajaja', 'jajajaa', '333', 'ajajaja', '333', 'jajaja', '222', 'jj', '222', 'jnjv', '9999', 'jfhjsfbhsbfjhbwfj', '2018-01-19 00:00:00', 14, '2018-01-19 00:12:00', b'1111111111111111111111111111111', b'1111111111111111111111111111111', 'desconocid'),
+('CER-123', 5, NULL, 'ka12345', 'Bryan', 'Cerdas', 'Salas', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '123456', NULL, NULL, 11, '1995-01-18 00:00:00', b'1111111111111111111111111111111', b'1111111111111111111111111111111', 'Masculino'),
+('f10d2a3a-9b96-4', NULL, NULL, 'ka12345', 'Pepe', 'Cerdas', 'Sallon', 'Pepa', '1111', 'Pepo', '2222', 'Pepina', '3333', 'Pepino', '4444', 'vegetal', '5555', 'verdureria', '2018-01-19 00:00:00', 14, '2018-01-19 00:12:00', b'1111111111111111111111111111111', b'1111111111111111111111111111111', 'tuberculo'),
+('ka12345', 8, NULL, 'ka12345', 'Kamil', 'Sallon', 'Arroyo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '131132', NULL, NULL, 3, '1997-01-02 00:00:00', b'1111111111111111111111111111111', b'1111111111111111111111111111111', 'Masculino'),
+('ME-44444', 3, NULL, 'ka12345', 'Maria', 'CAA', 'PEEE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '12222', NULL, NULL, 6, '2018-01-03 00:00:00', b'1111111111111111111111111111111', b'1111111111111111111111111111111', 'Femenino');
 
 -- --------------------------------------------------------
 
@@ -718,7 +721,9 @@ CREATE TABLE `procesoox3` (
   `fechaInicio` datetime NOT NULL,
   `fechaFinal` datetime NOT NULL,
   `cantOrando` int(11) NOT NULL,
-  `totalConvertidos` int(11) DEFAULT NULL
+  `totalConvertidos` int(11) DEFAULT NULL,
+  `nombre` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `aperturaDeCelulas` bit(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -791,7 +796,8 @@ CREATE TABLE `procesoox3personasorando` (
   `r6Fecha` datetime DEFAULT NULL,
   `r6Lugar` varchar(40) COLLATE utf8_spanish_ci DEFAULT NULL,
   `r6Direccion` varchar(500) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `r6Hora` varchar(10) COLLATE utf8_spanish_ci DEFAULT NULL
+  `r6Hora` varchar(10) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `aperturaDeCelulas` bit(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -1592,6 +1598,7 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `usuarios`
   ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`codigoPersona`) REFERENCES `personas` (`codigoPersona`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

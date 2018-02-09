@@ -16,6 +16,8 @@ namespace SistemaCIA.Models.ContextDb
         public DateTime FechaFinal { get; set; }
         public int CantOrando { get; set; }
         public int? TotalConvertidos { get; set; }
+        public string Nombre { get; set; }
+        public bool AperturaDeCelulas { get; set; }
 
         public ICollection<Procesoox3personasorando> Procesoox3personasorando { get; set; }
         public ICollection<Procesox3celulas> Procesox3celulas { get; set; }

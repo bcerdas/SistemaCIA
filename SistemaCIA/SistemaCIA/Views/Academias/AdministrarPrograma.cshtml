@@ -24,95 +24,143 @@
     }
     @foreach (var group in Model.academiasNiveles.GroupBy(item => item.CodigoAcademiasNiveles))
     {
-    <li>
-        <br />
-        @{
-        var obj = Model.academiasNiveles.FirstOrDefault(x => x.CodigoAcademiasNiveles == group.Key);
-        }
-        <a onclick="mostrar(@c);" style="margin-left:30px;font-size:20px;">@Html.DisplayName(obj.CodigoNivelNavigation.Nombre)</a> <h4 style="display:inline-block">Grupo (@obj.Grupo)</h4>
-        &emsp;&emsp; <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="AgregarNuevoGrupo(@obj.CodigoNivel,@obj.CodigoAcademias)">Nuevo grupo</button>
-        <ul id="ul">
-            <li>
-                <table id="tab_@c" class="table">
-                    <thead>
-                        <tr>
-                            <th>
-                                Leccion
-                            </th>
-                            <th>
-                                Hora
-                            </th>
-                            <th>
-                                Nombre
-                            </th>
-                            <th>
-                                Expositor
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.leccionesExpositores)
-    {
-        if (item.CodigoAcademiaNivel == obj.CodigoAcademiasNiveles)
-        {
+        <li>
+            <br />
+            @{
+                var obj = Model.academiasNiveles.FirstOrDefault(x => x.CodigoAcademiasNiveles == group.Key);
+            }
+            <a onclick="mostrar(@c);" style="margin-left:30px;font-size:20px;">@Html.DisplayName(obj.CodigoNivelNavigation.Nombre)</a> <h4 style="display:inline-block">(G-@obj.Grupo)</h4>
+            &emsp;&emsp; <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AG_@c">Nuevo grupo</button>
 
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CodigoLeccionNavigation.NumeroLeccion)
-                        </td>
-                        @if (item.CodigoLeccionNavigation.NumeroLeccion == 1)
-    {
-                    <td>
-                        8:00am - 9:00am
-                    </td>
-}
-else if (item.CodigoLeccionNavigation.NumeroLeccion == 2)
-{
+            <!-- Modal Agregar Grupo -->
+            <div id="AG_@c" class="modal fade" role="dialog">
+                <div class="modal-dialog">
 
-                    <td>
-                        9:40am - 10:30am
-                    </td>
-}
-else if (item.CodigoLeccionNavigation.NumeroLeccion == 3)
-{
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Agregar Grupo</h4>
+                        </div>
+                        <div class="modal-body">
+                            <h4>Desea agregar un nuevo grupo de: <strong>@obj.CodigoNivelNavigation.Nombre</strong></h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="AgregarNuevoGrupo(@obj.CodigoNivel,@obj.CodigoAcademias)">Crear</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
 
-                    <td>
-                        10:30am - 11:20am
-                    </td>
-}
-else if (item.CodigoLeccionNavigation.NumeroLeccion == 4)
-{
-                    <td>
-                        11:20am - 12:10am
-                    </td>
+                </div>
+            </div>
+            <!--End Modal Agregar Grupo -->
+            &emsp;&emsp; <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EG_@c">Eliminar grupo</button>
 
-}
-else if (item.CodigoLeccionNavigation.NumeroLeccion == 5)
-{
+            <!-- Modal Eliminar Grupo -->
+            <div id="EG_@c" class="modal fade" role="dialog">
+                <div class="modal-dialog">
 
-                    <td>
-                        1:00pm - 1:50pm
-                    </td>
-}
-else if (item.CodigoLeccionNavigation.NumeroLeccion == 6)
-{
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Eliminar Grupo</h4>
+                        </div>
+                        <div class="modal-body">
+                            <h4>Desea eliminar el grupo @obj.Grupo de: <strong>@obj.CodigoNivelNavigation.Nombre</strong></h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="EliminarGrupo(@obj.CodigoAcademiasNiveles)">Eliminar</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
 
-                    <td>
-                        1:50pm - 2:40pm
-                    </td>
-}
+                </div>
+            </div>
+            <!--End Modal Eliminar Grupo -->
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CodigoLeccionNavigation.Nombre)
-                        </td>
-                        <td>
-                            <input type="hidden" id="l_@d" asp-for="@item.CodigoAcademiaLeccion" />
+            <ul id="ul">
+                <li>
+                    <table id="tab_@c" class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Leccion
+                                </th>
+                                <th>
+                                    Hora
+                                </th>
+                                <th>
+                                    Nombre
+                                </th>
+                                <th>
+                                    Expositor
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.leccionesExpositores)
+                            {
+                                if (item.CodigoAcademiaNivel == obj.CodigoAcademiasNiveles)
+                                {
 
-                            <select asp-for="@item.CodigoMaestro" id="@d" style="height:35px" class="form-control" asp-items="ViewBag.Expositores"></select>
-                            <span asp-validation-for="@item.CodigoMaestro" class="text-danger"></span>
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CodigoLeccionNavigation.NumeroLeccion)
+                                        </td>
+                                        @if (item.CodigoLeccionNavigation.NumeroLeccion == 1)
+                                        {
+                                            <td>
+                                                8:00am - 9:00am
+                                            </td>
+                                        }
+                                        else if (item.CodigoLeccionNavigation.NumeroLeccion == 2)
+                                        {
+
+                                            <td>
+                                                9:40am - 10:30am
+                                            </td>
+                                        }
+                                        else if (item.CodigoLeccionNavigation.NumeroLeccion == 3)
+                                        {
+
+                                            <td>
+                                                10:30am - 11:20am
+                                            </td>
+                                        }
+                                        else if (item.CodigoLeccionNavigation.NumeroLeccion == 4)
+                                        {
+                                            <td>
+                                                11:20am - 12:10am
+                                            </td>
+
+                                        }
+                                        else if (item.CodigoLeccionNavigation.NumeroLeccion == 5)
+                                        {
+
+                                            <td>
+                                                1:00pm - 1:50pm
+                                            </td>
+                                        }
+                                        else if (item.CodigoLeccionNavigation.NumeroLeccion == 6)
+                                        {
+
+                                            <td>
+                                                1:50pm - 2:40pm
+                                            </td>
+                                        }
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CodigoLeccionNavigation.Nombre)
+                                        </td>
+                                        <td>
+                                            <input type="hidden" id="l_@d" asp-for="@item.CodigoAcademiaLeccion" />
+
+                                            <select asp-for="@item.CodigoMaestro" id="@d" style="height:35px" class="form-control" asp-items="ViewBag.Expositores"></select>
+                                            <span asp-validation-for="@item.CodigoMaestro" class="text-danger"></span>
 
 
-                            <script>
+                                            <script>
 
                         $(document).ready(function () {
                                 var indice = document.getElementById('@d').selectedIndex;
@@ -135,22 +183,22 @@ else if (item.CodigoLeccionNavigation.NumeroLeccion == 6)
                                 });
                             });
 
-                            </script>
+                                            </script>
 
 
-                        </td>
-                    </tr>
-}
-                            d++;
+                                        </td>
+                                    </tr>
+                                }
+                                d++;
 
-}
-                    </tbody>
-                </table>
+                            }
+                        </tbody>
+                    </table>
 
-            </li>
-            <hr/>
-        </ul>
-    </li>
+                </li>
+                <hr />
+            </ul>
+        </li>
         c++;
 
     }
@@ -168,13 +216,25 @@ else if (item.CodigoLeccionNavigation.NumeroLeccion == 6)
 
     function AgregarNuevoGrupo(nivel, academia) {
 
-        alert(nivel + "/" + academia);
-
         var url = "@Url.Action("AgregarNuevoGrupo", "Academias", new { parametros = "param-1" })";
 
         url = url.replace("param-1", nivel + '/' + academia);
 
         $("#ul").load(url);
+
+        window.setTimeout("location.reload()", 150);
+    }
+
+     function EliminarGrupo(CodigoAN) {
+
+        var url = "@Url.Action("EliminarGrupo", "Academias", new { id = "param-1" })";
+
+        url = url.replace("param-1", CodigoAN);
+
+        $("#ul").load(url);
+
+        window.setTimeout("location.reload()",150);
+       
     }
 
 </script>
