@@ -1619,7 +1619,7 @@ namespace SistemaCIA.Models.ContextDb
 
                 entity.ToTable("procesoox3informer5");
 
-                entity.HasIndex(e => e.CodigoProcesoOx3Personas)
+                entity.HasIndex(e => e.CodigoProcesoOx3Celulas)
                     .HasName("codigoProcesoOx3Personas");
 
                 entity.Property(e => e.CodigoProcesoOx3InformeR5)
@@ -1630,8 +1630,8 @@ namespace SistemaCIA.Models.ContextDb
                     .HasColumnName("asistencia")
                     .HasColumnType("int(11)");
 
-                entity.Property(e => e.CodigoProcesoOx3Personas)
-                    .HasColumnName("codigoProcesoOx3Personas")
+                entity.Property(e => e.CodigoProcesoOx3Celulas)
+                    .HasColumnName("codigoProcesoOx3Celulas")
                     .HasColumnType("int(11)");
 
                 entity.Property(e => e.Convertidos)
@@ -1650,10 +1650,9 @@ namespace SistemaCIA.Models.ContextDb
                     .HasColumnName("visitas")
                     .HasColumnType("int(11)");
 
-                entity.HasOne(d => d.CodigoProcesoOx3PersonasNavigation)
+                entity.HasOne(d => d.CodigoProcesoOx3CelulasNavigation)
                     .WithMany(p => p.Procesoox3informer5)
-                    .HasForeignKey(d => d.CodigoProcesoOx3Personas)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasForeignKey(d => d.CodigoProcesoOx3Celulas)
                     .HasConstraintName("procesoox3informer5_ibfk_1");
             });
 
@@ -1663,7 +1662,7 @@ namespace SistemaCIA.Models.ContextDb
 
                 entity.ToTable("procesoox3informer6");
 
-                entity.HasIndex(e => e.CodigoProcesoOx3Personas)
+                entity.HasIndex(e => e.CodigoProcesoOx3Celulas)
                     .HasName("codigoProcesoOx3Personas");
 
                 entity.Property(e => e.CodigoProcesoOx3InformeR6)
@@ -1674,8 +1673,8 @@ namespace SistemaCIA.Models.ContextDb
                     .HasColumnName("asistencia")
                     .HasColumnType("int(11)");
 
-                entity.Property(e => e.CodigoProcesoOx3Personas)
-                    .HasColumnName("codigoProcesoOx3Personas")
+                entity.Property(e => e.CodigoProcesoOx3Celulas)
+                    .HasColumnName("codigoProcesoOx3Celulas")
                     .HasColumnType("int(11)");
 
                 entity.Property(e => e.Convertidos)
@@ -1694,10 +1693,9 @@ namespace SistemaCIA.Models.ContextDb
                     .HasColumnName("visitas")
                     .HasColumnType("int(11)");
 
-                entity.HasOne(d => d.CodigoProcesoOx3PersonasNavigation)
+                entity.HasOne(d => d.CodigoProcesoOx3CelulasNavigation)
                     .WithMany(p => p.Procesoox3informer6)
-                    .HasForeignKey(d => d.CodigoProcesoOx3Personas)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasForeignKey(d => d.CodigoProcesoOx3Celulas)
                     .HasConstraintName("procesoox3informer6_ibfk_1");
             });
 
@@ -1774,7 +1772,7 @@ namespace SistemaCIA.Models.ContextDb
 
                 entity.ToTable("procesoox3personasorando");
 
-                entity.HasIndex(e => e.CodigoProcesoOx3)
+                entity.HasIndex(e => e.CodigoProcesoOx3Celulas)
                     .HasName("codigoProcesoOx3");
 
                 entity.HasIndex(e => e.Codigopersona)
@@ -1788,8 +1786,8 @@ namespace SistemaCIA.Models.ContextDb
                     .HasColumnName("aperturaDeCelulas")
                     .HasColumnType("bit(1)");
 
-                entity.Property(e => e.CodigoProcesoOx3)
-                    .HasColumnName("codigoProcesoOx3")
+                entity.Property(e => e.CodigoProcesoOx3Celulas)
+                    .HasColumnName("codigoProcesoOx3Celulas")
                     .HasColumnType("int(11)");
 
                 entity.Property(e => e.Codigopersona)
@@ -1828,11 +1826,10 @@ namespace SistemaCIA.Models.ContextDb
                     .HasColumnName("r6Lugar")
                     .HasMaxLength(40);
 
-                entity.HasOne(d => d.CodigoProcesoOx3Navigation)
+                entity.HasOne(d => d.CodigoProcesoOx3CelulasNavigation)
                     .WithMany(p => p.Procesoox3personasorando)
-                    .HasForeignKey(d => d.CodigoProcesoOx3)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("procesoox3personasorando_ibfk_1");
+                    .HasForeignKey(d => d.CodigoProcesoOx3Celulas)
+                    .HasConstraintName("procesoox3personasorando_ibfk_3");
 
                 entity.HasOne(d => d.CodigopersonaNavigation)
                     .WithMany(p => p.Procesoox3personasorando)

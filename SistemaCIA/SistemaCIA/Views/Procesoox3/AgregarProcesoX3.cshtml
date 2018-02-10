@@ -59,9 +59,7 @@
                     </th>
                 </tr>
             </thead>
-            <tbody>
-                
-            </tbody>
+            <tbody></tbody>
         </table>
 
     </div>
@@ -83,7 +81,7 @@
     function obtenerCelula(Celula) {
 
         var tabla = document.getElementById("tbCelulas");
-        
+
         if (tabla.rows.length == 1) {
 
             var newRow = document.createElement('tr');
@@ -101,7 +99,7 @@
 
             var seEncontro = false;
 
-            for (var i = 1; i < tabla.rows.length; i++){
+            for (var i = 1; i < tabla.rows.length; i++) {
 
                 if (tabla.rows[i].cells[0].innerText == Celula.Codigo) {
 
@@ -110,7 +108,7 @@
                 }
             }
 
-            if (seEncontro == false){
+            if (seEncontro == false) {
 
                 var newRow = document.createElement('tr');
 
@@ -126,9 +124,6 @@
             }
 
         }
-            
-        
-       
     }
 
     function remove() {
@@ -150,29 +145,22 @@
         if (text) {
             td.innerText = text;
         }
-        return  td;
+        return td;
     }
-
 
     function AgregarProcesoOx3() {
 
         var celulas = "";
         var tabla = document.getElementById("tbCelulas");
         for (var i = 1; i < tabla.rows.length; i++) {
-            alert(tabla.rows.length);
             if (i == (tabla.rows.length - 1)) {
 
                 celulas = celulas + tabla.rows[i].cells[0].innerText;
             } else {
-
                 celulas = celulas + tabla.rows[i].cells[0].innerText + "/";
             }
 
-            alert(tabla.rows[i].cells[0].innerText);
-            
         }
-
-        alert(celulas);
         document.getElementById("celulas").value = celulas;
     }
 

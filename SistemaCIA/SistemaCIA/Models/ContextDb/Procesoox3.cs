@@ -7,7 +7,6 @@ namespace SistemaCIA.Models.ContextDb
     {
         public Procesoox3()
         {
-            Procesoox3personasorando = new HashSet<Procesoox3personasorando>();
             Procesox3celulas = new HashSet<Procesox3celulas>();
         }
 
@@ -19,7 +18,6 @@ namespace SistemaCIA.Models.ContextDb
         public string Nombre { get; set; }
         public bool AperturaDeCelulas { get; set; }
 
-        public ICollection<Procesoox3personasorando> Procesoox3personasorando { get; set; }
         public ICollection<Procesox3celulas> Procesox3celulas { get; set; }
     }
 }

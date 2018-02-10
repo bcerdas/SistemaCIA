@@ -33,7 +33,7 @@
                 </button>
 
                 <a class="navbar-brand" href="@Url.Action("Index","Home")">
-                    <img width="200" src="~/images/logo.jpg" alt="LOGO">
+                    <img width="200" src="~/images/LogoCIA2.png" alt="LOGO">
                 </a>
 
             </div>
@@ -110,17 +110,18 @@
         </nav>
 
         <div id="page-wrapper">
-            <div class="container-fluid">
+            @*style="background-color:#f1f1f1;"*@
+                <div class="container-fluid">
 
-                @RenderBody()
-                <hr />
-                <footer>
-                    <p>&copy; 2018 - SistemaCIA</p>
-                </footer>
-                <!-- /.row -->
+                    @RenderBody()
+                    <hr />
+                    <footer>
+                        <p>&copy; 2018 - SistemaCIA</p>
+                    </footer>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
             </div>
-            <!-- /.container-fluid -->
-        </div>
         <!-- /#page-wrapper -->
     </div><!-- /#wrapper -->
 

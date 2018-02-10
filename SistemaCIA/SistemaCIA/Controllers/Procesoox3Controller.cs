@@ -93,19 +93,10 @@ namespace SistemaCIA.Controllers
         }
 
         // GET: Procesoox3/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> ProcesoOx3ActualLider()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var procesoox3 = await _context.Procesoox3.SingleOrDefaultAsync(m => m.CodigoProcesoOx3 == id);
-            if (procesoox3 == null)
-            {
-                return NotFound();
-            }
-            return View(procesoox3);
+            
+            return View();
         }
 
         // POST: Procesoox3/Edit/5
@@ -113,9 +104,9 @@ namespace SistemaCIA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CodigoProcesoOx3,FechaInicio,FechaFinal,CantOrando,TotalConvertidos")] Procesoox3 procesoox3)
+        public async Task<IActionResult> ProcesoOx3ActualLider(int id,  Procesoox3informer5 procesoox3)
         {
-            if (id != procesoox3.CodigoProcesoOx3)
+            if (id != procesoox3.CodigoProcesoOx3InformeR5)
             {
                 return NotFound();
             }
@@ -129,7 +120,7 @@ namespace SistemaCIA.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!Procesoox3Exists(procesoox3.CodigoProcesoOx3))
+                    if (!Procesoox3Exists(procesoox3.CodigoProcesoOx3InformeR5))
                     {
                         return NotFound();
                     }
