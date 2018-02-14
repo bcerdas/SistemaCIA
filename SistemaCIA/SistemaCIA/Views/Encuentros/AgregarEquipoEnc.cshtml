@@ -5,11 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="contenido">
-    <h3><img width="50" src="~/images/logo2.jpg" />Agregar equipo de encuentro</h3>
-    <hr />
+    <div class="row">
+        <div class="panel-heading division">
+            <h3><img width="50" src="~/images/logo2.jpg" />Agregar equipo de encuentro</h3>
+        </div>
+    </div>
     <div class="row">
         <div class="col-sm-12">
-            <div class="caja">
+            <div class="panel-body division">
                 <form asp-action="AgregarEquipoEnc">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
@@ -24,7 +27,7 @@
                         <h3>@Html.DisplayFor(model => model.Nombre)</h3> 
                         <p>Del @Html.DisplayFor(model => model.FechaInicio) al @Html.DisplayFor(model => model.FechaFinal)</p>
                     </center>
-                    <hr />
+                    <hr style="border:1px solid #1e7c9b"/>
                     <div class="row">
                         <div class="col-sm-3">
                             <h4><b>Asistente</b></h4>
@@ -51,7 +54,7 @@
                             </div>
                         </div>
                     </div>
-                    <hr />
+                    <hr style="border:1px solid #1e7c9b"/>
                     <div class="row">
                         <div class="col-sm-3">
                             <h4><b>Decoración</b></h4>
@@ -79,7 +82,7 @@
                             </div>
                         </div>
                     </div>
-                    <hr />
+                    <hr style="border:1px solid #1e7c9b"/>
                     <div class="row">
                         <div class="col-sm-3">
                             <h4><b>Guia M1</b></h4>
@@ -107,7 +110,7 @@
                             </div>
                         </div>
                     </div>
-                    <hr />
+                    <hr style="border:1px solid #1e7c9b"/>
                     <div class="row">
                         <div class="col-sm-3"></div>
                         <div class="col-sm-3">
@@ -127,7 +130,7 @@
 
                     <center>
                         <div class="form-group">
-                            <input style="float:none; width:200px;" type="submit" value="Guardar equipo" class="btn-next" />
+                            <input style="float:none; width:200px;" type="submit" value="Guardar equipo" class="btn-sm btn-next" />
                         </div>
                     </center>
 

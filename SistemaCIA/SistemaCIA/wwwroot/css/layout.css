@@ -1,7 +1,30 @@
 ﻿@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 
+html{
+    background-color:#e8e8e8;
+}
+
 #terminado {
     color:#15748c;
+}
+
+#rojo {
+    background-color:#ff4343;
+}
+
+.division {
+    background-color: white;
+    margin-bottom: 30px;
+    -webkit-box-shadow: 7px 9px 14px -17px rgba(0,0,0,0.75);
+    -moz-box-shadow: 7px 9px 14px -17px rgba(0,0,0,0.75);
+    box-shadow: 7px 9px 14px -17px rgba(0,0,0,0.75);
+}
+
+table {
+    background-color: white;
+    -webkit-box-shadow: 7px 9px 14px -17px rgba(0,0,0,0.75);
+    -moz-box-shadow: 7px 9px 14px -17px rgba(0,0,0,0.75);
+    box-shadow: 7px 9px 14px -17px rgba(0,0,0,0.75);
 }
 
 @media(min-width:768px) {
@@ -17,6 +40,9 @@ a {
 
 /*------------Radio Button Style----------- */
 
+.footer {
+   
+}
 .funkyradio label {
     /*min-width: 400px;*/
     width: 100%;
@@ -143,6 +169,7 @@ a {
     width: 100%;
     overflow: hidden;
     padding: 0px;
+    margin-left:25px;
 }
 
     #steps li {
@@ -165,6 +192,7 @@ a {
         }
 
 .caja {
+    background-color:white;
     padding: 15px 10px;
     -webkit-box-shadow: 0px 1px 12px -3px rgba(0,0,0,1);
     -moz-box-shadow: 0px 1px 12px -3px rgba(0,0,0,1);
@@ -211,7 +239,6 @@ a {
     border: none;
     background: #15748c;
     color: #fff;
-    padding: 10px;
     font-size: 18px;
     border-radius: 5px;
     position: relative;
@@ -226,11 +253,28 @@ a {
         box-shadow: inset 0 0 0 3px #15748c;
     }
 
+.btn-eliminar {
+    border: none;
+    background: #ed4343;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 5px;
+    position: relative;
+    box-sizing: border-box;
+    transition: all 200ms ease;
+}
+
+    .btn-eliminar:hover {
+        text-decoration: none;
+        background: #fff;
+        color: #ed4343;
+        box-shadow: inset 0 0 0 3px #ed4343;
+    }
+
 .btn-back {
     border: none;
     background: #fff;
     color: #000;
-    padding: 10px;
     font-size: 18px;
     border-radius: 5px;
     position: relative;
@@ -271,6 +315,7 @@ a {
     }
 
 .box {
+    background-color:#fff;
     border-top: none;
     border: solid 1px;
     -webkit-box-shadow: 0px 4px 5px -1px rgba(0,0,0,0.75);
@@ -281,8 +326,8 @@ a {
 
 
 .animated {
-    -webkit-animation-duration: 2s;
-    animation-duration: 2s;
+    -webkit-animation-duration: 1dis;
+    animation-duration: 1s;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
 }

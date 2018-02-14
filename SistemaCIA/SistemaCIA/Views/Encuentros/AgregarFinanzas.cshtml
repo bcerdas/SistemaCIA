@@ -8,18 +8,15 @@
 <div class="contenido">
 
     <div class="row">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-8">
+        <div class="panel-heading division">
             <h3><img width="50" src="~/images/logo2.jpg" />Agregar finanzas</h3>
-            <hr />
         </div>
-        <div class="col-sm-2"></div>
     </div>
     
     <div class="row">
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
-            <div class="caja">
+            <div class="panel-body division">
                 <form asp-action="AgregarFinanzas">
                     <input type="hidden" asp-for="CodigoEncuentro" />
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -33,7 +30,7 @@
                            
                         </div>
                     </div>
-                    <hr />
+                    <hr style="border:1px solid #1e7c9b"/>
                     <b>Total del dinero:</b> ₡@Html.DisplayFor(model => model.TotalDinero)
                     <div class="row">
                         <div class="col-sm-4">
@@ -103,7 +100,7 @@
                         <div class="col-sm-12">
                             <center>
                                 <div class="form-group">
-                                    <input style="float:none; width:200px;" type="submit" value="Guardar" class="btn-next" />
+                                    <input style="float:none; width:200px;" type="submit" value="Guardar" class="btn-sm btn-next" />
                                 </div>
                             </center>
                         </div>

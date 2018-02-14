@@ -35,21 +35,17 @@
 </script>
 
 
-
-
+<div class="contenido">
     <div class="row">
-        <div class="col-sm-3"></div>
-        <div class="col-sm-5">
+        <div class="panel-heading division">
             <h3><img width="50" src="~/images/logo2.jpg" />Academias</h3>
-            <hr />
         </div>
-        <div class="col-sm-4"></div>
     </div>
-    
+
     <div class="row">
         <div class="col-sm-3"></div>
         <div class="col-sm-5">
-            <div class="caja">
+            <div class="panel-body division">
                 <form id="form1" asp-action="Create">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="progress progress-striped active">
@@ -60,6 +56,7 @@
                     </div>
                     <fieldset>
                         <legend style="display:none;"><i class="fa fa-university fa-2x"></i><br />Academia</legend>
+                        <hr style="border:1px solid #1e7c9b"/>
                         <div class="row">
                             <div class="col-sm-7">
                                 <div class="form-group">
@@ -84,16 +81,17 @@
                     <fieldset>
                         <legend style="display:none;"><i style="position:center;" class="fa fa-sitemap fa-2x"></i><br />Niveles</legend>
                         <h4>Seleccione los niveles</h4>
+                        <hr style="border:1px solid #1e7c9b"/>
                         @foreach (var item in Model.niveles)
                         {
-                        <div class="col-sm-6 text-justify">
-                            @item.Nombre
-                            <div class="form-group material-switch">
-                                <input type="checkbox" name="checkbox" id="@item.CodigoNivel" value="@item.CodigoNivel" />
-                                <label for="@item.CodigoNivel" class="control-label label-info"></label>
-                                <span asp-validation-for="@item.Nombre" class="text-danger"></span>
+                            <div class="col-sm-6 text-justify">
+                                @item.Nombre
+                                <div class="form-group material-switch">
+                                    <input type="checkbox" name="checkbox" id="@item.CodigoNivel" value="@item.CodigoNivel" />
+                                    <label for="@item.CodigoNivel" class="control-label label-info"></label>
+                                    <span asp-validation-for="@item.Nombre" class="text-danger"></span>
+                                </div>
                             </div>
-                        </div>
                         }
 
                         <script>
@@ -115,7 +113,7 @@
                                 v = v + cont.toString();
 
                                 document.getElementById("parametros").value = v;
-                                
+
                             }
 
                         </script>
@@ -125,7 +123,7 @@
                         <center>
                             <h3 style="color:#15748c;">Has terminado<br /><i class="fa fa-check fa-3x"></i></h3>
                             <div class="form-group">
-                                <input id="guardarAcademia" class="btn-next" type="submit" value="Guardar" onclick="AgregarNivel()" />
+                                <input id="guardarAcademia" class="btn btn-sm btn-next" type="submit" value="Guardar" onclick="AgregarNivel()" />
                             </div>
                         </center>
                     </fieldset>
@@ -135,3 +133,6 @@
         </div>
         <div class="col-sm-4"></div>
     </div>
+
+</div>
+

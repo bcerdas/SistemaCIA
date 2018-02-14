@@ -17,14 +17,18 @@
 </style>
 
 <div class="contenido">
-    <h3><img width="50" src="~/images/logo2.jpg" />Matricula de academias</h3>
-    <h4>@ViewBag.nombreAcademias - @ViewBag.fechaAcademias</h4>
-    <hr />
+    <div class="row">
+        <div class="panel-heading division">
+            <h3><img width="50" src="~/images/logo2.jpg" />Matricula de academias</h3>
+            <h4>@ViewBag.nombreAcademias - @ViewBag.fechaAcademias</h4>
+        </div>
+    </div>
+    
     <div class="row">
     <div class="col-md-5">
-        <div class="caja">
-            <h4>Agregar Persona&emsp;<button class="btn-next" style="float:none;" id="btnpopu" value="Agregar Persona" onclick="ShowPopup();"><i class="fa fa-user-plus"></i></button></h4><br />
-            <hr />
+        <div class="panel-body division">
+            <h4>Agregar Persona&emsp;<button class="btn-xs btn-next" style="float:none;" id="btnpopu" value="Agregar Persona" onclick="ShowPopup();"><i class="fa fa-user-plus"></i></button></h4>
+            <hr style="border:1px solid #1e7c9b" />
 
             <form asp-action="MatriculaAcademia">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -58,18 +62,13 @@
                 </div>
                 <div class="form-group">
                     <center>
-                        <button style="float:none;" type="submit" class="btn-next"><small>Agregar</small></button>
+                        <button style="float:none;" type="submit" class="btn btn-xs btn-next"><small>Agregar</small></button>
                     </center>
                 </div>
             </form>
         </div>
     </div>
-    @*</div>*@
-
-    @*<div class="row">*@
-
-      
-            <div class="col-md-6" onload="ContarFilas();">
+            <div class="col-md-6 panel-body division" onload="ContarFilas();">
                 @if (!string.IsNullOrEmpty(ViewBag.msj))
                 {
                     <div style="padding:5px; background-color:#ff6666; border-radius:10px; color:white; text-align:center; font-size:15px;"><p><i class="fa fa-fw fa-exclamation-triangle fa-2x"></i>Error: @ViewBag.msj</p></div>
@@ -77,7 +76,8 @@
                 }
 
 
-                <h2> @ViewBag.total </h2>
+                <h3> @ViewBag.total </h3>
+                <hr style="border:1px solid #1e7c9b" />
                 <ul>
                     @{
                         int c = 0;
@@ -90,7 +90,7 @@
                                 var obj = Model.Matriculados.FirstOrDefault(x => x.NivelMatriculado == group.Key);
                             }
                             <div class="ge">
-                                <a onclick="mostrar(@c);" style="margin-left:30px;font-size:20px;"><h3><i id="arrows" class="fa fa-fw fa-angle-double-right fa-2x"></i>@Html.DisplayName(obj.NivelMatriculado)</h3></a>
+                                <a onclick="mostrar(@c);" style="margin-left:30px;font-size:20px;"><h4><i id="arrows_@c" class="fa fa-fw fa-angle-double-right"></i>@Html.DisplayName(obj.NivelMatriculado)</h4></a>
                             </div>
                             
 
@@ -98,9 +98,8 @@
                             <ul>
                                 <li>
                                     <br />
-                                    <div id="caja">
-                                        <table style="text-align:center;" id="tab_@c" class="table table-hover table-condensed animated fadeIn">
-                                            <thead style="background-color:#15748c; color:white;">
+                                        <table style="text-align:center;" id="tab_@c" class="table animated fadeIn">
+                                            <thead>
                                                 <tr>
                                                     <th>
                                                         @Html.DisplayName("Nombre")
@@ -125,6 +124,7 @@
                                                         @Html.DisplayName("Saldo")
                                                     </th>
 
+                                                    <th></th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
@@ -175,16 +175,9 @@
                                                             <td>
                                                                 @Html.DisplayFor(modelItem => item.Saldo)
                                                             </td>
-                                                        </tr>
-                                                        <tr style="background-color:#ededed;">
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
                                                             <td>
                                                                 <!-- Trigger the modal with a button -->
-                                                                <button type="button" class="btn-next" data-toggle="modal" data-target="#A_@item.CodigoAcademiaMatricula"><small>Abonar</small></button>
+                                                                <button style="float:none;" type="button" class="btn btn-xs btn-next" data-toggle="modal" data-target="#A_@item.CodigoAcademiaMatricula"><small>Abonar</small></button>
 
                                                                 <!-- Modal -->
                                                                 <div id="A_@item.CodigoAcademiaMatricula" class="modal fade" role="dialog">
@@ -213,7 +206,7 @@
                                                             <td>
 
                                                                 <!-- Trigger the modal with a button -->
-                                                                <button alt="Eliminar" type="button" class="btn-next" data-toggle="modal" data-target="#@item.CodigoAcademiaMatricula"><i title="Eliminar" class="fa fa-trash"></i></button>
+                                                                <button alt="Eliminar" type="button" class="btn btn-xs btn-eliminar" data-toggle="modal" data-target="#@item.CodigoAcademiaMatricula"><i title="Eliminar" class="fa fa-trash"></i></button>
 
                                                                 <!-- Modal -->
                                                                 <div id="@item.CodigoAcademiaMatricula" class="modal fade" role="dialog">
@@ -240,9 +233,6 @@
 
                                                             </td>
                                                         </tr>
-
-
-
                                                         cantidad++;
 
                                                     }
@@ -253,10 +243,9 @@
 
                                             </tbody>
                                         </table>
-                                    </div>
                                     
                                     
-                                    <div id="cant">
+                                    <div id="cant_@c">
                                         <i class="fa fa-fw fa-user"></i>@ViewBag.cantidad
                                     </div>
                                     
@@ -311,15 +300,13 @@
     function mostrar(c) {
         if (document.getElementById("tab_"+c).style.display == "table") {
             document.getElementById("tab_" + c).style.display = "none";
-            document.getElementById('cant').style.display = 'block';
-            document.getElementById('arrows').className = 'fa fa-fw fa-angle-double-right fa-2x';
-            document.getElementById('caja').className = 'none';
+            document.getElementById('cant_' + c).style.display = 'block';
+            document.getElementById('arrows_' + c).className = 'fa fa-fw fa-angle-double-right';
 
         } else {
             document.getElementById("tab_" + c).style.display = "table";
-            document.getElementById('cant').style.display = 'none';
-            document.getElementById('caja').className = 'caja2';
-            document.getElementById('arrows').className = 'fa fa-fw fa-angle-double-down fa-2x';
+            document.getElementById('cant_' + c).style.display = 'none';
+            document.getElementById('arrows_' + c).className = 'fa fa-fw fa-angle-double-down';
             
         }
     }

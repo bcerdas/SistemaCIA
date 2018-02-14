@@ -6,78 +6,81 @@
 }
 
 <div class="contenido">
-    <h3><img width="50" src="~/images/logo2.jpg" />Gestionar encuentristas</h3>
-    <hr />
-    <form asp-action="GestionarEncuentristas" method="POST">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="table-responsive">
-            <table class="table table-hover table-condensed" id="table">
-                <thead style="background-color:#15748c; color:white;">
-                    <tr>
-                        <th>
-                            @Html.DisplayName("Nombre")
-                        </th>
-                        <th>
-                            @Html.DisplayName("Nacimiento")
-                        </th>
-                        <th>
-                            @Html.DisplayName("Telefono")
-                        </th>
-                        <th>
-                            @Html.DisplayName("Sexo")
-                        </th>
-                        <th>
-                            @Html.DisplayName("Estado")
-                        </th>
-                        <th>
-                            @Html.DisplayName("Lider")
-                        </th>
-                        <th>
-                            @Html.DisplayName("Guia")
-                        </th>
-
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @{
-                        int c = 0;
-                    }
-                    @foreach (var item in Model)
-            {
+    <div class="row">
+        <div class="panel-heading division">
+            <h3><img width="50" src="~/images/logo2.jpg" />Gestionar encuentristas</h3>
+        </div>
+    </div>
+        <form asp-action="GestionarEncuentristas" method="POST">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="table-responsive">
+                <table class="table table-hover" id="table">
+                    <thead style="background-color:#15748c; color:white;">
                         <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Nombre)
+                            <th>
+                                @Html.DisplayName("Nombre")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Nacimiento")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Telefono")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Sexo")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Estado")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Lider")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Guia")
+                            </th>
 
-                                @Html.DisplayFor(modelItem => item.Apellido1)
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int c = 0;
+                        }
+                        @foreach (var item in Model)
+            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nombre)
 
-                                @Html.DisplayFor(modelItem => item.Apellido2)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.FechaDeNacimiento)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Telefono)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Sexo)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Estado)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Lider)
-                            </td>
-                            <td>
+                                    @Html.DisplayFor(modelItem => item.Apellido1)
 
-                                <select asp-for="@item.Guia" id="@c" style="height:35px;" class="form-control" asp-items="ViewBag.Guias"></select>
-                                <span asp-validation-for="@item.Guia" class="text-danger"></span>
+                                    @Html.DisplayFor(modelItem => item.Apellido2)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FechaDeNacimiento)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Telefono)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Sexo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Estado)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Lider)
+                                </td>
+                                <td>
 
-                                <input type="hidden" id="p_@c" asp-for="@item.CodigoPersona" />
-                                <input type="hidden" id="e_@c" asp-for="@item.CodigoEncuentro" />
-                                <input type="hidden" id="observacion" name="observacion" />
-                                <input type="hidden" id="em_@c" asp-for="@item.CodigoMatriculaEncuentro" />
-                                <script>
+                                    <select asp-for="@item.Guia" id="@c" style="height:35px;" class="form-control" asp-items="ViewBag.Guias"></select>
+                                    <span asp-validation-for="@item.Guia" class="text-danger"></span>
+
+                                    <input type="hidden" id="p_@c" asp-for="@item.CodigoPersona" />
+                                    <input type="hidden" id="e_@c" asp-for="@item.CodigoEncuentro" />
+                                    <input type="hidden" id="observacion" name="observacion" />
+                                    <input type="hidden" id="em_@c" asp-for="@item.CodigoMatriculaEncuentro" />
+                                    <script>
 
                         $(document).ready(function () {
                                 var indice = document.getElementById('@c').selectedIndex;
@@ -101,83 +104,70 @@
                                 });
                             });
 
-                                </script>
-                            </td>
-                        </tr>
+                                    </script>
+                                </td>
+                            </tr>
 
-                        <tr style="background-color:#ededed;">
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <div class="col-sm-3">
-                                    <button type="button" id="b_@c" class="btn-next" data-toggle="modal" data-target="#@item.CodigoPersona">
-                                        Observaciones
-                                    </button>
-                                </div>
-                                <div class="col-sm-3">
-                                    <a class="btn-next" asp-action="Details" asp-route-id="@item.CodigoPersona">Detalles</a>
-                                </div>
-                                <div class="col-sm-1">
-                                    <a class="btn-next" asp-action="Delete" asp-route-id="@item.CodigoPersona"><i class="fa fa-trash"></i></a>
-                                </div>
-                                
-                                
-                                
+                            <tr>
+                                <td style="border-top:none;" colspan="7" align="right">
+                                    
+                                            <button type="button" id="b_@c" style="float:none;" class="btn btn-xs btn-next" data-toggle="modal" data-target="#@item.CodigoPersona">
+                                                <small>Observaciones</small>
+                                            </button>
+                                            <a style="float:none;" class="btn btn-xs btn-next" asp-action="Details" asp-route-id="@item.CodigoPersona"><small>Detalles</small></a>
+                                            
+                                        
+                                            <a style="float:none;" class="btn btn-xs btn-eliminar" asp-action="Delete" asp-route-id="@item.CodigoPersona"><i class="fa fa-trash"></i></a>
+                                     
 
+                                    <!--Modal-Observaciones -->
+                                    <div id="@item.CodigoPersona" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
 
-                                <!--Modal-Observaciones -->
-                                <div id="@item.CodigoPersona" class="modal fade" role="dialog">
-                                    <div class="modal-dialog">
+                                            <!-- Modal content-->
+                                            <div style="text-align:left;" class="modal-content">
+                                                <div style="background-color:#15748c; color:white;" class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h4 class="modal-title">@item.Nombre @item.Apellido1</h4>
+                                                </div>
+                                                <div class="modal-body">
 
-                                        <!-- Modal content-->
-                                        <div class="modal-content">
-                                            <div style="background-color:#15748c; color:white;" class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 class="modal-title">@item.Nombre @item.Apellido1</h4>
-                                            </div>
-                                            <div class="modal-body">
+                                                    <br />
+                                                    Observaciones:<br />
+                                                    <textarea id="ob_@c" asp-for="@item.Observaciones" style="resize:vertical" class="form-control" rows="4" onchange="valorname = this.value"></textarea>
+                                                </div>
 
-                                                <br />
-                                                Observaciones:<br />
-                                                <textarea id="ob_@c" asp-for="@item.Observaciones" style="resize:vertical" class="form-control" rows="4" onchange="valorname = this.value"></textarea>
+                                                <div class="modal-footer">
+                                                    <button style="float:none;" type="button" class="btn btn-sm btn-back" data-dismiss="modal">Cerrar</button>
+                                                    <button style="float:none;" type="submit" class="btn btn-sm btn-next" asp-route-id="@item.CodigoMatriculaEncuentro" onclick="AgregarObservaciones()">Guardar</button>
+                                                </div>
                                             </div>
 
-                                            <div class="modal-footer">
-                                                <button style="float:none;" type="submit" class="btn-next" asp-route-id="@item.CodigoMatriculaEncuentro" onclick="AgregarObservaciones()">Guardar</button>
-
-                                                <button style="float:none;" type="button" class="btn-back" data-dismiss="modal">Cerrar</button>
-                                            </div>
                                         </div>
-
                                     </div>
-                                </div>
 
-                                <script>
+                                    <script>
 
-                                    function AgregarObservaciones() {
+                                        function AgregarObservaciones() {
 
-                                        document.getElementById('observacion').value = valorname;
-                                    }
+                                            document.getElementById('observacion').value = valorname;
+                                        }
 
-                                </script>
-                                <!--End Modal -->
+                                    </script>
+                                    <!--End Modal -->
 
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
 
-                           
-                        
 
-                        c++;
-                    }
-                </tbody>
-            </table>
-        </div>
-    </form>
+
+
+                            c++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </form>
 </div>
 
 

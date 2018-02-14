@@ -6,8 +6,12 @@
 }
 
 <div class="contenido">
-    <h3><img width="50" src="~/images/logo2.jpg" />Ofertas Academicas</h3>
-    <hr />
+    <div class="row">
+        <div class="panel-heading division">
+            <h3><img width="50" src="~/images/logo2.jpg" />Ofertas Academicas</h3>
+        </div>
+    </div>
+    
     <div class="table-responsive">
         <table class="table table-hover">
             <thead style="background-color:#15748c; color:white;">
@@ -63,14 +67,14 @@
                         </td>
                     </tr>
 
-                    <tr style="background-color:#ededed;">
-                        <td></td>
-                        <td></td>
-                        <td><div class="ge"><a asp-action="MatriculaAcademia" asp-route-id="@item.CodigoAcademias"><i style="color:#15748c;" class="fa fa-fw fa-angle-double-right"></i>Matricular</a></div></td>
-                        <td><div class="ge"><a asp-action="Edit" asp-route-id="@item.CodigoAcademias"><i style="color:#15748c;" class="fa fa-fw fa-angle-double-right"></i>Edit</a></div></td>
-                        <td><div class="ge"><a asp-action="Details" asp-route-id="@item.CodigoAcademias"><i style="color:#15748c;" class="fa fa-fw fa-angle-double-right"></i>Details</a></div></td>
-                        <td><div class="ge"><a asp-action="AdministrarPrograma" asp-route-id="@item.CodigoAcademias"><i style="color:#15748c;" class="fa fa-fw fa-angle-double-right"></i>Programa</a></div></td>
-                        <td><div class="ge"><a asp-action="Delete" asp-route-id="@item.CodigoAcademias"><i style="color:#15748c;" class="fa fa-fw fa-trash"></i></a></div></td>
+                    <tr>
+                        <td colspan="7" style="border-top:none;" align="right">
+                            <a style="float:none;" class="btn btn-xs btn-next" asp-action="MatriculaAcademia" asp-route-id="@item.CodigoAcademias"><small>Matricular</small></a>
+                            <a style="float:none;" class="btn btn-xs btn-next" asp-action="Edit" asp-route-id="@item.CodigoAcademias"><small>Editar</small></a>
+                            <a style="float:none;" class="btn btn-xs btn-next" asp-action="Details" asp-route-id="@item.CodigoAcademias"><small>Detalles</small></a>
+                            <a style="float:none;" class="btn btn-xs btn-next" asp-action="AdministrarPrograma" asp-route-id="@item.CodigoAcademias"><small>Programa</small></a>
+                            <a style="float:none;" class="btn btn-xs btn-eliminar" asp-action="Delete" asp-route-id="@item.CodigoAcademias"><i class="fa fa-fw fa-trash"></i></a>
+                        </td>
                     </tr>
                         
                     

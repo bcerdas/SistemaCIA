@@ -4,95 +4,148 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script type="text/javascript" src="~/js/formToWizard.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#form1").formToWizard({ submitButton: 'guardarCelula' })
+    });
+</script>
 
-<h2>Create</h2>
-<h4>Celulas</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="AgregarCelula">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<script type="text/javascript">
+    var cont = 0;
 
-            <div class="form-group">
-                <label asp-for="Lider" class="control-label"></label>
-                <select asp-for="Lider" class="form-control" asp-items="ViewBag.Asistente"></select>
+    function llenaBarra() {
+        cont += 1;
+        if (cont == 1) {
+            document.getElementById('barra').style.width = '53%';
+        }
+
+        if (cont == 2) {
+            document.getElementById('barra').style.width = '100%';
+        }
+    }
+
+    function vaciaBarra() {
+        cont = cont - 1;
+        if (cont == 0)
+            document.getElementById('barra').style.width = '27%';
+        if (cont == 1)
+            document.getElementById('barra').style.width = '53%';
+    }
+
+</script>
+
+<div class="container-fluid contenido">
+    <div class="row">
+        <div class="panel-heading division">
+            <h3><img width="50" src="~/images/logo2.jpg" />Crear celula</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="panel-body division">
+                <form id="form1" asp-action="AgregarCelula">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="progress progress-striped active">
+                        <div id="barra" class="progress-bar progress-bar-success" role="progressbar"
+                             aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+                             style="width: 27%">
+                        </div>
+                    </div>
+                    <fieldset>
+                        <legend style="display:none;"><i style="position:center;" class="fa fa-info fa-2x"></i><br />Información</legend>
+                        <hr style="border:1px solid #1e7c9b" />
+                        <div class="form-group">
+                            <label asp-for="Lider" class="control-label"></label>
+                            <select asp-for="Lider" class="form-control" asp-items="ViewBag.Asistente"></select>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Asistente" class="control-label"></label>
+                            <select asp-for="Asistente" class="form-control" asp-items="ViewBag.Asistente"></select>
+                        </div>
+                        @*<div class="form-group">
+                    <label asp-for="CelulaRaiz" class="control-label"></label>
+                    <select asp-for="CelulaRaiz" class="form-control" asp-items="ViewBag.CelulaRaiz"></select>
+                </div>*@
+                        <div class="form-group">
+                            <label asp-for="Lugar" class="control-label"></label>
+                            <input asp-for="Lugar" class="form-control" />
+                            <span asp-validation-for="Lugar" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Direccion" class="control-label"></label>
+                            <textarea asp-for="Direccion" class="form-control" rows="4" style="resize:vertical"></textarea>
+                            <span asp-validation-for="Direccion" class="text-danger"></span>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend style="display:none;"><i style="position:center;" class="fa fa-calendar fa-2x"></i><br />Dia y hora</legend>
+                        <hr style="border:1px solid #1e7c9b" />
+
+                        <div class="form-group">
+                            <label asp-for="Hora" class="control-label"></label>
+                            <select asp-for="Hora" class="form-control" asp-items="ViewBag.Horas"></select>
+                            <span asp-validation-for="Hora" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Dia" class="control-label"></label>
+
+                            <div class="funkyradio">
+                                <div class="funkyradio-primary">
+                                    <input asp-for="Dia" id="dia1" type="radio" value="Lunes" class="form-control" />
+                                    <label for="dia1" class="control-label">Lunes</label>
+                                    <span asp-validation-for="Dia" class="text-danger"></span>
+                                </div>
+                                <div class="funkyradio-primary">
+                                    <input asp-for="Dia" id="dia2" type="radio" value="Martes" class="form-control" />
+                                    <label for="dia2" class="control-label">Martes</label>
+                                    <span asp-validation-for="Dia" class="text-danger"></span>
+                                </div>
+                                <div class="funkyradio-primary">
+                                    <input asp-for="Dia" id="dia3" type="radio" value="Miércoles" class="form-control" />
+                                    <label for="dia3" class="control-label">Miércoles</label>
+                                    <span asp-validation-for="Dia" class="text-danger"></span>
+                                </div>
+                                <div class="funkyradio-primary">
+                                    <input asp-for="Dia" id="dia4" type="radio" value="Jueves" class="form-control" />
+                                    <label for="dia4" class="control-label">Jueves</label>
+                                    <span asp-validation-for="Dia" class="text-danger"></span>
+                                </div>
+                                <div class="funkyradio-primary">
+                                    <input asp-for="Dia" id="dia5" type="radio" value="Viernes" class="form-control" />
+                                    <label for="dia5" class="control-label">Viernes</label>
+                                    <span asp-validation-for="Dia" class="text-danger"></span>
+                                </div>
+                                <div class="funkyradio-primary">
+                                    <input asp-for="Dia" id="dia6" type="radio" value="Sábado" class="form-control" />
+                                    <label for="dia6" class="control-label">Sábado</label>
+                                    <span asp-validation-for="Dia" class="text-danger"></span>
+                                </div>
+                                <div class="funkyradio-primary">
+                                    <input asp-for="Dia" id="dia7" type="radio" value="Domingo" class="form-control" />
+                                    <label for="dia7" class="control-label">Domingo</label>
+                                    <span asp-validation-for="Dia" class="text-danger"></span>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend style="display:none;"><i class="fa fa-check fa-3x"></i></legend>
+                        <center>
+                            <h3 style="color:#15748c;">Has terminado<br /><i class="fa fa-check fa-3x"></i></h3>
+                            <div class="form-group">
+                                <input id="guardarCelula" class="btn btn-sm btn-next" type="submit" value="Guardar" />
+                            </div>
+                        </center>
+                    </fieldset>
+                </form>
             </div>
-
-            <div class="form-group">
-                <label asp-for="Asistente" class="control-label"></label>
-                <select asp-for="Asistente" class="form-control" asp-items="ViewBag.Asistente"></select>
-            </div>
-            @*<div class="form-group">
-                <label asp-for="CelulaRaiz" class="control-label"></label>
-                <select asp-for="CelulaRaiz" class="form-control" asp-items="ViewBag.CelulaRaiz"></select>
-            </div>*@
-            <div class="form-group">
-                <label asp-for="Lugar" class="control-label"></label>
-                <input asp-for="Lugar" class="form-control" />
-                <span asp-validation-for="Lugar" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Direccion" class="control-label"></label>
-                <textarea asp-for="Direccion" class="form-control" rows="4" style="resize:vertical"></textarea>
-                <span asp-validation-for="Direccion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Hora" class="control-label"></label>
-                <select asp-for="Hora" class="form-control" asp-items="ViewBag.Horas"></select>
-                <span asp-validation-for="Hora" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Dia" class="control-label"></label>
-
-                <div class="funkyradio">
-                    <div class="funkyradio-primary">
-                        <input asp-for="Dia" id="dia1" type="radio" value="Lunes" class="form-control" />
-                        <label for="dia1" class="control-label">Lunes</label>
-                        <span asp-validation-for="Dia" class="text-danger"></span>
-                    </div>
-                    <div class="funkyradio-primary">
-                        <input asp-for="Dia" id="dia2" type="radio" value="Martes" class="form-control" />
-                        <label for="dia2" class="control-label">Martes</label>
-                        <span asp-validation-for="Dia" class="text-danger"></span>
-                    </div>
-                    <div class="funkyradio-primary">
-                        <input asp-for="Dia" id="dia3" type="radio" value="Miércoles" class="form-control" />
-                        <label for="dia3" class="control-label">Miércoles</label>
-                        <span asp-validation-for="Dia" class="text-danger"></span>
-                    </div>
-                    <div class="funkyradio-primary">
-                        <input asp-for="Dia" id="dia4" type="radio" value="Jueves" class="form-control" />
-                        <label for="dia4" class="control-label">Jueves</label>
-                        <span asp-validation-for="Dia" class="text-danger"></span>
-                    </div>
-                    <div class="funkyradio-primary">
-                        <input asp-for="Dia" id="dia5" type="radio" value="Viernes" class="form-control" />
-                        <label for="dia5" class="control-label">Viernes</label>
-                        <span asp-validation-for="Dia" class="text-danger"></span>
-                    </div>
-                    <div class="funkyradio-primary">
-                        <input asp-for="Dia" id="dia6" type="radio" value="Sábado" class="form-control" />
-                        <label for="dia6" class="control-label">Sábado</label>
-                        <span asp-validation-for="Dia" class="text-danger"></span>
-                    </div>
-                    <div class="funkyradio-primary">
-                        <input asp-for="Dia" id="dia7" type="radio" value="Domingo" class="form-control" />
-                        <label for="dia7" class="control-label">Domingo</label>
-                        <span asp-validation-for="Dia" class="text-danger"></span>
-                    </div>
-
-                </div>
-
-            </div>
-
-                
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
-        </form>
+        </div>
     </div>
 </div>
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    

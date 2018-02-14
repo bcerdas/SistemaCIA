@@ -4,6 +4,7 @@
     ViewData["Title"] = "Index";
     Layout = null;
 }
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -28,13 +29,22 @@
     });
 </script>
 <div class="container-fluid contenido">
-    <h3><img width="50" src="~/images/logo2.jpg" />Miembros de la Iglesia</h3>
-    <hr />
     <div class="row">
-        <div class="col-md-4">
-            <input id="buscar" type="text" class="form-control" placeholder="Escriba algo para filtrar" /><br />            
+        <div class="panel-body">
+            <h3><img width="50" src="~/images/logo2.jpg" />Miembros de la Iglesia</h3>
+            <hr style="border:1px solid #1e7c9b" />
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input id="buscar" type="text" class="form-control" placeholder="Escriba algo para filtrar" /><br />
+            </div>    
+        </div>
+    </div>
+    <br />
     <div class="table-responsive">
         <table id="tbPersonas" class="table table-hover table-condensed">
             <thead style="background-color:#15748c; color:white;">

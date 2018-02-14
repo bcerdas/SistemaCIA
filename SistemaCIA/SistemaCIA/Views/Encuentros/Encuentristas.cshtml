@@ -6,7 +6,12 @@
 }
 
 <div class="contenido">
-    <h3><img width="50" src="~/images/logo2.jpg" />Encuentristas</h3>
+    <div class="row">
+        <div class="panel-heading division">
+            <h3><img width="50" src="~/images/logo2.jpg" />Encuentristas</h3>
+        </div>
+    </div>
+    
     <div class="table-responsive">
         <table class="table table-hover">
 
@@ -44,19 +49,14 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.FechaDeNacimiento)
                         </td>
-                    </tr>
-                    <tr style="background-color:#ededed;">
-                        <td></td>
-                        <td></td>
                         <td>
-                        <div class="col-sm-3">
-                            <div class="ge"><a asp-action="Edit" asp-route-id="@item.CodigoPersona"><i style="color:#15748c;" class="fa fa-fw fa-angle-double-right"></i>Editar</a></div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="ge"><a asp-action="Details" asp-route-id="@item.CodigoPersona"><i style="color:#15748c;" class="fa fa-fw fa-angle-double-right"></i>Detalles</a></div>
-                        </div>
+                            <a style="float:none;" class="btn btn-xs btn-next" asp-action="Edit" asp-route-id="@item.CodigoPersona"><small>Editar</small></a>
+                            <a style="float:none;" class="btn btn-xs btn-next" asp-action="Details" asp-route-id="@item.CodigoPersona"><small>Detalles</small></a>
+                            <a style="float:none;" class="btn btn-xs btn-eliminar" asp-action="Delete" asp-route-id="@item.CodigoPersona"><i class="fa fa-fw fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
                         
-                        <div class="ge"><a asp-action="Delete" asp-route-id="@item.CodigoPersona"><i style="color:#15748c;" class="fa fa-fw fa-trash"></i></a></div></td>
                     </tr>
                         
                     

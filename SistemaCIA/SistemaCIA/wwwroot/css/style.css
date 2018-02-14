@@ -222,6 +222,10 @@ p {
 }
 /**************************/
 
+.imglogin {
+    margin-top:230px;
+    width:200px;
+}
 
 @media (max-width: 767px) {
     .fondo {
@@ -234,11 +238,14 @@ p {
     }
 
     .login {
-        margin-top: 180px;
         border-radius: 3px;
         -webkit-box-shadow: 1px 1px 6px 2px white;
         -moz-box-shadow: 1px 1px 6px 2px white;
         box-shadow: 1px 1px 6px 2px white;
+    }
+    .imglogin {
+        margin-top:0px;
+        width: 200px;
     }
 
     .ministerios {
@@ -329,7 +336,6 @@ p {
 }
 
 .login {
-    margin-top:200px;
     border-radius: 3px;
     -webkit-box-shadow: 1px 1px 6px 2px white;
     -moz-box-shadow: 1px 1px 6px 2px white;

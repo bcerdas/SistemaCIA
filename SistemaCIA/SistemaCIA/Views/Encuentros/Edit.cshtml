@@ -42,19 +42,15 @@
 
 
 
-<div class="container contenido">
+<div class="contenido">
     <div class="row">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-7">
+        <div class="panel-heading division">
             <h3><img width="50" src="~/images/logo2.jpg" />Editar encuentro</h3>
-            <hr />
         </div>
-        <div class="col-sm-3"></div>
     </div>
     <div class="row">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-7">
-            <div class="caja">
+        <div class="col-sm-5 col-sm-offset-3">
+            <div class="panel-body division">
                 <form asp-action="Edit" id="editarEncuentro">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="progress progress-striped active">
@@ -67,7 +63,7 @@
                     <fieldset>
                         <legend style="display:none;"><i style="position:center;" class="fa fa-info fa-2x"></i><br />Detalles Encuentro</legend>
                         <h3>Detalles Encuentro</h3>
-                        <hr />
+                        <hr style="border:1px solid #1e7c9b"/>
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -116,7 +112,7 @@
                     <fieldset>
                         <legend style="display:none;"><i style="position:center;" class="fa fa-user fa-2x"></i><br />Personal</legend>
                         <h3>Personal</h3>
-                        <hr />
+                        <hr style="border:1px solid #1e7c9b"/>
 
                         <div class="row">
                             <div class="col-sm-6">Coordinador</div>
@@ -230,7 +226,7 @@
                     <fieldset>
                         <legend style="display:none;"><i style="position:center;" class="fa fa-money fa-2x"></i><br />Finanzas</legend>
                         <h3>Finanzas</h3>
-                        <hr />
+                        <hr style="border:1px solid #1e7c9b"/>
 
                         <div class="table-responsive">
                             <table class="table table-hover table-condensed">
@@ -370,7 +366,7 @@
                         <center>
                             <h3 id="terminado">Has terminado<br /><i class="fa fa-check fa-3x"></i></h3>
                             <div class="form-group">
-                                <input id="editar" type="submit" value="Guardar cambios" class="btn-next" />
+                                <input id="editar" type="submit" value="Guardar cambios" class="btn btn-sm btn-next" />
                             </div>
                         </center>
                     </fieldset>
@@ -381,7 +377,6 @@
                 </form>
             </div>
         </div>
-        <div class="col-sm-3"></div>
     </div>
     @section Scripts {
         @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
