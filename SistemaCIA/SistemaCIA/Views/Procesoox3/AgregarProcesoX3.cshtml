@@ -5,17 +5,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container-fluid contenido">
-    <div class="row">
-        <div class="panel-heading division">
-            <h3><img width="50" src="~/images/logo2.jpg" />Crear procesox3</h3>
-        </div>
+<div class="row" style="width:98.5%; margin-left:1.2%;">
+    <div class="panel-heading division" style="border-bottom: solid 2px #1e7c9b">
+        <h3><img width="50" src="~/images/logo2.jpg" />Crear procesox3</h3>
     </div>
+</div>
 
-    
+<div class="container-fluid contenido">
     
     <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <div class="panel-body division">
                     <button class="btn btn-xs btn-next" style="float:none;" id="btnpopu" value="Agregar Celula" onclick="ShowPopup();"><i class="fa fa-user-plus"></i></button>
                     <hr style="border:1px solid #1e7c9b" />
@@ -52,7 +51,7 @@
                     </form>
                 </div>
         </div>
-
+        <div class="col-md-1"></div>
         <div class="col-md-6 panel-body division">
 
             <table id="tbCelulas" class="table table-hover table-condensed">
