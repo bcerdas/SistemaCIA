@@ -293,7 +293,7 @@ a {
 .contenido {
     font-family: sans-serif, serif;
     font-size:14px;
-    margin-top: 50px;
+    margin-top: 15px;
 }
 
 .titulo {
@@ -483,6 +483,10 @@ a {
             .side-nav li a:focus {
                 outline: none;
                 background-color: #1a242f !important;
+            }
+
+            .side-nav li a:active {
+                background-color:red;
             }
     }
 

@@ -18,7 +18,7 @@
 
 <div class="contenido">
     <div class="row">
-        <div class="panel-heading division">
+        <div class="panel-heading division" style="border-bottom: solid 2px #1e7c9b">
             <h3><img width="50" src="~/images/logo2.jpg" />Matricula de academias</h3>
             <h4>@ViewBag.nombreAcademias - @ViewBag.fechaAcademias</h4>
         </div>
@@ -98,6 +98,7 @@
                             <ul>
                                 <li>
                                     <br />
+                                    <div class="table-responsive">
                                         <table style="text-align:center;" id="tab_@c" class="table animated fadeIn">
                                             <thead>
                                                 <tr>
@@ -243,6 +244,8 @@
 
                                             </tbody>
                                         </table>
+                                    </div>
+                                        
                                     
                                     
                                     <div id="cant_@c">
